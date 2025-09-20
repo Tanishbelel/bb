@@ -1,0 +1,401 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Budget Planner - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    .planner-header {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+    .planner-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .budget-template {
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .budget-template:hover,
+    .budget-template.active {
+        border-color: #4facfe;
+        background: rgba(79, 172, 254, 0.1);
+    }
+    .category-item {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        border-left: 4px solid #4facfe;
+    }
+    .category-icon {
+        font-size: 1.5rem;
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .budget-summary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 2rem;
+    }
+    .allocation-slider {
+        margin: 1rem 0;
+    }
+    .prediction-card {
+        background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    .confidence-bar {
+        height: 4px;
+        border-radius: 2px;
+        background: #e9ecef;
+        overflow: hidden;
+    }
+    .confidence-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff7675, #fdcb6e, #00b894);
+        transition: width 0.3s;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="planner-header">
+    <div class="container text-center">
+        <h1 class="display-4 mb-3">Interactive Budget Planner</h1>
+        <p class="lead">Create and manage your budget with smart predictions and recommendations</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="planner-card">
+                <h4 class="mb-4">Create New Budget</h4>
+                
+                <div class="mb-4">
+                    <h6>Choose a Budget Template</h6>
+                    <div class="row">
+                        {% for template_key, template in budget_templates.items %}
+                        <div class="col-md-4">
+                            <div class="budget-template" data-template="{{ template_key }}">
+                                <h6>{{ template.name }}</h6>
+                                <small class="text-muted">{{ template.description }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <form id="budgetForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Budget Name</label>
+                            <input type="text" class="form-control" id="budgetName" value="Monthly Budget" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Monthly Income</label>
+                            <input type="number" class="form-control" id="monthlyIncome" value="{{ monthly_income }}" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Start Date</label>
+                            <input type="date" class="form-control" id="startDate" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="endDate" required>
+                        </div>
+                    </div>
+
+                    <h6 class="mb-3">Budget Categories</h6>
+                    <div id="categoriesContainer">
+                        {% for category in default_categories %}
+                        <div class="category-item" data-category="{{ category.name }}">
+                            <div class="d-flex align-items-center">
+                                <div class="category-icon me-3">{{ category.icon }}</div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0">{{ category.name }}</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="percentage-display me-2">{{ category.suggested_percent }}%</span>
+                                            <span class="amount-display">₹0</span>
+                                        </div>
+                                    </div>
+                                    <div class="allocation-slider">
+                                        <input type="range" class="form-range category-slider" 
+                                               min="0" max="50" value="{{ category.suggested_percent }}" 
+                                               data-category="{{ category.name }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="button" id="saveBudgetBtn" class="btn btn-primary btn-lg">
+                            Create Budget
+                        </button>
+                        <button type="button" id="predictExpensesBtn" class="btn btn-outline-info btn-lg ms-2">
+                            Get Predictions
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="planner-card" id="predictionsContainer" style="display: none;">
+                <h4 class="mb-4">Expense Predictions</h4>
+                <div id="predictionsList"></div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="budget-summary">
+                <h5 class="mb-4">Budget Summary</h5>
+                <div class="row text-center mb-3">
+                    <div class="col-6">
+                        <h4 id="totalBudget">₹0</h4>
+                        <small>Total Budget</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 id="remainingAmount">₹{{ monthly_income|floatformat:0 }}</h4>
+                        <small>Remaining</small>
+                    </div>
+                </div>
+                
+                <div class="progress mb-3" style="height: 10px;">
+                    <div class="progress-bar" id="budgetProgress" style="width: 0%"></div>
+                </div>
+                
+                <div id="budgetStatus" class="text-center">
+                    <small>Allocate your income across categories</small>
+                </div>
+            </div>
+
+            {% if existing_budgets %}
+            <div class="planner-card">
+                <h5 class="mb-3">Existing Budgets</h5>
+                {% for budget in existing_budgets %}
+                <div class="border rounded p-2 mb-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-0">{{ budget.name }}</h6>
+                            <small class="text-muted">₹{{ budget.total_amount|floatformat:0|intcomma }}</small>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary" onclick="editBudget({{ budget.id }})">
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="planner-card">
+                <h6>Quick Tips</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2">💡 Aim to save at least 20% of your income</li>
+                    <li class="mb-2">🍽️ Food should be 20-30% of your budget</li>
+                    <li class="mb-2">🏠 Housing costs shouldn't exceed 30%</li>
+                    <li class="mb-2">📱 Review and adjust monthly</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const monthlyIncome = {{ monthly_income }};
+    let selectedTemplate = null;
+    
+    // Set default dates
+    const today = new Date();
+    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+    const endDate = new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0);
+    
+    document.getElementById('startDate').value = nextMonth.toISOString().split('T')[0];
+    document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
+    
+    // Template selection
+    document.querySelectorAll('.budget-template').forEach(template => {
+        template.addEventListener('click', function() {
+            document.querySelectorAll('.budget-template').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            selectedTemplate = this.dataset.template;
+            applyTemplate(selectedTemplate);
+        });
+    });
+    
+    // Category sliders
+    document.querySelectorAll('.category-slider').forEach(slider => {
+        slider.addEventListener('input', function() {
+            updateBudgetSummary();
+        });
+    });
+    
+    // Income input change
+    document.getElementById('monthlyIncome').addEventListener('input', function() {
+        updateBudgetSummary();
+    });
+    
+    function applyTemplate(templateKey) {
+        const templates = {{ budget_templates|safe }};
+        const template = templates[templateKey];
+        
+        document.querySelectorAll('.category-slider').forEach(slider => {
+            const categoryName = slider.dataset.category;
+            const percentage = template.allocations[categoryName] || 0;
+            slider.value = percentage;
+        });
+        
+        updateBudgetSummary();
+    }
+    
+    function updateBudgetSummary() {
+        const income = parseFloat(document.getElementById('monthlyIncome').value) || 0;
+        let totalAllocated = 0;
+        
+        document.querySelectorAll('.category-slider').forEach(slider => {
+            const percentage = parseFloat(slider.value);
+            const amount = (income * percentage) / 100;
+            totalAllocated += amount;
+            
+            const categoryItem = slider.closest('.category-item');
+            categoryItem.querySelector('.percentage-display').textContent = percentage + '%';
+            categoryItem.querySelector('.amount-display').textContent = '₹' + Math.round(amount).toLocaleString();
+        });
+        
+        const remaining = income - totalAllocated;
+        const progressPercentage = (totalAllocated / income) * 100;
+        
+        document.getElementById('totalBudget').textContent = '₹' + Math.round(totalAllocated).toLocaleString();
+        document.getElementById('remainingAmount').textContent = '₹' + Math.round(remaining).toLocaleString();
+        document.getElementById('budgetProgress').style.width = Math.min(progressPercentage, 100) + '%';
+        
+        const statusElement = document.getElementById('budgetStatus');
+        if (remaining < 0) {
+            statusElement.innerHTML = '<small class="text-warning">⚠️ Over budget by ₹' + Math.abs(Math.round(remaining)).toLocaleString() + '</small>';
+            document.getElementById('budgetProgress').className = 'progress-bar bg-danger';
+        } else if (remaining === 0) {
+            statusElement.innerHTML = '<small class="text-success">✅ Perfect allocation!</small>';
+            document.getElementById('budgetProgress').className = 'progress-bar bg-success';
+        } else {
+            statusElement.innerHTML = '<small>💰 ₹' + Math.round(remaining).toLocaleString() + ' unallocated</small>';
+            document.getElementById('budgetProgress').className = 'progress-bar bg-primary';
+        }
+    }
+    
+    // Save budget
+    document.getElementById('saveBudgetBtn').addEventListener('click', async function() {
+        const budgetData = {
+            action: 'save_budget',
+            budget_name: document.getElementById('budgetName').value,
+            total_amount: parseFloat(document.getElementById('monthlyIncome').value) || 0,
+            start_date: document.getElementById('startDate').value,
+            end_date: document.getElementById('endDate').value,
+            categories: []
+        };
+        
+        document.querySelectorAll('.category-slider').forEach(slider => {
+            const percentage = parseFloat(slider.value);
+            const amount = (budgetData.total_amount * percentage) / 100;
+            
+            budgetData.categories.push({
+                name: slider.dataset.category,
+                amount: amount
+            });
+        });
+        
+        try {
+            const response = await fetch('{% url "budget_planner" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(budgetData)
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                alert('Budget created successfully!');
+                location.reload();
+            } else {
+                alert('Error creating budget: ' + result.error);
+            }
+        } catch (error) {
+            alert('Error: ' + error.message);
+        }
+    });
+    
+    // Get expense predictions
+    document.getElementById('predictExpensesBtn').addEventListener('click', async function() {
+        try {
+            const response = await fetch('{% url "expense_predictor" %}');
+            const result = await response.json();
+            
+            if (result.success) {
+                displayPredictions(result.predictions);
+                document.getElementById('predictionsContainer').style.display = 'block';
+            }
+        } catch (error) {
+            alert('Error getting predictions: ' + error.message);
+        }
+    });
+    
+    function displayPredictions(predictions) {
+        const container = document.getElementById('predictionsList');
+        container.innerHTML = '';
+        
+        predictions.forEach(prediction => {
+            const confidencePercentage = prediction.confidence * 100;
+            
+            container.innerHTML += `
+                <div class="prediction-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0">${prediction.category}</h6>
+                        <span class="badge bg-primary">₹${Math.round(prediction.predicted_amount).toLocaleString()}</span>
+                    </div>
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Historical Avg: ₹${Math.round(prediction.historical_avg).toLocaleString()}</span>
+                        <span>Seasonal Factor: ${prediction.seasonal_factor.toFixed(1)}x</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" style="width: ${confidencePercentage}%"></div>
+                    </div>
+                    <small class="text-muted">Confidence: ${confidencePercentage.toFixed(0)}%</small>
+                </div>
+            `;
+        });
+    }
+    
+    // Initialize
+    updateBudgetSummary();
+});
+</script>
+{% endblock %}

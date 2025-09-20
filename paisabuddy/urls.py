@@ -29,10 +29,12 @@ urlpatterns = [
     path('portfolio/stocks/', views.stock_list, name='stock_list'),
     path('portfolio/trade/<int:stock_id>/', views.trade_stock, name='trade_stock'),
     
-    # Budget Management URLs
     path('budget/', views.budget_management, name='budget_management'),
-    path('budget/expenses/', views.expense_tracking, name='expense_tracking'),
-    path('budget/goals/', views.financial_goals, name='financial_goals'),
+    path('budget/analysis/', views.budget_analysis, name='budget_analysis'),
+    path('budget/planner/', views.budget_planner, name='budget_planner'),
+    path('expenses/', views.expense_tracking, name='expense_tracking'),
+    path('expenses/predictor/', views.expense_predictor, name='expense_predictor'),
+    path('goals/', views.financial_goals, name='financial_goals'),
     
     # Fraud Prevention URLs
     path('fraud/', views.fraud_scenarios, name='fraud_scenarios'),

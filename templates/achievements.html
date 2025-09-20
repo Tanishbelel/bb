@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Achievements - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    .achievements-header {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+    }
+    .achievement-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+        border-left: 5px solid #f093fb;
+    }
+    .achievement-card:hover {
+        transform: translateY(-5px);
+    }
+    .achievement-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .achievement-unlocked {
+        background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+    }
+    .achievement-locked {
+        background: #f8f9fa;
+        opacity: 0.6;
+    }
+    .progress-stats {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .stat-item {
+        text-align: center;
+        padding: 1rem;
+    }
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #667eea;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="achievements-header">
+    <div class="container text-center">
+        <h1 class="display-4 mb-3">
+            <i class="fas fa-trophy me-3"></i>
+            Your Achievements
+        </h1>
+        <p class="lead">Track your progress and unlock new milestones!</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="progress-stats">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number">{{ profile.total_points }}</div>
+                    <small class="text-muted">Total Points</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number">{{ profile.level }}</div>
+                    <small class="text-muted">Current Level</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number">{{ achievements|length }}</div>
+                    <small class="text-muted">Achievements Unlocked</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number">{{ profile.streak_days }}</div>
+                    <small class="text-muted">Day Streak</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="achievement-card achievement-unlocked">
+                <div class="achievement-icon text-center">🎯</div>
+                <h5 class="text-center">First Steps</h5>
+                <p class="text-center text-muted">Complete your first learning module</p>
+                {% if 'First Steps' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Learning Enthusiast' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">📚</div>
+                <h5 class="text-center">Learning Enthusiast</h5>
+                <p class="text-center text-muted">Complete 5 learning modules</p>
+                {% if 'Learning Enthusiast' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Knowledge Seeker' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">🧠</div>
+                <h5 class="text-center">Knowledge Seeker</h5>
+                <p class="text-center text-muted">Complete 10 learning modules</p>
+                {% if 'Knowledge Seeker' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Point Collector' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">⭐</div>
+                <h5 class="text-center">Point Collector</h5>
+                <p class="text-center text-muted">Earn 100 total points</p>
+                {% if 'Point Collector' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'High Achiever' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">🚀</div>
+                <h5 class="text-center">High Achiever</h5>
+                <p class="text-center text-muted">Earn 500 total points</p>
+                {% if 'High Achiever' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Master Learner' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">👑</div>
+                <h5 class="text-center">Master Learner</h5>
+                <p class="text-center text-muted">Earn 1000 total points</p>
+                {% if 'Master Learner' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Week Warrior' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">🔥</div>
+                <h5 class="text-center">Week Warrior</h5>
+                <p class="text-center text-muted">Maintain a 7-day learning streak</p>
+                {% if 'Week Warrior' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Monthly Master' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">📅</div>
+                <h5 class="text-center">Monthly Master</h5>
+                <p class="text-center text-muted">Maintain a 30-day learning streak</p>
+                {% if 'Monthly Master' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Profit Maker' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">💰</div>
+                <h5 class="text-center">Profit Maker</h5>
+                <p class="text-center text-muted">Make your first profit in virtual portfolio</p>
+                {% if 'Profit Maker' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="achievement-card {% if 'Investment Growth' in achievements %}achievement-unlocked{% else %}achievement-locked{% endif %}">
+                <div class="achievement-icon text-center">📈</div>
+                <h5 class="text-center">Investment Growth</h5>
+                <p class="text-center text-muted">Grow your portfolio above ₹1,10,000</p>
+                {% if 'Investment Growth' in achievements %}
+                    <div class="text-center">
+                        <span class="badge bg-success">Unlocked!</span>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Locked</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'profile_settings' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-arrow-left me-2"></i>
+            Back to Profile
+        </a>
+    </div>
+</div>
+{% endblock %}

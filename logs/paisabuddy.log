@@ -1143,3 +1143,2050 @@ INFO 2025-09-20 21:56:01,157 basehttp 22132 32792 "GET / HTTP/1.1" 302 0
 INFO 2025-09-20 21:56:01,308 basehttp 22132 32792 "GET /dashboard/ HTTP/1.1" 200 36456
 WARNING 2025-09-20 21:56:01,757 log 22132 32792 Not Found: /favicon.ico
 WARNING 2025-09-20 21:56:01,757 basehttp 22132 32792 "GET /favicon.ico HTTP/1.1" 404 6242
+INFO 2025-09-20 22:56:08,416 autoreload 19800 27076 Watching for file changes with StatReloader
+INFO 2025-09-20 22:57:12,017 autoreload 8248 5504 Watching for file changes with StatReloader
+INFO 2025-09-20 22:58:41,797 autoreload 8352 22104 Watching for file changes with StatReloader
+INFO 2025-09-20 22:59:19,723 autoreload 25424 28428 Watching for file changes with StatReloader
+INFO 2025-09-20 23:00:14,796 autoreload 26932 5944 Watching for file changes with StatReloader
+INFO 2025-09-20 23:00:17,336 basehttp 26932 22548 "GET / HTTP/1.1" 200 35014
+INFO 2025-09-20 23:00:39,557 basehttp 26932 22548 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 23:01:40,535 basehttp 26932 22548 "GET /register/ HTTP/1.1" 200 40947
+INFO 2025-09-20 23:03:29,271 basehttp 26932 22548 "POST /register/ HTTP/1.1" 200 41827
+INFO 2025-09-20 23:25:52,117 basehttp 26932 29492 "POST /register/ HTTP/1.1" 200 41827
+INFO 2025-09-20 23:26:21,142 basehttp 26932 29492 "POST /register/ HTTP/1.1" 200 41481
+INFO 2025-09-20 23:26:57,398 basehttp 26932 29492 "POST /register/ HTTP/1.1" 200 41519
+INFO 2025-09-20 23:28:13,071 autoreload 20784 5464 Watching for file changes with StatReloader
+INFO 2025-09-20 23:28:17,512 basehttp 20784 448 "GET / HTTP/1.1" 200 35014
+INFO 2025-09-20 23:28:22,199 basehttp 20784 448 "GET /register/ HTTP/1.1" 200 40947
+ERROR 2025-09-20 23:29:07,520 log 20784 448 Internal Server Error: /register/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 581, in get_or_create
+    return self.get(**kwargs), False
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 437, in get
+    self.model._meta.object_name
+main.models.UserProfile.DoesNotExist: UserProfile matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: unknown function: JSON_VALID()
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 70, in register
+    profile, created = UserProfile.objects.get_or_create(user=user)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 588, in get_or_create
+    return self.create(**params), True
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 921, in _do_insert
+    using=using, raw=raw,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: unknown function: JSON_VALID()
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 99, in register
+    print(f"Traceback: {traceback.format_exc()}")  # Debug
+NameError: name 'traceback' is not defined
+ERROR 2025-09-20 23:29:07,528 basehttp 20784 448 "POST /register/ HTTP/1.1" 500 184832
+INFO 2025-09-20 23:29:49,483 autoreload 8060 30304 Watching for file changes with StatReloader
+INFO 2025-09-20 23:29:50,461 basehttp 8060 32680 "GET / HTTP/1.1" 200 35014
+INFO 2025-09-20 23:29:52,756 basehttp 8060 32680 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 23:30:05,326 basehttp 8060 32680 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 23:31:00,007 basehttp 8060 32680 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-09-20 23:31:00,080 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36850
+INFO 2025-09-20 23:31:08,802 basehttp 8060 32680 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-09-20 23:31:08,819 basehttp 8060 32680 "GET / HTTP/1.1" 200 35425
+INFO 2025-09-20 23:31:09,936 basehttp 8060 32680 "GET /register/ HTTP/1.1" 200 40947
+ERROR 2025-09-20 23:32:56,702 log 8060 32680 Internal Server Error: /register/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 581, in get_or_create
+    return self.get(**kwargs), False
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 437, in get
+    self.model._meta.object_name
+main.models.UserProfile.DoesNotExist: UserProfile matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: unknown function: JSON_VALID()
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 70, in register
+    profile, created = UserProfile.objects.get_or_create(user=user)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 588, in get_or_create
+    return self.create(**params), True
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 453, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 740, in save
+    force_update=force_update, update_fields=update_fields)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 778, in save_base
+    force_update, using, update_fields,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 881, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\base.py", line 921, in _do_insert
+    using=using, raw=raw,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\query.py", line 1270, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\models\sql\compiler.py", line 1416, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\db\backends\sqlite3\base.py", line 423, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: unknown function: JSON_VALID()
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 99, in register
+    print(f"Traceback: {traceback.format_exc()}")  # Debug
+NameError: name 'traceback' is not defined
+ERROR 2025-09-20 23:32:56,705 basehttp 8060 32680 "POST /register/ HTTP/1.1" 500 184811
+INFO 2025-09-20 23:33:13,890 basehttp 8060 32680 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 23:33:21,558 basehttp 8060 32680 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 23:33:36,533 basehttp 8060 32680 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 23:33:48,442 basehttp 8060 32680 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-09-20 23:33:48,476 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36850
+INFO 2025-09-20 23:33:51,119 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36456
+ERROR 2025-09-20 23:33:52,026 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:33:52,029 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:33:54,744 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:33:54,746 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:34:11,078 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:34:11,079 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+INFO 2025-09-20 23:34:12,970 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36456
+INFO 2025-09-20 23:34:13,789 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36456
+ERROR 2025-09-20 23:34:54,286 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:34:54,288 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:34:57,606 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:34:57,608 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:34:59,463 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:34:59,465 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:35:09,273 log 8060 32680 Internal Server Error: /portfolio/stocks/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 321, in stock_list
+    return render(request, 'stocks.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: stocks.html
+ERROR 2025-09-20 23:35:09,275 basehttp 8060 32680 "GET /portfolio/stocks/ HTTP/1.1" 500 95916
+ERROR 2025-09-20 23:35:28,233 log 8060 32680 Internal Server Error: /portfolio/stocks/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 321, in stock_list
+    return render(request, 'stocks.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: stocks.html
+ERROR 2025-09-20 23:35:28,234 basehttp 8060 32680 "GET /portfolio/stocks/ HTTP/1.1" 500 95916
+ERROR 2025-09-20 23:35:30,711 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:35:30,712 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:35:33,304 log 8060 32680 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 297, in portfolio_view
+    return render(request, 'portfolio.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: portfolio.html
+ERROR 2025-09-20 23:35:33,306 basehttp 8060 32680 "GET /portfolio/ HTTP/1.1" 500 95916
+ERROR 2025-09-20 23:35:51,061 log 8060 32680 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 439, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: budget.html
+ERROR 2025-09-20 23:35:51,062 basehttp 8060 32680 "GET /budget/ HTTP/1.1" 500 95470
+ERROR 2025-09-20 23:36:13,314 log 8060 32680 Internal Server Error: /leaderboard/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 614, in leaderboard
+    return render(request, 'leaderboard.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: leaderboard.html
+ERROR 2025-09-20 23:36:13,317 basehttp 8060 32680 "GET /leaderboard/ HTTP/1.1" 500 95649
+INFO 2025-09-20 23:36:39,765 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36456
+ERROR 2025-09-20 23:36:48,285 log 8060 32680 Internal Server Error: /budget/goals/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 508, in financial_goals
+    return render(request, 'goals.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: goals.html
+ERROR 2025-09-20 23:36:48,287 basehttp 8060 32680 "GET /budget/goals/ HTTP/1.1" 500 95613
+INFO 2025-09-20 23:37:32,181 basehttp 8060 32680 "GET /dashboard/ HTTP/1.1" 200 36456
+ERROR 2025-09-20 23:37:33,696 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:37:33,697 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:37:44,194 log 8060 32680 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 23:37:44,197 basehttp 8060 32680 "GET /learn/ HTTP/1.1" 500 95520
+ERROR 2025-09-20 23:38:05,373 log 8060 32680 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 297, in portfolio_view
+    return render(request, 'portfolio.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: portfolio.html
+ERROR 2025-09-20 23:38:05,374 basehttp 8060 32680 "GET /portfolio/ HTTP/1.1" 500 95916
+ERROR 2025-09-20 23:46:39,986 log 8060 25468 Internal Server Error: /budget/goals/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 508, in financial_goals
+    return render(request, 'goals.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: goals.html
+ERROR 2025-09-20 23:46:39,987 basehttp 8060 25468 "GET /budget/goals/ HTTP/1.1" 500 95613
+INFO 2025-09-21 01:23:08,764 autoreload 8060 30304 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\models.py changed, reloading.
+INFO 2025-09-21 01:23:10,789 autoreload 33176 21760 Watching for file changes with StatReloader
+INFO 2025-09-21 01:23:33,982 autoreload 33176 21760 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\models.py changed, reloading.
+INFO 2025-09-21 01:23:35,547 autoreload 27508 12632 Watching for file changes with StatReloader
+INFO 2025-09-21 01:23:53,775 basehttp 27508 18644 "GET /dashboard/ HTTP/1.1" 200 50501
+ERROR 2025-09-21 01:26:29,569 log 27508 18644 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'start'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 171, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 534, in invalid_block_tag
+    "or load this tag?" % (token.lineno, command)
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 2: 'start'. Did you forget to register or load this tag?
+ERROR 2025-09-21 01:26:29,584 basehttp 27508 18644 "GET /dashboard/ HTTP/1.1" 500 163117
+ERROR 2025-09-21 01:27:22,452 log 27508 18644 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 171, in dashboard
+    return render(request, 'dashboard.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 534, in invalid_block_tag
+    "or load this tag?" % (token.lineno, command)
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 1136: 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-09-21 01:27:22,454 basehttp 27508 18644 "GET /dashboard/ HTTP/1.1" 500 163204
+INFO 2025-09-21 01:27:44,617 basehttp 27508 18644 "GET /dashboard/ HTTP/1.1" 200 68862
+ERROR 2025-09-21 01:28:00,094 log 27508 18644 Internal Server Error: /leaderboard/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 614, in leaderboard
+    return render(request, 'leaderboard.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: leaderboard.html
+ERROR 2025-09-21 01:28:00,103 basehttp 27508 18644 "GET /leaderboard/ HTTP/1.1" 500 95649
+INFO 2025-09-21 01:33:03,869 basehttp 27508 33420 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:33:03,967 basehttp 27508 33420 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 01:33:05,258 basehttp 27508 33420 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:33:05,292 basehttp 27508 33420 "GET /dashboard/ HTTP/1.1" 200 68862
+WARNING 2025-09-21 01:33:12,342 log 27508 33420 Not Found: /home
+WARNING 2025-09-21 01:33:12,343 basehttp 27508 33420 "GET /home HTTP/1.1" 404 5177
+INFO 2025-09-21 01:33:18,231 basehttp 27508 33420 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:33:18,275 basehttp 27508 33420 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 01:33:25,131 basehttp 27508 33420 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:33:25,177 basehttp 27508 33420 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 01:34:08,713 basehttp 27508 33420 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:34:08,789 basehttp 27508 33420 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 01:34:36,107 basehttp 27508 33420 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:34:36,182 basehttp 27508 33420 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 01:35:06,424 autoreload 16804 12152 Watching for file changes with StatReloader
+INFO 2025-09-21 01:35:09,561 basehttp 16804 17956 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 01:35:09,636 basehttp 16804 17956 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 02:00:48,546 autoreload 16804 12152 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:00:50,040 autoreload 14704 520 Watching for file changes with StatReloader
+INFO 2025-09-21 02:01:14,311 autoreload 14704 520 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:01:15,613 autoreload 26648 22812 Watching for file changes with StatReloader
+INFO 2025-09-21 02:06:29,891 autoreload 26648 22812 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\forms.py changed, reloading.
+INFO 2025-09-21 02:06:31,260 autoreload 16344 24224 Watching for file changes with StatReloader
+INFO 2025-09-21 02:07:27,202 autoreload 16344 24224 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:07:28,558 autoreload 18520 18500 Watching for file changes with StatReloader
+INFO 2025-09-21 02:07:33,187 autoreload 18520 18500 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:07:34,740 autoreload 4644 13732 Watching for file changes with StatReloader
+INFO 2025-09-21 02:07:53,235 basehttp 4644 14948 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 02:07:53,903 basehttp 4644 14948 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 02:07:54,165 basehttp 4644 14948 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 02:07:54,380 basehttp 4644 14948 "GET /dashboard/ HTTP/1.1" 200 68862
+INFO 2025-09-21 02:08:19,791 basehttp 4644 14948 "GET /portfolio HTTP/1.1" 301 0
+ERROR 2025-09-21 02:08:20,243 log 4644 14948 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'portfolio.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: portfolio.html
+ERROR 2025-09-21 02:08:20,252 basehttp 4644 14948 "GET /portfolio/ HTTP/1.1" 500 95755
+INFO 2025-09-21 02:10:57,556 autoreload 4644 13732 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:10:59,103 autoreload 20248 27968 Watching for file changes with StatReloader
+ERROR 2025-09-21 02:10:59,952 log 20248 11564 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:10:59,958 basehttp 20248 11564 "GET /portfolio/ HTTP/1.1" 500 192476
+INFO 2025-09-21 02:13:19,962 autoreload 20248 27968 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:13:21,306 autoreload 32064 12164 Watching for file changes with StatReloader
+INFO 2025-09-21 02:13:34,419 autoreload 32064 12164 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\models.py changed, reloading.
+INFO 2025-09-21 02:13:35,866 autoreload 2792 26776 Watching for file changes with StatReloader
+ERROR 2025-09-21 02:13:39,263 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:13:39,267 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:13:39,684 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:13:39,688 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:13:39,852 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:13:39,855 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:13:40,043 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:13:40,046 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:13:41,541 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:13:41,544 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:18:18,374 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:18:18,375 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:18:18,931 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:18:18,933 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:18:19,103 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:18:19,105 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+ERROR 2025-09-21 02:18:19,269 log 2792 21240 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:18:19,270 basehttp 2792 21240 "GET /portfolio/ HTTP/1.1" 500 192476
+INFO 2025-09-21 02:22:38,788 autoreload 6620 32572 Watching for file changes with StatReloader
+INFO 2025-09-21 02:22:42,209 basehttp 6620 6460 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 02:22:42,242 basehttp 6620 6460 "GET /dashboard/ HTTP/1.1" 200 68862
+ERROR 2025-09-21 02:23:35,597 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userprogress_set.filter.is_completed|=True.count||mul:100|div:total_modules|default:0
+ERROR 2025-09-21 02:23:35,601 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 192339
+ERROR 2025-09-21 02:27:38,976 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 278, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 478, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 476, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 216, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 449, in parse
+    raise self.error(token, e)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 447, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 563, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 636, in __init__
+    token[start:]))
+django.template.exceptions.TemplateSyntaxError: Could not parse some characters: user.userfraudprogress_set.filter.is_completed|=True.count||mul:100|div:total_scenarios|default:0
+ERROR 2025-09-21 02:27:38,978 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 192512
+ERROR 2025-09-21 02:28:02,383 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'password_change' not found. 'password_change' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:02,385 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 184633
+ERROR 2025-09-21 02:28:28,437 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_account' not found. 'delete_account' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:28,439 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 187643
+ERROR 2025-09-21 02:28:29,205 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_account' not found. 'delete_account' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:29,207 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 187643
+ERROR 2025-09-21 02:28:29,349 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_account' not found. 'delete_account' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:29,351 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 187643
+ERROR 2025-09-21 02:28:29,520 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_account' not found. 'delete_account' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:29,521 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 187643
+ERROR 2025-09-21 02:28:29,717 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_account' not found. 'delete_account' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:29,718 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 187643
+ERROR 2025-09-21 02:28:29,861 log 6620 6460 Internal Server Error: /portfolio/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 305, in portfolio_view
+    return render(request, 'profile.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_account' not found. 'delete_account' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:28:29,863 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 500 187643
+INFO 2025-09-21 02:29:03,912 basehttp 6620 6460 "GET /portfolio/ HTTP/1.1" 200 31130
+INFO 2025-09-21 02:36:07,758 basehttp 6620 29684 "GET /portfolio/ HTTP/1.1" 200 31130
+INFO 2025-09-21 02:43:39,639 autoreload 6620 32572 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\models.py changed, reloading.
+INFO 2025-09-21 02:43:40,294 autoreload 2216 8072 Watching for file changes with StatReloader
+INFO 2025-09-21 02:44:59,947 autoreload 2216 8072 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:45:00,653 autoreload 21236 20356 Watching for file changes with StatReloader
+INFO 2025-09-21 02:47:58,570 autoreload 21236 20356 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:47:59,297 autoreload 5684 26040 Watching for file changes with StatReloader
+INFO 2025-09-21 02:48:15,335 autoreload 5684 26040 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:48:16,039 autoreload 18256 7928 Watching for file changes with StatReloader
+INFO 2025-09-21 02:49:22,315 autoreload 18256 7928 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:49:22,997 autoreload 17092 28800 Watching for file changes with StatReloader
+INFO 2025-09-21 02:50:59,669 autoreload 17092 28800 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\paisabuddy\urls.py changed, reloading.
+INFO 2025-09-21 02:51:00,346 autoreload 21556 34540 Watching for file changes with StatReloader
+INFO 2025-09-21 02:51:29,747 autoreload 27552 16412 Watching for file changes with StatReloader
+INFO 2025-09-21 02:51:32,043 basehttp 27552 18436 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 02:51:32,072 basehttp 27552 18436 "GET /dashboard/ HTTP/1.1" 200 68841
+INFO 2025-09-21 02:51:42,726 basehttp 27552 18436 "GET /portfolio/ HTTP/1.1" 200 31109
+INFO 2025-09-21 02:51:43,997 basehttp 27552 18436 "GET /portfolio/ HTTP/1.1" 200 31109
+INFO 2025-09-21 02:51:44,125 basehttp 27552 18436 "GET /portfolio/ HTTP/1.1" 200 31109
+INFO 2025-09-21 02:52:41,573 basehttp 27552 18436 "GET /budget HTTP/1.1" 301 0
+ERROR 2025-09-21 02:52:41,750 log 27552 18436 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: budget.html
+ERROR 2025-09-21 02:52:41,753 basehttp 27552 18436 "GET /budget/ HTTP/1.1" 500 95309
+INFO 2025-09-21 02:53:31,912 autoreload 27552 16412 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:53:32,606 autoreload 32096 25492 Watching for file changes with StatReloader
+INFO 2025-09-21 02:54:41,309 autoreload 32096 25492 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 02:54:42,018 autoreload 25284 27936 Watching for file changes with StatReloader
+INFO 2025-09-21 02:54:43,741 basehttp 25284 32228 "GET /budget/ HTTP/1.1" 200 28111
+INFO 2025-09-21 02:54:57,115 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 200 28111
+ERROR 2025-09-21 02:59:36,848 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 02:59:36,857 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+ERROR 2025-09-21 03:00:55,294 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:00:55,297 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+ERROR 2025-09-21 03:00:55,586 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:00:55,589 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+ERROR 2025-09-21 03:00:55,729 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:00:55,732 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+ERROR 2025-09-21 03:00:55,901 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:00:55,903 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+ERROR 2025-09-21 03:00:56,113 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:00:56,116 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+ERROR 2025-09-21 03:00:56,429 log 25284 32228 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:00:56,431 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 500 197805
+INFO 2025-09-21 03:01:38,616 basehttp 25284 32228 "GET /budget/? HTTP/1.1" 200 27627
+INFO 2025-09-21 03:37:21,751 autoreload 25284 27936 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 03:37:22,442 autoreload 29456 26480 Watching for file changes with StatReloader
+INFO 2025-09-21 03:38:57,265 autoreload 29456 26480 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 03:38:57,999 autoreload 34564 4452 Watching for file changes with StatReloader
+INFO 2025-09-21 03:39:21,982 autoreload 34564 4452 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py changed, reloading.
+INFO 2025-09-21 03:39:22,718 autoreload 32820 34236 Watching for file changes with StatReloader
+INFO 2025-09-21 03:39:24,508 basehttp 32820 15316 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 03:39:24,553 basehttp 32820 15316 "GET /dashboard/ HTTP/1.1" 200 68841
+ERROR 2025-09-21 03:39:29,791 log 32820 15316 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 03:39:29,794 basehttp 32820 15316 "GET /budget/? HTTP/1.1" 500 194782

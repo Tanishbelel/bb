@@ -1,0 +1,488 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Budget Analysis - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    .analysis-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+    .metric-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+    .metric-card:hover {
+        transform: translateY(-2px);
+    }
+    .metric-value {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+    .health-score {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        margin: 0 auto;
+    }
+    .score-excellent { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+    .score-good { background: linear-gradient(45deg, #2196F3, #03A9F4); }
+    .score-fair { background: linear-gradient(45deg, #FF9800, #FFC107); }
+    .score-poor { background: linear-gradient(45deg, #F44336, #E91E63); }
+    
+    .category-row {
+        border-left: 4px solid #e9ecef;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+    }
+    .category-row.success { border-left-color: #28a745; }
+    .category-row.warning { border-left-color: #ffc107; }
+    .category-row.danger { border-left-color: #dc3545; }
+    .category-row.secondary { border-left-color: #6c757d; }
+    
+    .recommendation-card {
+        border-left: 4px solid;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+    }
+    .recommendation-card.warning { 
+        border-left-color: #ffc107; 
+        background: rgba(255, 193, 7, 0.1);
+    }
+    .recommendation-card.danger { 
+        border-left-color: #dc3545; 
+        background: rgba(220, 53, 69, 0.1);
+    }
+    .recommendation-card.info { 
+        border-left-color: #17a2b8; 
+        background: rgba(23, 162, 184, 0.1);
+    }
+    
+    .chart-container {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .month-selector {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem 2rem;
+        color: #6c757d;
+    }
+    
+    .empty-state-icon {
+        font-size: 4rem;
+        opacity: 0.5;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="analysis-header">
+    <div class="container">
+        <h1 class="display-4 mb-3">Budget Analysis</h1>
+        <p class="lead">Track your spending and optimize your budget for {{ month_name|default:"Current Month" }} {{ selected_year|default:"2024" }}</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="month-selector">
+        <form method="get" class="row g-3 align-items-end" novalidate>
+            <div class="col-md-4">
+                <label class="form-label">Select Month</label>
+                <select name="month" class="form-select" required>
+                    <option value="">Choose Month</option>
+                    {% if months_list %}
+                        {% for month_num, month_name_option in months_list %}
+                            <option value="{{ month_num }}" {% if month_num == selected_month %}selected{% endif %}>
+                                {{ month_name_option }}
+                            </option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="1" {% if selected_month == 1 %}selected{% endif %}>January</option>
+                        <option value="2" {% if selected_month == 2 %}selected{% endif %}>February</option>
+                        <option value="3" {% if selected_month == 3 %}selected{% endif %}>March</option>
+                        <option value="4" {% if selected_month == 4 %}selected{% endif %}>April</option>
+                        <option value="5" {% if selected_month == 5 %}selected{% endif %}>May</option>
+                        <option value="6" {% if selected_month == 6 %}selected{% endif %}>June</option>
+                        <option value="7" {% if selected_month == 7 %}selected{% endif %}>July</option>
+                        <option value="8" {% if selected_month == 8 %}selected{% endif %}>August</option>
+                        <option value="9" {% if selected_month == 9 %}selected{% endif %}>September</option>
+                        <option value="10" {% if selected_month == 10 %}selected{% endif %}>October</option>
+                        <option value="11" {% if selected_month == 11 %}selected{% endif %}>November</option>
+                        <option value="12" {% if selected_month == 12 %}selected{% endif %}>December</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Select Year</label>
+                <select name="year" class="form-select" required>
+                    <option value="">Choose Year</option>
+                    {% if years_list %}
+                        {% for year in years_list %}
+                            <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
+                        {% endfor %}
+                    {% else %}
+                        {% now "Y" as current_year %}
+                        {% for i in "0123456789"|make_list %}
+                            {% with year=current_year|add:"-"|add:i %}
+                                <option value="{{ year }}" {% if year|stringformat:"s" == selected_year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+                            {% endwith %}
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Update Analysis</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="metric-card text-center">
+                <div class="metric-value text-primary">₹{{ total_monthly_expenses|default:0|floatformat:0|intcomma }}</div>
+                <small class="text-muted">Total Expenses</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="metric-card text-center">
+                <div class="metric-value text-success">₹{{ monthly_income|default:0|floatformat:0|intcomma }}</div>
+                <small class="text-muted">Monthly Income</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="metric-card text-center">
+                <div class="metric-value {% if savings_amount >= 0 %}text-success{% else %}text-danger{% endif %}">
+                    ₹{{ savings_amount|default:0|floatformat:0|intcomma }}
+                </div>
+                <small class="text-muted">Savings</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="metric-card text-center">
+                <div class="health-score 
+                    {% if health_score >= 80 %}score-excellent
+                    {% elif health_score >= 60 %}score-good
+                    {% elif health_score >= 40 %}score-fair
+                    {% else %}score-poor{% endif %}">
+                    {{ health_score|default:0|floatformat:0 }}%
+                </div>
+                <small class="text-muted">Financial Health</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="chart-container">
+                <h5 class="mb-4">Daily Expenses Trend</h5>
+                {% if daily_expenses %}
+                    <canvas id="dailyExpensesChart" height="300"></canvas>
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <h6>No daily expense data available</h6>
+                        <p>Add some expenses to see the trend chart.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="chart-container">
+                <h5 class="mb-4">Monthly Comparison (Last 6 Months)</h5>
+                {% if monthly_comparison %}
+                    <canvas id="monthlyComparisonChart" height="300"></canvas>
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📈</div>
+                        <h6>No historical data available</h6>
+                        <p>Continue tracking expenses to see monthly comparisons.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="chart-container">
+                <h5 class="mb-4">Category Budget vs Actual</h5>
+                {% if budget_analysis_data %}
+                    {% for item in budget_analysis_data %}
+                        <div class="category-row {{ item.status|default:'secondary' }}">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="mb-0">{{ item.category|default:"Unknown Category" }}</h6>
+                                <span class="badge bg-{{ item.status|default:'secondary' }}">
+                                    {{ item.percentage_used|default:0|floatformat:1 }}%
+                                </span>
+                            </div>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-{{ item.status|default:'secondary' }}" 
+                                     style="width: {{ item.percentage_used|default:0|floatformat:1 }}%">
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between small text-muted">
+                                <span>Spent: ₹{{ item.spent|default:0|floatformat:0|intcomma }}</span>
+                                <span>Budget: ₹{{ item.allocated|default:0|floatformat:0|intcomma }}</span>
+                                <span>Remaining: ₹{{ item.remaining|default:0|floatformat:0|intcomma }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-info">
+                        <h6>No budget data available</h6>
+                        <p class="mb-0">Set up your budget categories to see spending analysis. <a href="{% url 'budget_planning' %}" class="alert-link">Create Budget</a></p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="chart-container">
+                <h5 class="mb-4">Expense Categories</h5>
+                {% if top_categories %}
+                    <canvas id="categoryPieChart"></canvas>
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🥧</div>
+                        <h6>No category data</h6>
+                        <p>Add expenses with categories to see the breakdown.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if recommendations %}
+            <div class="chart-container">
+                <h5 class="mb-4">Recommendations</h5>
+                {% for rec in recommendations %}
+                    <div class="recommendation-card {{ rec.type|default:'info' }}">
+                        <h6>{{ rec.title|default:"Recommendation" }}</h6>
+                        <p class="mb-0 small">{{ rec.message|default:"No details available" }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="chart-container">
+                <h5 class="mb-4">Quick Stats</h5>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="metric-value text-warning">{{ categories_over_budget|default:0 }}</div>
+                        <small class="text-muted">Over Budget</small>
+                    </div>
+                    <div class="col-6">
+                        <div class="metric-value text-info">{{ savings_rate|default:0|floatformat:1 }}%</div>
+                        <small class="text-muted">Savings Rate</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h5 class="mb-4">Recent Transactions</h5>
+                {% if recent_transactions %}
+                    <div class="list-group list-group-flush">
+                        {% for transaction in recent_transactions|slice:":5" %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="fw-bold">{{ transaction.description|default:"No description" }}</div>
+                                    <small class="text-muted">{{ transaction.date|date:"M d"|default:"No date" }} • {{ transaction.category.name|default:"Uncategorized" }}</small>
+                                </div>
+                                <span class="badge bg-danger">₹{{ transaction.amount|default:0|floatformat:0 }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-3">
+                        {% url 'expense_tracking' as expense_url %}
+                        {% if expense_url %}
+                            <a href="{{ expense_url }}" class="btn btn-outline-primary btn-sm">View All Expenses</a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-state-icon">💸</div>
+                        <h6>No recent transactions</h6>
+                        <p>Start adding expenses to see them here.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        {% if daily_expenses %}
+        const dailyCtx = document.getElementById('dailyExpensesChart');
+        if (dailyCtx) {
+            new Chart(dailyCtx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: [{% for day in daily_expenses %}'{{ day.day|default:"" }}'{% if not forloop.last %},{% endif %}{% endfor %}],
+                    datasets: [{
+                        label: 'Daily Expenses',
+                        data: [{% for day in daily_expenses %}{{ day.amount|default:0 }}{% if not forloop.last %},{% endif %}{% endfor %}],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Amount: ₹' + context.raw.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        {% endif %}
+    } catch (error) {
+        console.error('Failed to create daily expenses chart:', error);
+    }
+
+    try {
+        {% if monthly_comparison %}
+        const monthlyCtx = document.getElementById('monthlyComparisonChart');
+        if (monthlyCtx) {
+            new Chart(monthlyCtx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: [{% for month in monthly_comparison %}'{{ month.month|default:"" }}'{% if not forloop.last %},{% endif %}{% endfor %}],
+                    datasets: [{
+                        label: 'Monthly Expenses',
+                        data: [{% for month in monthly_comparison %}{{ month.amount|default:0 }}{% if not forloop.last %},{% endif %}{% endfor %}],
+                        backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                        borderColor: '#667eea',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Amount: ₹' + context.raw.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        {% endif %}
+    } catch (error) {
+        console.error('Failed to create monthly comparison chart:', error);
+    }
+
+    try {
+        {% if top_categories %}
+        const categoryCtx = document.getElementById('categoryPieChart');
+        if (categoryCtx) {
+            new Chart(categoryCtx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: [{% for cat in top_categories %}'{{ cat.category__name|default:"Uncategorized" }}'{% if not forloop.last %},{% endif %}{% endfor %}],
+                    datasets: [{
+                        data: [{% for cat in top_categories %}{{ cat.total|default:0 }}{% if not forloop.last %},{% endif %}{% endfor %}],
+                        backgroundColor: [
+                            '#667eea',
+                            '#764ba2', 
+                            '#f093fb',
+                            '#f5576c',
+                            '#4facfe'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ₹' + context.raw.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        {% endif %}
+    } catch (error) {
+        console.error('Failed to create category pie chart:', error);
+    }
+
+    const form = document.querySelector('.month-selector form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            const month = this.querySelector('[name="month"]').value;
+            const year = this.querySelector('[name="year"]').value;
+            
+            if (!month || !year) {
+                e.preventDefault();
+                alert('Please select both month and year');
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

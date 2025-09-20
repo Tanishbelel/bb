@@ -1,4 +1,3 @@
-# models.py
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -33,10 +32,43 @@ class UserProfile(models.Model):
     level = models.IntegerField(default=1)
     streak_days = models.IntegerField(default=0)
     last_activity = models.DateTimeField(auto_now=True)
-    achievements = models.JSONField(default=list)
     
     def __str__(self):
         return f"{self.user.username}'s Profile"
+
+class Achievement(models.Model):
+    """Achievements for gamification"""
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    icon = models.CharField(max_length=50, default='🏆')
+    points_required = models.IntegerField(default=0)
+    condition_type = models.CharField(
+        max_length=50,
+        choices=[
+            ('modules_completed', 'Modules Completed'),
+            ('points_earned', 'Points Earned'),
+            ('streak_days', 'Streak Days'),
+            ('portfolio_profit', 'Portfolio Profit'),
+            ('budget_followed', 'Budget Followed')
+        ]
+    )
+    condition_value = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.name
+
+class UserAchievement(models.Model):
+    """User earned achievements"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_achievements')
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
+    earned_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ['user', 'achievement']
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.achievement.name}"
 
 class LearningModule(models.Model):
     """Learning modules for financial education"""
@@ -201,7 +233,6 @@ class FraudScenario(models.Model):
             ('lottery_scam', 'Lottery Scam')
         ]
     )
-    red_flags = models.JSONField(help_text="List of red flags in this scenario")
     correct_action = models.TextField()
     points_reward = models.IntegerField(default=15)
     difficulty_level = models.CharField(
@@ -213,6 +244,21 @@ class FraudScenario(models.Model):
         ]
     )
     is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.title
+
+class FraudRedFlag(models.Model):
+    """Red flags for fraud scenarios"""
+    scenario = models.ForeignKey(FraudScenario, on_delete=models.CASCADE, related_name='red_flags')
+    description = models.CharField(max_length=300)
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.scenario.title} - {self.description}"
 
 class UserFraudProgress(models.Model):
     """Track user progress in fraud scenarios"""
@@ -251,31 +297,3 @@ class FinancialGoal(models.Model):
         if self.target_amount <= 0:
             return 0
         return min((self.saved_amount / self.target_amount) * 100, 100)
-
-class Achievement(models.Model):
-    """Achievements for gamification"""
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    icon = models.CharField(max_length=50, default='🏆')
-    points_required = models.IntegerField(default=0)
-    condition_type = models.CharField(
-        max_length=50,
-        choices=[
-            ('modules_completed', 'Modules Completed'),
-            ('points_earned', 'Points Earned'),
-            ('streak_days', 'Streak Days'),
-            ('portfolio_profit', 'Portfolio Profit'),
-            ('budget_followed', 'Budget Followed')
-        ]
-    )
-    condition_value = models.IntegerField()
-    is_active = models.BooleanField(default=True)
-
-class UserAchievement(models.Model):
-    """User earned achievements"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
-    earned_date = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        unique_together = ['user', 'achievement']

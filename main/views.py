@@ -11,6 +11,14 @@ from decimal import Decimal
 import json
 from datetime import datetime, timedelta
 from django.db import transaction, IntegrityError
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.db import transaction
+from django.http import HttpResponse
+
 
 from main.models import (
     User, UserProfile, LearningModule, UserProgress, VirtualPortfolio,
@@ -294,7 +302,7 @@ def portfolio_view(request):
         'recent_transactions': recent_transactions,
     }
     
-    return render(request, 'portfolio.html', context)
+    return render(request, 'profile.html', context)
 
 @login_required
 def stock_list(request):
@@ -664,3 +672,514 @@ def api_user_stats(request):
         'total_scenarios': total_scenarios,
         'completion_rate': (completed_modules / total_modules * 100) if total_modules > 0 else 0,
     })
+@login_required
+def profile_settings(request):
+    """Enhanced profile settings view"""
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+    # Get statistics for display
+    total_modules = LearningModule.objects.filter(is_active=True).count()
+    total_scenarios = FraudScenario.objects.filter(is_active=True).count()
+    completed_modules = UserProgress.objects.filter(user=request.user, is_completed=True).count()
+    completed_scenarios = UserFraudProgress.objects.filter(user=request.user, is_completed=True).count()
+    
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                user = request.user
+                
+                # Update user fields
+                user.username = request.POST.get('username', user.username)
+                user.email = request.POST.get('email', user.email)
+                user.first_name = request.POST.get('first_name', user.first_name)
+                user.last_name = request.POST.get('last_name', user.last_name)
+                user.phone_number = request.POST.get('phone_number', user.phone_number)
+                
+                # Handle age field
+                age = request.POST.get('age')
+                if age:
+                    user.age = int(age)
+                
+                # Handle monthly_income field
+                monthly_income = request.POST.get('monthly_income')
+                if monthly_income:
+                    user.monthly_income = Decimal(monthly_income)
+                
+                user.occupation = request.POST.get('occupation', user.occupation)
+                user.financial_experience = request.POST.get('financial_experience', user.financial_experience)
+                
+                user.save()
+                messages.success(request, 'Profile updated successfully!')
+                
+        except IntegrityError as e:
+            if 'username' in str(e):
+                messages.error(request, 'Username already exists. Please choose a different one.')
+            elif 'email' in str(e):
+                messages.error(request, 'Email already registered. Please use a different email.')
+            else:
+                messages.error(request, 'Failed to update profile due to duplicate data.')
+        except Exception as e:
+            messages.error(request, f'Failed to update profile: {str(e)}')
+        
+        return redirect('profile_settings')
+    
+    context = {
+        'profile': profile,
+        'total_modules': total_modules,
+        'total_scenarios': total_scenarios,
+        'completed_modules': completed_modules,
+        'completed_scenarios': completed_scenarios,
+    }
+    
+    return render(request, 'profile.html', context)
+
+@login_required
+def change_password(request):
+    """Change password view"""
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile_settings')
+        else:
+            for error in form.errors.values():
+                messages.error(request, error[0])
+    
+    return redirect('profile_settings')
+
+@login_required
+def delete_account(request):
+    """Delete user account"""
+    if request.method == 'POST':
+        user = request.user
+        try:
+            with transaction.atomic():
+                # Log out the user first
+                logout(request)
+                # Delete user will cascade delete related data
+                user.delete()
+                messages.success(request, 'Your account has been deleted successfully.')
+                return redirect('home')
+        except Exception as e:
+            messages.error(request, f'Failed to delete account: {str(e)}')
+    
+    return redirect('profile_settings')
+
+@login_required
+def user_achievements(request):
+    """View user achievements"""
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+    # Calculate achievements based on user progress
+    achievements = []
+    
+    # Module completion achievements
+    completed_modules = UserProgress.objects.filter(user=request.user, is_completed=True).count()
+    if completed_modules >= 1:
+        achievements.append("First Steps")
+    if completed_modules >= 5:
+        achievements.append("Learning Enthusiast")
+    if completed_modules >= 10:
+        achievements.append("Knowledge Seeker")
+    
+    # Points achievements
+    if profile.total_points >= 100:
+        achievements.append("Point Collector")
+    if profile.total_points >= 500:
+        achievements.append("High Achiever")
+    if profile.total_points >= 1000:
+        achievements.append("Master Learner")
+    
+    # Streak achievements
+    if profile.streak_days >= 7:
+        achievements.append("Week Warrior")
+    if profile.streak_days >= 30:
+        achievements.append("Monthly Master")
+    
+    # Portfolio achievements
+    try:
+        portfolio = request.user.portfolio
+        if portfolio.profit_loss > 0:
+            achievements.append("Profit Maker")
+        if portfolio.current_value > 110000:  # More than starting amount
+            achievements.append("Investment Growth")
+    except:
+        pass  # Portfolio might not exist yet
+    
+    # Update profile achievements
+    profile.achievements = achievements
+    profile.save()
+    
+    context = {
+        'achievements': achievements,
+        'profile': profile,
+    }
+    
+    return render(request, 'achievements.html', context)
+from datetime import datetime, timedelta
+import calendar
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
+from .models import Budget, Expense  # Make sure these imports match your model names
+
+@login_required
+def budget_analysis(request):
+    current_year = datetime.now().year
+    today = datetime.now().date()
+    
+    # Get month and year with proper error handling
+    try:
+        selected_month = int(request.GET.get('month', datetime.now().month))
+        if selected_month < 1 or selected_month > 12:
+            selected_month = datetime.now().month
+    except (ValueError, TypeError):
+        selected_month = datetime.now().month
+    
+    try:
+        selected_year = int(request.GET.get('year', current_year))
+        if selected_year < (current_year - 10) or selected_year > (current_year + 1):
+            selected_year = current_year
+    except (ValueError, TypeError):
+        selected_year = current_year
+    
+    # Calculate date ranges
+    first_day = datetime(selected_year, selected_month, 1).date()
+    if selected_month == 12:
+        last_day = datetime(selected_year + 1, 1, 1).date() - timedelta(days=1)
+    else:
+        last_day = datetime(selected_year, selected_month + 1, 1).date() - timedelta(days=1)
+    
+    # Get user's active budgets
+    active_budgets = Budget.objects.filter(
+        user=request.user,
+        is_active=True,
+        start_date__lte=last_day,
+        end_date__gte=first_day
+    ).prefetch_related('categories')
+    
+    # Get expenses for selected month
+    monthly_expenses = Expense.objects.filter(
+        user=request.user,
+        date__year=selected_year,
+        date__month=selected_month
+    ).select_related('category')
+    
+    # Calculate total monthly expenses
+    total_monthly_expenses = monthly_expenses.aggregate(total=Sum('amount'))['total'] or 0
+    
+    # Category-wise expense breakdown
+    category_expenses = {}
+    for expense in monthly_expenses:
+        if expense.category:
+            cat_name = expense.category.name
+            if cat_name not in category_expenses:
+                category_expenses[cat_name] = {
+                    'spent': 0, 
+                    'budget': float(expense.category.allocated_amount), 
+                    'category_id': expense.category.id
+                }
+            category_expenses[cat_name]['spent'] += float(expense.amount)
+    
+    # Calculate budget vs actual for each category
+    budget_analysis_data = []
+    total_budget = 0
+    total_overspent = 0
+    categories_over_budget = 0
+    
+    for budget in active_budgets:
+        total_budget += float(budget.total_amount)
+        for category in budget.categories.all():
+            spent = category_expenses.get(category.name, {}).get('spent', 0)
+            allocated = float(category.allocated_amount)
+            remaining = allocated - spent
+            percentage_used = (spent / allocated * 100) if allocated > 0 else 0
+            
+            is_over_budget = spent > allocated
+            if is_over_budget:
+                categories_over_budget += 1
+                total_overspent += (spent - allocated)
+            
+            budget_analysis_data.append({
+                'category': category.name,
+                'allocated': allocated,
+                'spent': spent,
+                'remaining': remaining,
+                'percentage_used': percentage_used,
+                'is_over_budget': is_over_budget,
+                'status': 'danger' if is_over_budget else ('warning' if percentage_used > 80 else 'success')
+            })
+    
+    # Monthly comparison (last 6 months)
+    monthly_comparison = []
+    for i in range(6):
+        date = today.replace(day=1) - timedelta(days=32*i)
+        month_expenses = Expense.objects.filter(
+            user=request.user,
+            date__year=date.year,
+            date__month=date.month
+        ).aggregate(total=Sum('amount'))['total'] or 0
+        
+        monthly_comparison.append({
+            'month': date.strftime('%b %Y'),
+            'amount': float(month_expenses),
+            'month_num': date.month,
+            'year': date.year
+        })
+    
+    monthly_comparison.reverse()
+    
+    # Daily expense trends
+    daily_expenses = []
+    for day in range(1, calendar.monthrange(selected_year, selected_month)[1] + 1):
+        day_date = datetime(selected_year, selected_month, day).date()
+        day_total = monthly_expenses.filter(date=day_date).aggregate(total=Sum('amount'))['total'] or 0
+        daily_expenses.append({
+            'day': day,
+            'amount': float(day_total)
+        })
+    
+    # Top expense categories
+    top_categories = monthly_expenses.values('category__name').annotate(
+        total=Sum('amount')
+    ).order_by('-total')[:5]
+    
+    # Get user's monthly income (add error handling)
+    try:
+        monthly_income = float(getattr(request.user, 'monthly_income', 0) or 0)
+    except (ValueError, TypeError):
+        monthly_income = 0
+    
+    # Savings analysis
+    savings_amount = monthly_income - float(total_monthly_expenses)
+    savings_rate = (savings_amount / monthly_income * 100) if monthly_income > 0 else 0
+    
+    # Financial health score calculation
+    health_score = 100
+    if savings_rate < 20:
+        health_score -= 30
+    elif savings_rate < 10:
+        health_score -= 50
+    
+    if categories_over_budget > 0:
+        health_score -= (categories_over_budget * 15)
+    
+    if float(total_monthly_expenses) > monthly_income:
+        health_score -= 40
+    
+    health_score = max(0, health_score)
+    
+    # Recommendations
+    recommendations = []
+    if savings_rate < 20:
+        recommendations.append({
+            'type': 'warning',
+            'title': 'Low Savings Rate',
+            'message': 'Try to save at least 20% of your income for better financial health.'
+        })
+    
+    if categories_over_budget > 0:
+        recommendations.append({
+            'type': 'danger',
+            'title': 'Budget Exceeded',
+            'message': f'You have exceeded budget in {categories_over_budget} categories. Review your spending habits.'
+        })
+    
+    if float(total_monthly_expenses) > monthly_income * 0.8:
+        recommendations.append({
+            'type': 'info',
+            'title': 'High Expense Ratio',
+            'message': 'Your expenses are quite high relative to income. Consider optimizing non-essential spending.'
+        })
+    
+    # Recent transactions for quick review
+    recent_transactions = monthly_expenses.order_by('-created_at')[:10]
+    
+    # Single context dictionary
+    context = {
+        'months_list': [(i, calendar.month_name[i]) for i in range(1, 13)],
+        'years_list': list(range(2020, 2030)),
+        'selected_month': selected_month,
+        'selected_year': selected_year,
+        'month_name': calendar.month_name[selected_month],
+        'total_monthly_expenses': total_monthly_expenses,
+        'monthly_income': monthly_income,
+        'savings_amount': savings_amount,
+        'savings_rate': savings_rate,
+        'budget_analysis_data': budget_analysis_data,
+        'monthly_comparison': monthly_comparison,
+        'daily_expenses': daily_expenses,
+        'top_categories': top_categories,
+        'health_score': health_score,
+        'recommendations': recommendations,
+        'recent_transactions': recent_transactions,
+        'categories_over_budget': categories_over_budget,
+        'total_overspent': total_overspent,
+        'total_budget': total_budget,
+    }
+    
+    return render(request, 'budget_analysis.html', context)
+@login_required
+def budget_planner(request):
+    """Interactive budget planner tool"""
+    from django.http import JsonResponse
+    import json
+    
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            action = data.get('action')
+            
+            if action == 'save_budget':
+                # Create new budget
+                budget = Budget.objects.create(
+                    user=request.user,
+                    name=data.get('budget_name', 'My Budget'),
+                    total_amount=Decimal(str(data.get('total_amount', 0))),
+                    start_date=datetime.strptime(data.get('start_date'), '%Y-%m-%d').date(),
+                    end_date=datetime.strptime(data.get('end_date'), '%Y-%m-%d').date()
+                )
+                
+                # Create budget categories
+                for category_data in data.get('categories', []):
+                    BudgetCategory.objects.create(
+                        budget=budget,
+                        name=category_data.get('name'),
+                        allocated_amount=Decimal(str(category_data.get('amount', 0)))
+                    )
+                
+                return JsonResponse({'success': True, 'budget_id': budget.id})
+            
+            elif action == 'update_category':
+                category_id = data.get('category_id')
+                new_amount = Decimal(str(data.get('amount', 0)))
+                
+                category = BudgetCategory.objects.get(
+                    id=category_id, 
+                    budget__user=request.user
+                )
+                category.allocated_amount = new_amount
+                category.save()
+                
+                # Update budget total
+                budget = category.budget
+                budget.total_amount = budget.categories.aggregate(
+                    total=Sum('allocated_amount')
+                )['total'] or 0
+                budget.save()
+                
+                return JsonResponse({'success': True})
+            
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    
+    # Get user's existing budgets
+    existing_budgets = Budget.objects.filter(
+        user=request.user,
+        is_active=True
+    ).prefetch_related('categories')
+    
+    # Default budget categories
+    default_categories = [
+        {'name': 'Food & Dining', 'suggested_percent': 25, 'icon': '🍽️'},
+        {'name': 'Transportation', 'suggested_percent': 15, 'icon': '🚗'},
+        {'name': 'Shopping', 'suggested_percent': 10, 'icon': '🛍️'},
+        {'name': 'Bills & Utilities', 'suggested_percent': 20, 'icon': '💡'},
+        {'name': 'Healthcare', 'suggested_percent': 5, 'icon': '🏥'},
+        {'name': 'Entertainment', 'suggested_percent': 8, 'icon': '🎬'},
+        {'name': 'Savings', 'suggested_percent': 15, 'icon': '💰'},
+        {'name': 'Other', 'suggested_percent': 2, 'icon': '📝'}
+    ]
+    
+    # Budget templates
+    budget_templates = {
+        'conservative': {
+            'name': 'Conservative Budget',
+            'description': 'High savings, minimal entertainment',
+            'allocations': {
+                'Food & Dining': 20, 'Transportation': 10, 'Bills & Utilities': 25,
+                'Healthcare': 5, 'Shopping': 5, 'Entertainment': 5, 'Savings': 25, 'Other': 5
+            }
+        },
+        'balanced': {
+            'name': 'Balanced Budget',
+            'description': 'Equal focus on needs and wants',
+            'allocations': {
+                'Food & Dining': 25, 'Transportation': 15, 'Bills & Utilities': 20,
+                'Healthcare': 5, 'Shopping': 10, 'Entertainment': 10, 'Savings': 15
+            }
+        },
+        'lifestyle': {
+            'name': 'Lifestyle Budget',
+            'description': 'More spending on entertainment and shopping',
+            'allocations': {
+                'Food & Dining': 30, 'Transportation': 15, 'Bills & Utilities': 20,
+                'Healthcare': 5, 'Shopping': 15, 'Entertainment': 10, 'Savings': 5
+            }
+        }
+    }
+    
+    context = {
+        'existing_budgets': existing_budgets,
+        'default_categories': default_categories,
+        'budget_templates': budget_templates,
+        'monthly_income': float(request.user.monthly_income),
+    }
+    
+    return render(request, 'budget_planner.html', context)
+
+@login_required
+def expense_predictor(request):
+    """Predict future expenses based on historical data"""
+    from django.db.models import Avg
+    from datetime import datetime, timedelta
+    import json
+    
+    if request.method == 'GET':
+        # Get historical expense data for prediction
+        months_back = 6
+        start_date = timezone.now().date() - timedelta(days=30 * months_back)
+        
+        # Calculate average monthly expenses by category
+        historical_expenses = Expense.objects.filter(
+            user=request.user,
+            date__gte=start_date
+        ).values('category__name').annotate(
+            avg_monthly=Avg('amount'),
+            total_months=Count('date__month', distinct=True)
+        )
+        
+        # Seasonal adjustments (basic example)
+        current_month = timezone.now().month
+        seasonal_multipliers = {
+            12: 1.3, 1: 1.2, 2: 0.9,  # Holiday season, New Year, February
+            3: 1.0, 4: 1.0, 5: 1.0,   # Spring
+            6: 1.1, 7: 1.2, 8: 1.1,   # Summer (travel season)
+            9: 1.0, 10: 1.1, 11: 1.2  # Fall, Holiday prep
+        }
+        
+        predictions = []
+        for expense_data in historical_expenses:
+            category = expense_data['category__name'] or 'Uncategorized'
+            avg_amount = expense_data['avg_monthly'] or 0
+            seasonal_factor = seasonal_multipliers.get(current_month, 1.0)
+            predicted_amount = avg_amount * seasonal_factor
+            
+            predictions.append({
+                'category': category,
+                'historical_avg': float(avg_amount),
+                'predicted_amount': float(predicted_amount),
+                'seasonal_factor': seasonal_factor,
+                'confidence': 0.8 if expense_data['total_months'] >= 3 else 0.5
+            })
+        
+        return JsonResponse({
+            'success': True,
+            'predictions': predictions,
+            'current_month': current_month,
+            'months_analyzed': months_back
+        })
+    
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
