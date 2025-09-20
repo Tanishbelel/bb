@@ -3190,3 +3190,171 @@ Traceback (most recent call last):
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
 ERROR 2025-09-21 03:39:29,794 basehttp 32820 15316 "GET /budget/? HTTP/1.1" 500 194782
+INFO 2025-09-21 04:01:00,930 autoreload 32632 12752 Watching for file changes with StatReloader
+INFO 2025-09-21 04:01:03,834 basehttp 32632 17312 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 04:01:03,872 basehttp 32632 17312 "GET /dashboard/ HTTP/1.1" 200 68841
+INFO 2025-09-21 04:01:13,299 basehttp 32632 17312 "GET /portfolio/ HTTP/1.1" 200 31109
+INFO 2025-09-21 04:01:49,980 basehttp 32632 17312 "GET /dashboard/ HTTP/1.1" 200 68841
+INFO 2025-09-21 04:01:56,442 basehttp 32632 17312 "GET / HTTP/1.1" 302 0
+INFO 2025-09-21 04:01:56,482 basehttp 32632 17312 "GET /dashboard/ HTTP/1.1" 200 68841
+ERROR 2025-09-21 04:02:18,603 log 32632 17312 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 04:02:18,608 basehttp 32632 17312 "GET /budget/? HTTP/1.1" 500 194487
+ERROR 2025-09-21 04:02:22,656 log 32632 17312 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 04:02:22,658 basehttp 32632 17312 "GET /budget/ HTTP/1.1" 500 194487
+INFO 2025-09-21 04:11:29,682 autoreload 32632 12752 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\paisabuddy\urls.py changed, reloading.
+INFO 2025-09-21 04:11:30,410 autoreload 7156 14364 Watching for file changes with StatReloader
+INFO 2025-09-21 04:11:43,989 autoreload 7156 14364 C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\paisabuddy\urls.py changed, reloading.
+INFO 2025-09-21 04:11:44,664 autoreload 21164 32872 Watching for file changes with StatReloader
+INFO 2025-09-21 04:11:44,822 basehttp 21164 27680 "GET /dashboard/ HTTP/1.1" 200 68841
+ERROR 2025-09-21 04:11:48,704 log 21164 27680 Internal Server Error: /budget/
+Traceback (most recent call last):
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Tanish\OneDrive\Desktop\BnbInternal\studious-rotary-phone\main\views.py", line 447, in budget_management
+    return render(request, 'budget.html', context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tanish\AppData\Local\Programs\Python\Python37\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'budget_planning' not found. 'budget_planning' is not a valid view function or pattern name.
+ERROR 2025-09-21 04:11:48,707 basehttp 21164 27680 "GET /budget/ HTTP/1.1" 500 194624
