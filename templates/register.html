@@ -1,0 +1,486 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - PaisaBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-lg fade-in">
+                <div class="card-header text-center py-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-plus me-2"></i>
+                        Join PaisaBuddy
+                    </h3>
+                    <p class="mb-0 mt-2 opacity-75">Start your financial literacy journey today!</p>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form method="post" class="needs-validation" novalidate id="registrationForm">
+                        {% csrf_token %}
+                        
+                        <!-- Step 1: Basic Information -->
+                        <div class="step" id="step1">
+                            <h5 class="mb-4 text-center">
+                                <span class="badge bg-primary me-2">Step 1</span>
+                                Basic Information
+                            </h5>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="{{ form.username.id_for_label }}" class="form-label">
+                                        <i class="fas fa-user me-2"></i>{{ form.username.label }}
+                                    </label>
+                                    {{ form.username }}
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                    {% if form.username.help_text %}
+                                        <div class="form-text">{{ form.username.help_text }}</div>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label">
+                                        <i class="fas fa-envelope me-2"></i>{{ form.email.label }}
+                                    </label>
+                                    {{ form.email }}
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="{{ form.age.id_for_label }}" class="form-label">
+                                        <i class="fas fa-birthday-cake me-2"></i>{{ form.age.label }}
+                                    </label>
+                                    {{ form.age }}
+                                    <div class="invalid-feedback">
+                                        Age must be between 16 and 35.
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label for="{{ form.phone_number.id_for_label }}" class="form-label">
+                                        <i class="fas fa-phone me-2"></i>{{ form.phone_number.label }}
+                                    </label>
+                                    {{ form.phone_number }}
+                                </div>
+                            </div>
+                            
+                            <div class="text-end">
+                                <button type="button" class="btn btn-primary" onclick="nextStep(1)">
+                                    Next <i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Profile Information -->
+                        <div class="step d-none" id="step2">
+                            <h5 class="mb-4 text-center">
+                                <span class="badge bg-primary me-2">Step 2</span>
+                                Profile Information
+                            </h5>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.occupation.id_for_label }}" class="form-label">
+                                    <i class="fas fa-briefcase me-2"></i>{{ form.occupation.label }}
+                                </label>
+                                {{ form.occupation }}
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.monthly_income.id_for_label }}" class="form-label">
+                                    <i class="fas fa-rupee-sign me-2"></i>{{ form.monthly_income.label }}
+                                </label>
+                                {{ form.monthly_income }}
+                                <div class="form-text">This helps us provide personalized recommendations</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="{{ form.financial_experience.id_for_label }}" class="form-label">
+                                    <i class="fas fa-chart-line me-2"></i>{{ form.financial_experience.label }}
+                                </label>
+                                {{ form.financial_experience }}
+                                <div class="form-text">
+                                    <small>
+                                        <strong>Beginner:</strong> New to investing and financial planning<br>
+                                        <strong>Intermediate:</strong> Some knowledge, has basic savings/investments<br>
+                                        <strong>Advanced:</strong> Experienced with various financial instruments
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
+                                    <i class="fas fa-arrow-left me-2"></i>Previous
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                                    Next <i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Security -->
+                        <div class="step d-none" id="step3">
+                            <h5 class="mb-4 text-center">
+                                <span class="badge bg-primary me-2">Step 3</span>
+                                Security
+                            </h5>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.password1.id_for_label }}" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>{{ form.password1.label }}
+                                </label>
+                                <div class="input-group">
+                                    {{ form.password1 }}
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a strong password.
+                                </div>
+                                <div class="password-strength mt-2">
+                                    <div class="progress" style="height: 5px;">
+                                        <div class="progress-bar" id="passwordStrength" style="width: 0%"></div>
+                                    </div>
+                                    <small class="text-muted" id="passwordStrengthText">Enter a password</small>
+                                </div>
+                                {% if form.password1.help_text %}
+                                    <div class="form-text">{{ form.password1.help_text }}</div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="{{ form.password2.id_for_label }}" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>{{ form.password2.label }}
+                                </label>
+                                <div class="input-group">
+                                    {{ form.password2 }}
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Passwords must match.
+                                </div>
+                                <div class="password-match mt-2 d-none">
+                                    <small class="text-success" id="passwordMatch">
+                                        <i class="fas fa-check me-1"></i>Passwords match
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                    <label class="form-check-label" for="agreeTerms">
+                                        I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a> 
+                                        and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        You must agree to the terms and conditions.
+                                    </div>
+                                </div>
+                                
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="newsletter">
+                                    <label class="form-check-label" for="newsletter">
+                                        Send me financial tips and updates (optional)
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">
+                                    <i class="fas fa-arrow-left me-2"></i>Previous
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-user-plus me-2"></i>Create Account
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- Progress Indicator -->
+                    <div class="progress mt-4" style="height: 4px;">
+                        <div class="progress-bar" id="formProgress" style="width: 33.33%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Benefits Section -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h6>Learn & Earn</h6>
+                        <p class="text-muted small">Complete modules and earn points while building financial knowledge</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h6>Virtual Trading</h6>
+                        <p class="text-muted small">Practice stock trading with ₹1,00,000 virtual money risk-free</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h6>Fraud Protection</h6>
+                        <p class="text-muted small">Learn to identify and avoid financial scams and frauds</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-muted">Already have an account? 
+                    <a href="{% url 'login' %}" class="text-decoration-none fw-bold">
+                        Sign in here
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms of Service</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                <h6>1. Acceptance of Terms</h6>
+                <p>By creating an account on PaisaBuddy, you agree to be bound by these Terms of Service...</p>
+                
+                <h6>2. Educational Purpose</h6>
+                <p>PaisaBuddy is an educational platform designed to improve financial literacy. All trading activities are virtual and for learning purposes only...</p>
+                
+                <h6>3. User Responsibilities</h6>
+                <p>Users are responsible for maintaining the confidentiality of their account credentials and for all activities under their account...</p>
+                
+                <h6>4. Virtual Trading Disclaimer</h6>
+                <p>Virtual trading results do not guarantee real-world trading performance. Past performance does not indicate future results...</p>
+                
+                <h6>5. Content and Intellectual Property</h6>
+                <p>All content on PaisaBuddy is for educational purposes and remains the property of PaisaBuddy...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Privacy Policy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                <h6>1. Information We Collect</h6>
+                <p>We collect information you provide directly, such as account details, profile information, and usage data...</p>
+                
+                <h6>2. How We Use Your Information</h6>
+                <p>Your information is used to provide educational content, track progress, and improve the platform experience...</p>
+                
+                <h6>3. Data Security</h6>
+                <p>We implement appropriate security measures to protect your personal information against unauthorized access...</p>
+                
+                <h6>4. Information Sharing</h6>
+                <p>We do not sell, trade, or rent your personal information to third parties. Your data is used solely for educational purposes...</p>
+                
+                <h6>5. Contact Us</h6>
+                <p>If you have any questions about this Privacy Policy, please contact us at privacy@paisabuddy.com</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let currentStep = 1;
+    
+    function nextStep(step) {
+        if (validateStep(step)) {
+            document.getElementById('step' + step).classList.add('d-none');
+            currentStep++;
+            document.getElementById('step' + currentStep).classList.remove('d-none');
+            updateProgress();
+        }
+    }
+    
+    function prevStep(step) {
+        document.getElementById('step' + step).classList.add('d-none');
+        currentStep--;
+        document.getElementById('step' + currentStep).classList.remove('d-none');
+        updateProgress();
+    }
+    
+    function updateProgress() {
+        const progress = (currentStep / 3) * 100;
+        document.getElementById('formProgress').style.width = progress + '%';
+    }
+    
+    function validateStep(step) {
+        const stepElement = document.getElementById('step' + step);
+        const inputs = stepElement.querySelectorAll('input[required], select[required]');
+        let valid = true;
+        
+        inputs.forEach(input => {
+            if (!input.checkValidity()) {
+                input.classList.add('is-invalid');
+                valid = false;
+            } else {
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            }
+        });
+        
+        return valid;
+    }
+    
+    // Password strength indicator
+    function checkPasswordStrength(password) {
+        let strength = 0;
+        let feedback = 'Enter a password';
+        let color = 'bg-danger';
+        
+        if (password.length >= 8) strength += 1;
+        if (password.match(/[a-z]/)) strength += 1;
+        if (password.match(/[A-Z]/)) strength += 1;
+        if (password.match(/[0-9]/)) strength += 1;
+        if (password.match(/[^a-zA-Z0-9]/)) strength += 1;
+        
+        switch (strength) {
+            case 0:
+            case 1:
+                feedback = 'Very Weak';
+                color = 'bg-danger';
+                break;
+            case 2:
+                feedback = 'Weak';
+                color = 'bg-warning';
+                break;
+            case 3:
+                feedback = 'Fair';
+                color = 'bg-info';
+                break;
+            case 4:
+                feedback = 'Good';
+                color = 'bg-primary';
+                break;
+            case 5:
+                feedback = 'Strong';
+                color = 'bg-success';
+                break;
+        }
+        
+        const progressBar = document.getElementById('passwordStrength');
+        const strengthText = document.getElementById('passwordStrengthText');
+        
+        progressBar.style.width = (strength * 20) + '%';
+        progressBar.className = 'progress-bar ' + color;
+        strengthText.textContent = feedback;
+    }
+    
+    // Password visibility toggles
+    document.getElementById('togglePassword1').addEventListener('click', function() {
+        const passwordField = document.getElementById('id_password1');
+        const toggleIcon = this.querySelector('i');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    });
+    
+    document.getElementById('togglePassword2').addEventListener('click', function() {
+        const passwordField = document.getElementById('id_password2');
+        const toggleIcon = this.querySelector('i');
+        
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    });
+    
+    // Password strength and matching
+    document.addEventListener('DOMContentLoaded', function() {
+        const password1 = document.getElementById('id_password1');
+        const password2 = document.getElementById('id_password2');
+        
+        password1.addEventListener('input', function() {
+            checkPasswordStrength(this.value);
+            checkPasswordMatch();
+        });
+        
+        password2.addEventListener('input', checkPasswordMatch);
+        
+        function checkPasswordMatch() {
+            const matchDiv = document.querySelector('.password-match');
+            if (password1.value && password2.value) {
+                if (password1.value === password2.value) {
+                    matchDiv.classList.remove('d-none');
+                    password2.classList.remove('is-invalid');
+                    password2.classList.add('is-valid');
+                } else {
+                    matchDiv.classList.add('d-none');
+                    password2.classList.remove('is-valid');
+                    password2.classList.add('is-invalid');
+                }
+            } else {
+                matchDiv.classList.add('d-none');
+                password2.classList.remove('is-valid', 'is-invalid');
+            }
+        }
+    });
+    
+    // Form validation
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock %}

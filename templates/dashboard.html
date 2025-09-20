@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .gradient-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 15px;
+        color: white;
+    }
+    
+    .stats-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-3px);
+    }
+    
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .module-item {
+        padding: 15px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: white;
+    }
+    
+    .module-item:hover {
+        border-color: #007bff;
+        background-color: #f8f9ff;
+        transform: translateY(-2px);
+    }
+    
+    .icon-circle {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .goal-card {
+        padding: 20px;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .goal-card:hover {
+        border-color: #007bff;
+        background-color: #f8f9ff;
+    }
+    
+    .achievement-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .achievement-item:last-child {
+        border-bottom: none;
+    }
+    
+    .achievement-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.2rem;
+    }
+    
+    .progress-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: conic-gradient(#28a745 0deg, #28a745 144deg, rgba(255,255,255,0.3) 144deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 0 auto;
+    }
+    
+    .progress-circle::before {
+        content: '';
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        position: absolute;
+    }
+    
+    .progress-text {
+        font-weight: bold;
+        font-size: 14px;
+        position: relative;
+        z-index: 1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card gradient-card">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h2 class="mb-2">Welcome back, {{ user.first_name|default:"User" }}!</h2>
+                            <p class="mb-3 opacity-90">Ready to continue your financial journey?</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-light text-dark px-3 py-2">
+                                    <i class="fas fa-trophy me-2"></i>Level {{ profile.level|default:"1" }}
+                                </span>
+                                <span class="badge bg-warning text-dark px-3 py-2">
+                                    <i class="fas fa-star me-2"></i>{{ profile.total_points|default:"1250" }} Points
+                                </span>
+                                <span class="badge bg-success px-3 py-2">
+                                    <i class="fas fa-fire me-2"></i>{{ profile.streak_days|default:"7" }} Days
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="progress-circle">
+                                <div class="progress-text">40%</div>
+                            </div>
+                            <small class="opacity-75 mt-2 d-block">Progress</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stats-card h-100 text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-graduation-cap fa-2x mb-3"></i>
+                    <h3 class="mb-1">8/20</h3>
+                    <p class="mb-0">Modules</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stats-card h-100 text-white" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-chart-line fa-2x mb-3"></i>
+                    <h3 class="mb-1">₹{{ portfolio.current_value|floatformat:0|default:"1,25,000" }}</h3>
+                    <p class="mb-0">Portfolio</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stats-card h-100 text-white" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-rupee-sign fa-2x mb-3"></i>
+                    <h3 class="mb-1">₹{{ monthly_expenses|floatformat:0|default:"35,000" }}</h3>
+                    <p class="mb-0">Expenses</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stats-card h-100 text-white" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-bullseye fa-2x mb-3"></i>
+                    <h3 class="mb-1">{{ active_goals.count|default:"3" }}</h3>
+                    <p class="mb-0">Goals</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-lg-8">
+            <!-- Learning Section -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap me-2"></i>Learning Progress
+                    </h5>
+                    <a href="{% url 'learning_modules' %}" class="btn btn-primary btn-sm">Continue</a>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="fw-bold">Overall Progress</span>
+                        <span class="text-muted">8 of 20 completed</span>
+                    </div>
+                    <div class="progress mb-4" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width: 40%"></div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="module-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle bg-primary me-3">
+                                        <i class="fas fa-piggy-bank text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Budgeting</h6>
+                                        <small class="text-muted">15 min</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="module-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle bg-success me-3">
+                                        <i class="fas fa-chart-bar text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">SIP Investing</h6>
+                                        <small class="text-muted">20 min</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="module-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle bg-warning me-3">
+                                        <i class="fas fa-mobile-alt text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">UPI Security</h6>
+                                        <small class="text-muted">10 min</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Section -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-line me-2"></i>Portfolio Overview
+                    </h5>
+                    <a href="{% url 'portfolio_view' %}" class="btn btn-outline-primary btn-sm">View All</a>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <h4 class="text-primary mb-1">₹50,000</h4>
+                            <small class="text-muted">Cash</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-info mb-1">₹75,000</h4>
+                            <small class="text-muted">Invested</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="text-success mb-1">+₹5,000</h4>
+                            <small class="text-muted">Profit</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Transactions -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exchange-alt me-2"></i>Recent Activity
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_transactions %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Stock</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for transaction in recent_transactions %}
+                                    <tr>
+                                        <td>{{ transaction.stock.symbol }}</td>
+                                        <td>
+                                            <span class="badge bg-{% if transaction.transaction_type == 'buy' %}success{% else %}danger{% endif %}">
+                                                {{ transaction.transaction_type|upper }}
+                                            </span>
+                                        </td>
+                                        <td>₹{{ transaction.total_amount|floatformat:0 }}</td>
+                                        <td>{{ transaction.timestamp|date:"M d" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                            <h6>No transactions yet</h6>
+                            <p class="text-muted">Start your trading journey!</p>
+                            <a href="{% url 'stock_list' %}" class="btn btn-primary">Start Trading</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="col-lg-4">
+            <!-- Goals -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bullseye me-2"></i>Goals
+                    </h5>
+                    <a href="{% url 'financial_goals' %}" class="btn btn-outline-primary btn-sm">Add</a>
+                </div>
+                <div class="card-body">
+                    {% if active_goals %}
+                        {% for goal in active_goals %}
+                        <div class="goal-card">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="mb-1">{{ goal.title }}</h6>
+                                <span class="badge bg-primary">{{ goal.progress_percentage|floatformat:0 }}%</span>
+                            </div>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">₹{{ goal.saved_amount|floatformat:0 }}</small>
+                                <small class="text-muted">₹{{ goal.target_amount|floatformat:0 }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="goal-card">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="mb-1">Emergency Fund</h6>
+                                <span class="badge bg-primary">60%</span>
+                            </div>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">₹60,000</small>
+                                <small class="text-muted">₹1,00,000</small>
+                            </div>
+                        </div>
+                        
+                        <div class="goal-card">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="mb-1">New Car</h6>
+                                <span class="badge bg-primary">25%</span>
+                            </div>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div class="progress-bar" style="width: 25%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">₹1,25,000</small>
+                                <small class="text-muted">₹5,00,000</small>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'learning_modules' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-book me-2"></i>Learn
+                        </a>
+                        <a href="{% url 'stock_list' %}" class="btn btn-outline-success">
+                            <i class="fas fa-chart-line me-2"></i>Trade
+                        </a>
+                        <a href="{% url 'expense_tracking' %}" class="btn btn-outline-info">
+                            <i class="fas fa-plus me-2"></i>Add Expense
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Daily Tip -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h6 class="mb-0">Daily Tip</h6>
+                </div>
+                <div class="card-body text-center">
+                    <h6 class="text-success">Emergency Fund</h6>
+                    <p class="mb-3">Save 3-6 months of expenses for emergencies. Start with ₹500/month.</p>
+                    <button class="btn btn-success btn-sm" onclick="markUseful(this)">
+                        <i class="fas fa-thumbs-up me-1"></i>Helpful
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Achievements -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-trophy me-2"></i>Achievements
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="achievement-item">
+                        <div class="achievement-icon bg-warning text-dark">🎯</div>
+                        <div>
+                            <h6 class="mb-1">First Goal</h6>
+                            <small class="text-muted">Set your first financial goal</small>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-item">
+                        <div class="achievement-icon bg-success text-white">📚</div>
+                        <div>
+                            <h6 class="mb-1">Learning Streak</h6>
+                            <small class="text-muted">3 modules this week</small>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-item">
+                        <div class="achievement-icon bg-primary text-white">💰</div>
+                        <div>
+                            <h6 class="mb-1">First Trade</h6>
+                            <small class="text-muted">Made your first trade</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function markUseful(button) {
+        button.innerHTML = '<i class="fas fa-check me-1"></i>Thanks!';
+        button.disabled = true;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-outline-success');
+    }
+    
+    // Simple click handlers
+    document.querySelectorAll('.module-item').forEach(item => {
+        item.addEventListener('click', function() {
+            window.location.href = '{% url "learning_modules" %}';
+        });
+    });
+    
+    document.querySelectorAll('.goal-card').forEach(goal => {
+        goal.addEventListener('click', function() {
+            window.location.href = '{% url "financial_goals" %}';
+        });
+    });
+</script>
+{% endblock %}

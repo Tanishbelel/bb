@@ -1,0 +1,1145 @@
+INFO 2025-09-20 20:24:08,586 autoreload 43996 42804 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:24:11,241 log 43996 43464 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:24:11,244 basehttp 43996 43464 "GET / HTTP/1.1" 500 88715
+INFO 2025-09-20 20:25:21,732 autoreload 43996 42804 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:25:22,478 autoreload 43968 27588 Watching for file changes with StatReloader
+INFO 2025-09-20 20:26:02,581 autoreload 43968 27588 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:26:03,469 autoreload 42704 33856 Watching for file changes with StatReloader
+INFO 2025-09-20 20:26:11,365 autoreload 42704 33856 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:26:12,114 autoreload 5824 44128 Watching for file changes with StatReloader
+INFO 2025-09-20 20:26:16,823 autoreload 5824 44128 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:26:17,691 autoreload 43060 31616 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:26:23,374 log 43060 42728 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:26:23,376 basehttp 43060 42728 "GET / HTTP/1.1" 500 88852
+INFO 2025-09-20 20:31:58,621 autoreload 34548 21580 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:31:59,656 log 34548 29072 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:31:59,658 basehttp 34548 29072 "GET / HTTP/1.1" 500 88715
+INFO 2025-09-20 20:32:57,707 autoreload 34548 21580 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:32:58,613 autoreload 35936 6340 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:33:00,233 log 35936 33232 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:33:00,236 basehttp 35936 33232 "GET / HTTP/1.1" 500 88710
+INFO 2025-09-20 20:36:02,102 autoreload 4936 27016 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:36:03,783 log 4936 28708 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:36:03,785 basehttp 4936 28708 "GET / HTTP/1.1" 500 88710
+INFO 2025-09-20 20:36:21,654 autoreload 4936 27016 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:36:22,539 autoreload 43004 30064 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:36:26,514 log 43004 10340 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:36:26,515 basehttp 43004 10340 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:37:06,146 log 43004 10340 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:37:06,147 basehttp 43004 10340 "GET / HTTP/1.1" 500 88852
+INFO 2025-09-20 20:37:23,271 autoreload 15304 44428 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:37:25,383 log 15304 43916 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:37:25,385 basehttp 15304 43916 "GET / HTTP/1.1" 500 88715
+INFO 2025-09-20 20:37:50,152 autoreload 15304 44428 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 20:37:50,960 autoreload 28216 39916 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:37:51,227 log 28216 28904 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:37:51,230 basehttp 28216 28904 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:37:53,436 log 28216 28904 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:37:53,437 basehttp 28216 28904 "GET / HTTP/1.1" 500 88852
+INFO 2025-09-20 20:37:59,253 autoreload 42092 44260 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:38:01,005 log 42092 23524 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:38:01,008 basehttp 42092 23524 "GET / HTTP/1.1" 500 88715
+INFO 2025-09-20 20:41:19,581 autoreload 39404 44180 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:41:21,788 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:21,790 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:22,355 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:22,356 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:22,633 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:22,634 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:22,685 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:22,686 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:22,876 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:22,879 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:23,026 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:23,027 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:23,192 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:23,195 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:23,370 log 39404 4320 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:23,372 basehttp 39404 4320 "GET / HTTP/1.1" 500 88852
+INFO 2025-09-20 20:41:47,597 autoreload 31144 43076 Watching for file changes with StatReloader
+ERROR 2025-09-20 20:41:49,872 log 31144 32712 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:49,874 basehttp 31144 32712 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:50,607 log 31144 32712 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:50,609 basehttp 31144 32712 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:51,152 log 31144 32712 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:51,153 basehttp 31144 32712 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:51,683 log 31144 32712 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:51,684 basehttp 31144 32712 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:52,062 log 31144 32712 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:52,064 basehttp 31144 32712 "GET / HTTP/1.1" 500 88852
+ERROR 2025-09-20 20:41:52,266 log 31144 32712 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 34, in home
+    return render(request, 'home.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR 2025-09-20 20:41:52,269 basehttp 31144 32712 "GET / HTTP/1.1" 500 88852
+INFO 2025-09-20 20:42:54,337 autoreload 33404 38072 Watching for file changes with StatReloader
+INFO 2025-09-20 20:42:56,098 basehttp 33404 43236 "GET / HTTP/1.1" 200 35014
+INFO 2025-09-20 20:43:16,900 basehttp 33404 43236 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 20:43:34,217 basehttp 33404 43236 "GET /register/ HTTP/1.1" 200 41069
+INFO 2025-09-20 20:45:16,455 basehttp 33404 43236 "POST /register/ HTTP/1.1" 200 41216
+INFO 2025-09-20 20:45:20,983 basehttp 33404 43236 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 20:45:29,960 basehttp 33404 43236 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 20:45:34,749 basehttp 33404 43236 "GET /register/ HTTP/1.1" 200 41069
+INFO 2025-09-20 20:46:09,067 basehttp 33404 43236 "POST /register/ HTTP/1.1" 200 41216
+INFO 2025-09-20 20:46:18,024 basehttp 33404 43236 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 20:46:29,581 basehttp 33404 43236 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 20:46:35,204 basehttp 33404 43236 "GET /register/ HTTP/1.1" 200 41069
+WARNING 2025-09-20 20:46:50,877 log 33404 43236 Not Found: /admin/
+WARNING 2025-09-20 20:46:50,878 basehttp 33404 43236 "GET /admin/ HTTP/1.1" 404 6078
+INFO 2025-09-20 20:47:28,128 autoreload 33404 38072 C:\coding\bnb internal1\paisabuddy\paisabuddy\urls.py changed, reloading.
+INFO 2025-09-20 20:47:29,094 autoreload 42536 28900 Watching for file changes with StatReloader
+INFO 2025-09-20 20:47:30,087 basehttp 42536 12984 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-09-20 20:47:30,227 basehttp 42536 12984 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4177
+INFO 2025-09-20 20:47:30,276 basehttp 42536 12984 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-09-20 20:47:30,282 basehttp 42536 2024 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-09-20 20:47:30,284 basehttp 42536 45004 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:47:30,284 basehttp 42536 12984 "GET /static/admin/css/login.css HTTP/1.1" 304 0
+INFO 2025-09-20 20:47:30,285 basehttp 42536 40948 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-09-20 20:47:30,287 basehttp 42536 35824 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-09-20 20:47:30,387 basehttp 42536 35824 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:23,162 autoreload 41832 41540 Watching for file changes with StatReloader
+INFO 2025-09-20 20:48:35,485 basehttp 41832 28676 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-09-20 20:48:35,559 basehttp 41832 28676 "GET /admin/ HTTP/1.1" 200 5540
+INFO 2025-09-20 20:48:35,616 basehttp 41832 28676 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:35,644 basehttp 41832 34520 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:35,645 basehttp 41832 28676 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,839 basehttp 41832 28676 "GET /admin/auth/group/ HTTP/1.1" 200 7337
+INFO 2025-09-20 20:48:44,921 basehttp 41832 36772 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,923 basehttp 41832 44020 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,926 basehttp 41832 42532 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,933 basehttp 41832 43260 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,939 basehttp 41832 44020 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,941 basehttp 41832 36772 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,945 basehttp 41832 43260 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:44,948 basehttp 41832 42532 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-09-20 20:48:45,031 basehttp 41832 34520 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-20 20:48:45,035 basehttp 41832 28676 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-09-20 20:48:45,086 basehttp 41832 28676 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-09-20 20:48:45,144 basehttp 41832 28676 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-09-20 20:48:45,280 basehttp 41832 28676 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-09-20 20:57:18,052 basehttp 41832 37972 "GET / HTTP/1.1" 302 0
+WARNING 2025-09-20 20:57:18,072 log 41832 37972 Not Found: /dashboard/
+WARNING 2025-09-20 20:57:18,073 basehttp 41832 37972 "GET /dashboard/ HTTP/1.1" 404 3208
+INFO 2025-09-20 20:57:24,358 basehttp 41832 37972 "GET / HTTP/1.1" 302 0
+WARNING 2025-09-20 20:57:24,381 log 41832 37972 Not Found: /dashboard/
+WARNING 2025-09-20 20:57:24,382 basehttp 41832 37972 "GET /dashboard/ HTTP/1.1" 404 3208
+INFO 2025-09-20 20:57:34,291 autoreload 43808 42088 Watching for file changes with StatReloader
+INFO 2025-09-20 20:57:37,465 basehttp 43808 41212 "GET / HTTP/1.1" 302 0
+WARNING 2025-09-20 20:57:37,487 log 43808 41212 Not Found: /dashboard/
+WARNING 2025-09-20 20:57:37,488 basehttp 43808 41212 "GET /dashboard/ HTTP/1.1" 404 3208
+INFO 2025-09-20 21:00:04,423 autoreload 43808 42088 C:\coding\bnb internal1\paisabuddy\main\apps.py changed, reloading.
+INFO 2025-09-20 21:00:05,252 autoreload 32556 22620 Watching for file changes with StatReloader
+INFO 2025-09-20 21:00:18,359 autoreload 32556 22620 C:\coding\bnb internal1\paisabuddy\main\apps.py changed, reloading.
+INFO 2025-09-20 21:00:19,184 autoreload 32976 12796 Watching for file changes with StatReloader
+INFO 2025-09-20 21:00:40,663 autoreload 11428 40108 Watching for file changes with StatReloader
+INFO 2025-09-20 21:00:43,229 basehttp 11428 14220 "GET / HTTP/1.1" 302 0
+WARNING 2025-09-20 21:00:43,256 log 11428 14220 Not Found: /dashboard/
+WARNING 2025-09-20 21:00:43,256 basehttp 11428 14220 "GET /dashboard/ HTTP/1.1" 404 3208
+INFO 2025-09-20 21:01:55,043 autoreload 11428 40108 C:\coding\bnb internal1\paisabuddy\paisabuddy\settings.py changed, reloading.
+INFO 2025-09-20 21:01:55,878 autoreload 24024 43124 Watching for file changes with StatReloader
+INFO 2025-09-20 21:01:56,180 basehttp 24024 7848 "GET /dashboard/ HTTP/1.1" 301 0
+INFO 2025-09-20 21:01:56,189 basehttp 24024 41836 code 400, message Bad request version ('ù,\x0eOÇ\x99¢\x89\x9c*H\x90Æ\x96')
+ERROR 2025-09-20 21:01:56,189 basehttp 24024 41836 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:01:56,191 basehttp 24024 12700 code 400, message Bad request version ('ß÷Z')
+ERROR 2025-09-20 21:01:56,192 basehttp 24024 12700 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:01:57,532 basehttp 24024 17644 code 400, message Bad request version ('¿ê\x86\x04V9E\x97lt÷J»\x89ú´êqÍR£n\x9b\x88G\x03&jÁã$&7\x95½"mÎÈDùACØZ¢\x8bZ·îðÁ\x9aÕ\x06\x80õ:\x8fy\x0eÛõÀú\x87U¡&[!×iK18aÂD\x047±^È4û$\x06P×uúb?\x9a\x17bÅ÷Ì\\¤Îsç9P\x122\x9bLÀT)£a+\x9aê\x12\x91%i{\x9d²1\x87üÏwÑ')
+ERROR 2025-09-20 21:01:57,533 basehttp 24024 17644 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:01:57,533 basehttp 24024 16420 code 400, message Bad request version ('ZZ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-20 21:01:57,533 basehttp 24024 16420 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:01:57,534 basehttp 24024 38084 code 400, message Bad request version ('®\x01¯ÓÔ\x1b\x7f')
+INFO 2025-09-20 21:01:57,535 basehttp 24024 24836 code 400, message Bad request version ('\x02h2\x08http/1.1\x00-\x00\x02\x01\x01\x00\x12\x00\x00\x00')
+ERROR 2025-09-20 21:01:57,535 basehttp 24024 38084 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:01:57,535 basehttp 24024 24836 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:01:57,542 basehttp 24024 43788 code 400, message Bad request version ('**\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063\x8a\x8a\x00\x00\x00')
+ERROR 2025-09-20 21:01:57,543 basehttp 24024 43788 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:01:57,546 basehttp 24024 42212 code 400, message Bad request version ('ÁB¡b\x9e\x82eó\x84×ú\x9b\x08\x86rý')
+ERROR 2025-09-20 21:01:57,546 basehttp 24024 42212 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:05,248 autoreload 43240 40304 Watching for file changes with StatReloader
+INFO 2025-09-20 21:02:07,525 basehttp 43240 13804 "GET / HTTP/1.1" 301 0
+INFO 2025-09-20 21:02:07,539 basehttp 43240 44576 code 400, message Bad request version ('ÞhQ\x8aù\x92\x07YÍS¥K"ràqþu°\x12¢üp\x94\x81\x81\x93:')
+ERROR 2025-09-20 21:02:07,539 basehttp 43240 44576 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:07,541 basehttp 43240 42504 code 400, message Bad request version ('çxIÑPbª$`\x9561ë¯"$\x01Nt¿åòqø§\x07g\x88\x96\x948*ì\x14')
+ERROR 2025-09-20 21:02:07,542 basehttp 43240 42504 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:13,069 autoreload 43240 40304 C:\coding\bnb internal1\paisabuddy\paisabuddy\settings.py changed, reloading.
+INFO 2025-09-20 21:02:14,018 autoreload 39280 8468 Watching for file changes with StatReloader
+INFO 2025-09-20 21:02:14,909 basehttp 39280 7848 code 400, message Bad request version ('ë\\.RTjWV3×3x\x91i\x04Ý\x990¸\x0eòÎ\x0f}\x93å\x8aI\x04!\x01a\x90Á.\x00')
+ERROR 2025-09-20 21:02:14,910 basehttp 39280 7848 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:14,911 basehttp 39280 41836 code 400, message Bad request version ('::\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sêê\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00+\x00\x07\x06zz\x03\x04\x03\x03\x00')
+ERROR 2025-09-20 21:02:14,911 basehttp 39280 41836 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:14,913 basehttp 39280 12700 code 400, message Bad request version ('àúZ~')
+INFO 2025-09-20 21:02:14,914 basehttp 39280 27356 code 400, message Bad request version ('¼rË5¨\x89Æ\x9erA4>¾Å\x83')
+ERROR 2025-09-20 21:02:14,914 basehttp 39280 12700 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:14,914 basehttp 39280 27356 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:14,921 basehttp 39280 44084 code 400, message Bad request version ('Ã\x87hÿy\x08\x8aú+µ&Â\x9a')
+ERROR 2025-09-20 21:02:14,922 basehttp 39280 44084 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:14,924 basehttp 39280 13060 code 400, message Bad request version ('Bø')
+ERROR 2025-09-20 21:02:14,924 basehttp 39280 13060 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,174 basehttp 39280 28904 code 400, message Bad request version ('ÇÉÔà\x8b')
+ERROR 2025-09-20 21:02:15,176 basehttp 39280 28904 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,176 basehttp 39280 42688 code 400, message Bad request version ('ÐéD0É\x86F\x18³\x87T=\x9dr')
+ERROR 2025-09-20 21:02:15,177 basehttp 39280 42688 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,179 basehttp 39280 43260 code 400, message Bad request version ('\x00\x02\x01\x00\x003\x04ï\x04íÊÊ\x00\x01\x00\x11ì\x04À\x7f8Í%ô')
+INFO 2025-09-20 21:02:15,179 basehttp 39280 42028 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03¥ëïuV¨EX¶Ç*Ñ\x86GÖmF.')
+ERROR 2025-09-20 21:02:15,179 basehttp 39280 43260 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:15,180 basehttp 39280 42028 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,185 basehttp 39280 45008 code 400, message Bad request version ('ZÓ;÷v\x9f\x88Wx\x11÷')
+ERROR 2025-09-20 21:02:15,186 basehttp 39280 45008 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,187 basehttp 39280 42976 code 400, message Bad request version ('öúx¹õ"ð\x93µ®6\x00O\x80&ú¶Dcâ\x19Ë@;*\x94e|9²%±\x95Å<\x80_\'yýø®X#^%Ò¬,Ã3ñ£"\x99\x14\x16kP>,Wq')
+ERROR 2025-09-20 21:02:15,187 basehttp 39280 42976 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,401 basehttp 39280 24836 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S')
+INFO 2025-09-20 21:02:15,402 basehttp 39280 43788 code 400, message Bad request version ('ßR\x07<r\x12')
+ERROR 2025-09-20 21:02:15,402 basehttp 39280 24836 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:15,402 basehttp 39280 43788 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,405 basehttp 39280 42212 code 400, message Bad request version ('°¾\x90xÈx\x00')
+INFO 2025-09-20 21:02:15,406 basehttp 39280 37604 code 400, message Bad request version ('\x02h2\x08http/1.1\x00-\x00\x02\x01\x01\x00')
+ERROR 2025-09-20 21:02:15,406 basehttp 39280 42212 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:15,406 basehttp 39280 37604 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,413 basehttp 39280 42792 code 400, message Bad request version ('\x89u!¼¹\x02v\x13f\x84Ö\x04´\x01\x81Ç÷\x8bær¸Ô|uîV\x9eà³"\x14')
+ERROR 2025-09-20 21:02:15,413 basehttp 39280 42792 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,416 basehttp 39280 25404 code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063JJ\x00\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00#\x00\x00\x00')
+ERROR 2025-09-20 21:02:15,417 basehttp 39280 25404 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,585 basehttp 39280 42372 code 400, message Bad request syntax ("\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03RÊYhþ\x9e)H\x92\x03aÓ'\x14~]ÑÉ\x81")
+ERROR 2025-09-20 21:02:15,586 basehttp 39280 42372 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,587 basehttp 39280 34480 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x12\x00\x00\x00')
+ERROR 2025-09-20 21:02:15,587 basehttp 39280 34480 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,590 basehttp 39280 38764 code 400, message Bad request version ('\xadQ\x98\x19v')
+INFO 2025-09-20 21:02:15,591 basehttp 39280 15128 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+ERROR 2025-09-20 21:02:15,592 basehttp 39280 38764 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:15,592 basehttp 39280 15128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,740 basehttp 39280 41380 code 400, message Bad request version ('/\x9f\x88àø{\x9fôbÙ\x9e=%ååòµåõx½¥\x0e^\x84tPT\x99ß')
+INFO 2025-09-20 21:02:15,742 basehttp 39280 44260 code 400, message Bad request syntax ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x035\x07B¼é×ºuÕ')
+ERROR 2025-09-20 21:02:15,742 basehttp 39280 41380 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:15,743 basehttp 39280 44260 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:15,746 basehttp 39280 6520 code 400, message Bad request version ('\x00Ú\x00\x00\x01\x00\x01')
+INFO 2025-09-20 21:02:15,746 basehttp 39280 1528 code 400, message Bad request version ('Vr60')
+ERROR 2025-09-20 21:02:15,746 basehttp 39280 6520 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:15,747 basehttp 39280 1528 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,319 basehttp 39280 43764 code 400, message Bad request version ('~\x108I\x95Q\x00')
+INFO 2025-09-20 21:02:16,319 basehttp 39280 41708 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+ERROR 2025-09-20 21:02:16,320 basehttp 39280 43764 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:16,320 basehttp 39280 41708 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,322 basehttp 39280 19676 code 400, message Bad request syntax ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03\x81î\x14tö]\x17nç\x0f\x19994Xc$¯ý9')
+INFO 2025-09-20 21:02:16,322 basehttp 39280 12956 code 400, message Bad request version ('æv\x81\x8dhq½-~~ÎN@[?')
+ERROR 2025-09-20 21:02:16,322 basehttp 39280 19676 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:16,323 basehttp 39280 12956 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,328 basehttp 39280 13804 code 400, message Bad request version ('h\x8b\xadC?\x07pâow\x00')
+ERROR 2025-09-20 21:02:16,328 basehttp 39280 13804 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,331 basehttp 39280 44576 code 400, message Bad request version ('çÄ\x98,Ê\x93°¢§GÌn³Ed4?')
+ERROR 2025-09-20 21:02:16,331 basehttp 39280 44576 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,559 basehttp 39280 42220 code 400, message Bad request version ('S<\x10CÁNë\x01\x9cjÆ\x9d\x1a:PÉ\x98zÒ·¶hB¼Í\x19dÙ\x87FÉÃb\x0fD\x8c³\x92@cËzñ`\x9d68\x88ÿ@r¶C\x15ìhn´ôË~JÇ\x14\x93Î')
+ERROR 2025-09-20 21:02:16,560 basehttp 39280 42220 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,561 basehttp 39280 41180 code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063::\x00\x00\x00\x17\x00\x00\x00#\x00\x00\x00+\x00\x07\x06ZZ\x03\x04\x03\x03\x00-\x00\x02\x01\x01\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+ERROR 2025-09-20 21:02:16,561 basehttp 39280 41180 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,565 basehttp 39280 16804 code 400, message Bad request version ('i@à·\x96\x87\x99')
+INFO 2025-09-20 21:02:16,565 basehttp 39280 43012 code 400, message Bad request version ('\x122ÁL/¶\x00')
+ERROR 2025-09-20 21:02:16,566 basehttp 39280 16804 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:16,566 basehttp 39280 43012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,735 basehttp 39280 43632 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+INFO 2025-09-20 21:02:16,735 basehttp 39280 12788 code 400, message Bad request version ('\x04ìÖæG\x08\x84\\ù\x9dàÖåòÈ\x01\x97xDVÒÌ\x1a\x8f\x98#')
+ERROR 2025-09-20 21:02:16,735 basehttp 39280 43632 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:16,735 basehttp 39280 12788 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,738 basehttp 39280 42684 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03S¶')
+INFO 2025-09-20 21:02:16,738 basehttp 39280 44756 code 400, message Bad request version ('\x8a\x8a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93\x8a\x8a\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00\x12\x00\x00\x00')
+ERROR 2025-09-20 21:02:16,738 basehttp 39280 42684 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:16,738 basehttp 39280 44756 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,744 basehttp 39280 43016 code 400, message Bad request version ('\x1bë\x95°©5\x03òê5ë6RÑ¢bôÇRF»NÜ\x82ºÅ4L\x02c\x90#k¬gçH<"L¾Kx£Æ§µòÆ')
+ERROR 2025-09-20 21:02:16,745 basehttp 39280 43016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,748 basehttp 39280 40964 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03ÆIøÄ¡ù,>L\x92ú\x88\x08«Í´g\x9f\x95æÈP\x06\xad:')
+ERROR 2025-09-20 21:02:16,749 basehttp 39280 40964 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,922 basehttp 39280 33156 code 400, message Bad request version ('**\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063úú\x00\x00\x00+\x00\x07\x06úú\x03\x04\x03\x03\x00\x1b\x00\x03\x02\x00\x02\x00#\x00\x00ÿ\x01\x00\x01\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00')
+ERROR 2025-09-20 21:02:16,923 basehttp 39280 33156 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,924 basehttp 39280 41988 code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S\x1a\x1a\x00\x00\x00+\x00\x07\x06zz\x03\x04\x03\x03ÿ\x01\x00\x01\x00\x003\x04ï\x04íúú\x00\x01\x00\x11ì\x04ÀzóË&,\x97')
+ERROR 2025-09-20 21:02:16,924 basehttp 39280 41988 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:16,926 basehttp 39280 40108 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sjj\x00\x00\x00')
+INFO 2025-09-20 21:02:16,926 basehttp 39280 42332 code 400, message Bad request version ('\x08m0S\x05\x92')
+ERROR 2025-09-20 21:02:16,926 basehttp 39280 40108 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:16,926 basehttp 39280 42332 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,088 basehttp 39280 16708 code 400, message Bad request version ('÷Ç~{\x04')
+ERROR 2025-09-20 21:02:17,088 basehttp 39280 16708 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,089 basehttp 39280 24464 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-09-20 21:02:17,089 basehttp 39280 24464 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,091 basehttp 39280 43056 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+INFO 2025-09-20 21:02:17,091 basehttp 39280 42276 code 400, message Bad request version ('\x08wXÖ}')
+ERROR 2025-09-20 21:02:17,091 basehttp 39280 43056 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:17,091 basehttp 39280 42276 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,098 basehttp 39280 43788 code 400, message Bad request version ('*kb\x80\x00LG·\x13Û³ylFÛ\x9e\x98Ò\x17\x06ÿ\x8e2!\x17P\x81j¿¹%\x94þ\x8b\x9a¡\x9c\x00')
+ERROR 2025-09-20 21:02:17,098 basehttp 39280 43788 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,100 basehttp 39280 37604 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-20 21:02:17,100 basehttp 39280 37604 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,268 basehttp 39280 37056 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+INFO 2025-09-20 21:02:17,269 basehttp 39280 44624 code 400, message Bad request version ('\x7f\x98Y^T\xad,*g\x91\x13\x16i\x84\x8e&óiD\x06\x11\x8ae\x99Æ\x88\x1b:\x8aA7ò\x13D')
+ERROR 2025-09-20 21:02:17,269 basehttp 39280 37056 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:17,269 basehttp 39280 44624 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,271 basehttp 39280 44020 code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SÚÚ\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00-\x00\x02\x01\x01\x00\x17\x00\x00\x00#\x00\x00\x003\x04ï\x04íªª\x00\x01\x00\x11ì\x04ÀXì;j!Få"WzÒ8ºq>¥2\x88[\x12m\x00@v)\x16¬{Å\x90iW¢)QµP!&9\x83#\x8fô1\'¶¶²P!ú\x07¤ÀyBK©Í')
+INFO 2025-09-20 21:02:17,271 basehttp 39280 41904 code 400, message Bad request version ('9ù\x01·t3\x83\x02qù\x066')
+ERROR 2025-09-20 21:02:17,271 basehttp 39280 44020 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:17,271 basehttp 39280 41904 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,278 basehttp 39280 25052 code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s')
+ERROR 2025-09-20 21:02:17,279 basehttp 39280 25052 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:17,282 basehttp 39280 44344 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-20 21:02:17,282 basehttp 39280 44344 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:31,687 basehttp 39280 28844 code 400, message Bad request version ('üñ]zrå\x10Ádº\x81Å')
+ERROR 2025-09-20 21:02:31,687 basehttp 39280 28844 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:31,689 basehttp 39280 22288 code 400, message Bad request version ('¦\x01k¤n')
+ERROR 2025-09-20 21:02:31,690 basehttp 39280 22288 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:52,392 autoreload 39280 8468 C:\coding\bnb internal1\paisabuddy\paisabuddy\settings.py changed, reloading.
+INFO 2025-09-20 21:02:53,200 autoreload 16376 40512 Watching for file changes with StatReloader
+INFO 2025-09-20 21:02:53,535 basehttp 16376 34572 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x89J')
+ERROR 2025-09-20 21:02:53,535 basehttp 16376 34572 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,536 basehttp 16376 1200 code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sªª\x00\x00\x00\x17\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00-\x00\x02\x01\x01\x00')
+ERROR 2025-09-20 21:02:53,537 basehttp 16376 1200 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,717 basehttp 16376 13160 code 400, message Bad request syntax ("\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x12ËÅ\x93{Eó\x03\x07ô\xadÅ'Ã\x04ÈþÆá")
+ERROR 2025-09-20 21:02:53,717 basehttp 16376 13160 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,719 basehttp 16376 32640 code 400, message Bad request version ('~«\x16')
+ERROR 2025-09-20 21:02:53,719 basehttp 16376 32640 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,783 basehttp 16376 42700 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S')
+ERROR 2025-09-20 21:02:53,783 basehttp 16376 42700 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,785 basehttp 16376 42540 code 400, message Bad request version ('}A\x16¼Y9ú\x93~Ê')
+ERROR 2025-09-20 21:02:53,785 basehttp 16376 42540 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,786 basehttp 16376 43324 code 400, message Bad request version ('_rÄº¬\x02n\x03\x01çF\x00°²¾¬)D_DÐÅum"\x17\x9f/%Ä\x0f\x95a\x99')
+ERROR 2025-09-20 21:02:53,786 basehttp 16376 43324 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,787 basehttp 16376 44844 code 400, message Bad request version ('V\x08\x93Ài\x87ÿèS\x86W\x8dúÃ4M\x10S«q')
+ERROR 2025-09-20 21:02:53,787 basehttp 16376 44844 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,881 basehttp 16376 24568 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x90I\x84ÛÛ\x83')
+ERROR 2025-09-20 21:02:53,881 basehttp 16376 24568 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,881 basehttp 16376 23600 code 400, message Bad request version ('\x8a\x8a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s')
+ERROR 2025-09-20 21:02:53,882 basehttp 16376 23600 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,883 basehttp 16376 5392 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x9cVH\x9a+¤ø\x90c±Yz\x8f°\x81G¨\x8f\x15æzß<+«ÿ\x9bz¥Îd\x9e')
+INFO 2025-09-20 21:02:53,885 basehttp 16376 37904 code 400, message Bad request version ('º\x00\x17\x00\x00ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-20 21:02:53,885 basehttp 16376 5392 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:02:53,885 basehttp 16376 37904 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,889 basehttp 16376 44284 code 400, message Bad request version ('±ã!\x03\x86<ÊQº')
+ERROR 2025-09-20 21:02:53,890 basehttp 16376 44284 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:53,893 basehttp 16376 34176 code 400, message Bad request version ('\x9a\x9a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063\x9a\x9a\x00\x00\x00')
+ERROR 2025-09-20 21:02:53,893 basehttp 16376 34176 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:58,975 autoreload 16376 40512 C:\coding\bnb internal1\paisabuddy\paisabuddy\settings.py changed, reloading.
+INFO 2025-09-20 21:02:59,785 autoreload 42024 42976 Watching for file changes with StatReloader
+INFO 2025-09-20 21:02:59,939 basehttp 42024 34480 code 400, message Bad request version ('ZZ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93**\x00\x00\x00')
+ERROR 2025-09-20 21:02:59,940 basehttp 42024 34480 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:59,941 basehttp 42024 32640 code 400, message Bad request version ('6=C`\x860\x19\x12µ8\x1a/D=\x048\x81½')
+ERROR 2025-09-20 21:02:59,942 basehttp 42024 32640 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:59,944 basehttp 42024 42564 code 400, message Bad request version ('Ñ\x10\x82X=/Ta÷\x9cº~@lf\x83³påKµ|')
+ERROR 2025-09-20 21:02:59,945 basehttp 42024 42564 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:02:59,946 basehttp 42024 10016 code 400, message Bad request version ('::\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S\x9a\x9a\x00\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+ERROR 2025-09-20 21:02:59,947 basehttp 42024 10016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,543 basehttp 42024 43016 code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SÚÚ\x00\x00\x00')
+ERROR 2025-09-20 21:03:13,543 basehttp 42024 43016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,543 basehttp 42024 44480 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93')
+ERROR 2025-09-20 21:03:13,544 basehttp 42024 44480 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,545 basehttp 42024 42856 code 400, message Bad request version ('qH&oâ¢\x9bÆl[k1\x9bYZñøÌ®\x83«ë{\x11¶+0º²\x8d\\\x11<*hi\x07\x11\\\x8e\x95\x80/3z\x08â=\x15')
+INFO 2025-09-20 21:03:13,546 basehttp 42024 32608 code 400, message Bad request version ('ÃÚ£\x8f\x8fÖ"û¥µu_øXÜ\x96¬á\x96èkl\x83à\x88¦I')
+ERROR 2025-09-20 21:03:13,546 basehttp 42024 42856 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:13,546 basehttp 42024 32608 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,551 basehttp 42024 43400 code 400, message Bad request version (':ïD<ÿNÊ(\x9e6\x01R±\x8f\x9c#Ï\x00\x14oþ\x91-Ãx\x06Y$í\x9a0\x80\x00')
+ERROR 2025-09-20 21:03:13,551 basehttp 42024 43400 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,554 basehttp 42024 15072 code 400, message Bad request version ('°2¯ÌgîL\x95h_\x94f¾Ç§|\x9aáòO\x07\x17Þ\x8d´M\x01+k_¦¦')
+ERROR 2025-09-20 21:03:13,555 basehttp 42024 15072 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,885 basehttp 42024 23572 code 400, message Bad request version ('ådv2×»\x9eé¼ÓK\x08]¥\x9cÚô\x01\x8b$Æþ¨+\x16Àp³$¯Ð¸\x00')
+ERROR 2025-09-20 21:03:13,886 basehttp 42024 23572 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,886 basehttp 42024 42924 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-20 21:03:13,887 basehttp 42024 42924 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,888 basehttp 42024 45012 code 400, message Bad request version ('T®3¥')
+ERROR 2025-09-20 21:03:13,888 basehttp 42024 45012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,889 basehttp 42024 3936 code 400, message Bad request version (',¹Xër\x92Ñ6¥\x07ªCåF\x03|)')
+ERROR 2025-09-20 21:03:13,890 basehttp 42024 3936 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,894 basehttp 42024 36576 code 400, message Bad request version ('µ¾¢')
+ERROR 2025-09-20 21:03:13,894 basehttp 42024 36576 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:13,897 basehttp 42024 43180 code 400, message Bad request version ('\x00')
+ERROR 2025-09-20 21:03:13,897 basehttp 42024 43180 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,083 basehttp 42024 43012 code 400, message Bad request version ('3Òâ\x96nÍ')
+ERROR 2025-09-20 21:03:14,083 basehttp 42024 43012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,083 basehttp 42024 20244 code 400, message Bad request version ("F\x90C\x8a§¡ìÚ~^Ç'\x8f\x04r\x87)\x9fMq?4\x99S\x8bu¥¡\x91\x13¢\x01%\x99ôzøbËöt")
+ERROR 2025-09-20 21:03:14,084 basehttp 42024 20244 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,085 basehttp 42024 41544 code 400, message Bad request version ('ÜæÃ>\x1bæ7ÿ\x81ëÞ\x9dè@ò,\x06ðtª2é@Àj\x01&`õ\x9bã*\x00Ð\x8f\x0f\x05\x15É\x98Ý[7ÆnÞ\x9b.Ý<¿#FQ9òLöo\x7fpJo¸Ý¸-éRÀ\x83x_û\x19b\x07Â~*GcdfÉ°¢\x8dÒtp8f>³Úy\x80²tºÿî_ïs+¼\x03')
+INFO 2025-09-20 21:03:14,086 basehttp 42024 44628 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ZZ\x00\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00-\x00\x02\x01\x01\x00+\x00\x07\x06zz\x03\x04\x03\x03ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-20 21:03:14,086 basehttp 42024 41544 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:14,086 basehttp 42024 44628 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,091 basehttp 42024 43728 code 400, message Bad request version ('ëæ(Ys`Ë\x99L\x05¼WzÕ\x00\x12\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-09-20 21:03:14,092 basehttp 42024 43728 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,094 basehttp 42024 44272 code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06Sªª\x00\x00\x003\x04ï\x04í')
+ERROR 2025-09-20 21:03:14,094 basehttp 42024 44272 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,250 basehttp 42024 1200 code 400, message Bad request version ('zz\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ºº\x00\x00\x00')
+ERROR 2025-09-20 21:03:14,251 basehttp 42024 1200 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,251 basehttp 42024 19084 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-20 21:03:14,251 basehttp 42024 19084 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,253 basehttp 42024 45036 code 400, message Bad request version ('¢\x81K\x95ïY6')
+INFO 2025-09-20 21:03:14,254 basehttp 42024 41860 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+ERROR 2025-09-20 21:03:14,254 basehttp 42024 45036 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:14,254 basehttp 42024 41860 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,258 basehttp 42024 32252 code 400, message Bad request version ('\x9a\x9a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ªª\x00\x00\x00')
+ERROR 2025-09-20 21:03:14,259 basehttp 42024 32252 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,261 basehttp 42024 23128 code 400, message Bad request version ('ZZ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sªª\x00\x00\x00')
+ERROR 2025-09-20 21:03:14,261 basehttp 42024 23128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,414 basehttp 42024 42812 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03zºÎàÏ]¦\x8a¦\x11Ì\x14g\x7fÙ´8¢N¶eó\x9cõ\x04^X&Y_D¾')
+INFO 2025-09-20 21:03:14,415 basehttp 42024 12956 code 400, message Bad request version ('\x00\x02\x01\x00\x00\x12\x00\x00\x00\x17\x00\x00ÿ\x01\x00\x01\x00\x00#\x00\x00\x00')
+ERROR 2025-09-20 21:03:14,415 basehttp 42024 42812 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:14,415 basehttp 42024 12956 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,419 basehttp 42024 43756 code 400, message Bad request syntax ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x032Å%>²g5ç')
+INFO 2025-09-20 21:03:14,419 basehttp 42024 40728 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-09-20 21:03:14,419 basehttp 42024 43756 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:14,420 basehttp 42024 40728 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,572 basehttp 42024 43356 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063êê\x00\x00\x00')
+ERROR 2025-09-20 21:03:14,573 basehttp 42024 43356 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,573 basehttp 42024 27528 code 400, message Bad request version (']ÆOéCE\x9aúåj')
+ERROR 2025-09-20 21:03:14,574 basehttp 42024 27528 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:14,576 basehttp 42024 22728 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+INFO 2025-09-20 21:03:14,578 basehttp 42024 43016 code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x07\x06ªª\x03\x04\x03\x03\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x17\x00\x00\x00')
+ERROR 2025-09-20 21:03:14,578 basehttp 42024 22728 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:14,578 basehttp 42024 43016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,163 basehttp 42024 31032 code 400, message Bad request version ('\x8a\x8a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063zz\x00\x00\x00+\x00\x07\x06')
+INFO 2025-09-20 21:03:15,163 basehttp 42024 42612 code 400, message Bad request version ('\x80¡È\x10[Ê.')
+ERROR 2025-09-20 21:03:15,163 basehttp 42024 31032 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,163 basehttp 42024 42612 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,165 basehttp 42024 31800 code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063zz\x00\x00\x00#\x00\x00\x00\x17\x00\x00\x00+\x00\x07\x06ÊÊ\x03\x04\x03\x03\x00')
+INFO 2025-09-20 21:03:15,166 basehttp 42024 15964 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-20 21:03:15,166 basehttp 42024 31800 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,166 basehttp 42024 15964 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,172 basehttp 42024 45012 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03_V\x8d')
+ERROR 2025-09-20 21:03:15,172 basehttp 42024 45012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,175 basehttp 42024 3936 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x03Iå')
+ERROR 2025-09-20 21:03:15,175 basehttp 42024 3936 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,355 basehttp 42024 41212 code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SÚÚ\x00\x00ÿ\x01\x00\x01\x00\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+INFO 2025-09-20 21:03:15,355 basehttp 42024 42044 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03Ó\x16\x80Y')
+ERROR 2025-09-20 21:03:15,355 basehttp 42024 41212 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,355 basehttp 42024 42044 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,358 basehttp 42024 43068 code 400, message Bad request version ('FµÔ')
+INFO 2025-09-20 21:03:15,358 basehttp 42024 24568 code 400, message Bad request version ('\x16\x0e§\x16³\x13È2\x83bIµá#hJÎØ\x92³$\x00\x12\x00\x00\x00+\x00\x07\x06JJ\x03\x04\x03\x03\x00\x17\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00')
+ERROR 2025-09-20 21:03:15,358 basehttp 42024 43068 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,359 basehttp 42024 24568 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,364 basehttp 42024 44628 code 400, message Bad request version ('DÈJ\x9b')
+ERROR 2025-09-20 21:03:15,364 basehttp 42024 44628 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,366 basehttp 42024 43728 code 400, message Bad request version ('\x00\x02\x01\x00ÿ\x01\x00\x01\x00\x00#\x00\x00\x00\x17\x00\x00\x00')
+ERROR 2025-09-20 21:03:15,366 basehttp 42024 43728 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,536 basehttp 42024 41860 code 400, message Bad request version ('\x86L\x08¥')
+ERROR 2025-09-20 21:03:15,538 basehttp 42024 41860 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,538 basehttp 42024 32252 code 400, message Bad request version ('\x813téâ/o')
+ERROR 2025-09-20 21:03:15,538 basehttp 42024 32252 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,540 basehttp 42024 23128 code 400, message Bad request version ('Úh<b«')
+INFO 2025-09-20 21:03:15,541 basehttp 42024 36052 code 400, message Bad request version ('7«')
+ERROR 2025-09-20 21:03:15,541 basehttp 42024 23128 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,541 basehttp 42024 36052 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,547 basehttp 42024 42088 code 400, message Bad request version ('8G×ª\x18\x95#Úü}\x9c\x0f9YòÁOàå¢\x00<\x7f\x95\x82+ö½Í\x81M0{MUÃGÃ}ë\x187WÇ1\x11gè^ëó\x1b¨GaY\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00+\x00\x07\x06\x9a\x9a\x03\x04\x03\x03DÍ\x00\x05\x00\x03\x02h2\x00\x1b\x00\x03\x02\x00\x02\x003\x04ï\x04íªª\x00\x01\x00\x11ì\x04À]äKd\x99¸Ú©\x86¾4¢gSJûÜ¬Æ*É')
+ERROR 2025-09-20 21:03:15,547 basehttp 42024 42088 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,550 basehttp 42024 37712 code 400, message Bad request version ('\x9f=K¥')
+ERROR 2025-09-20 21:03:15,550 basehttp 42024 37712 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,728 basehttp 42024 27528 code 400, message Bad request version ('**\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S\x9a\x9a\x00\x00\x00')
+INFO 2025-09-20 21:03:15,728 basehttp 42024 43016 code 400, message Bad request version ('öý*2Q~\x8cw')
+ERROR 2025-09-20 21:03:15,728 basehttp 42024 27528 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,728 basehttp 42024 43016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,732 basehttp 42024 42476 code 400, message Bad request version ('h4Ë\x00¥r!¨\x18M8\x12?³W\x87<4:)\x93ÑÉ\x9b)\x01E/d¢Á\x87^»JAD<ºq¨\x90Æ)Ëñ¹\x9f\x96')
+INFO 2025-09-20 21:03:15,732 basehttp 42024 42292 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06súú\x00\x00ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-20 21:03:15,732 basehttp 42024 42476 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,732 basehttp 42024 42292 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,891 basehttp 42024 31032 code 400, message Bad request version ('\x00\x02\x01\x00ÿ\x01\x00\x01\x00\x00')
+INFO 2025-09-20 21:03:15,892 basehttp 42024 42612 code 400, message Bad request version ('¬e\x06´\x0fÛ')
+ERROR 2025-09-20 21:03:15,892 basehttp 42024 31032 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:15,892 basehttp 42024 42612 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,896 basehttp 42024 31800 code 400, message Bad request version ('_À{):!T\\ÀÎ[')
+ERROR 2025-09-20 21:03:15,896 basehttp 42024 31800 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:15,897 basehttp 42024 45012 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-20 21:03:15,898 basehttp 42024 45012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,073 basehttp 42024 42044 code 400, message Bad request version ('\x00\x02\x01\x00\x00-\x00\x02\x01\x01\x00')
+ERROR 2025-09-20 21:03:16,074 basehttp 42024 42044 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,074 basehttp 42024 43068 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x17\x00\x00\x00')
+ERROR 2025-09-20 21:03:16,075 basehttp 42024 43068 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,076 basehttp 42024 24568 code 400, message Bad request version ('ºº\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sêê\x00\x00\x00')
+INFO 2025-09-20 21:03:16,076 basehttp 42024 43728 code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ÊÊ\x00\x00\x00\x17\x00\x00\x00+\x00\x07\x06')
+ERROR 2025-09-20 21:03:16,077 basehttp 42024 24568 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,077 basehttp 42024 43728 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,082 basehttp 42024 42924 code 400, message Bad request version ("\x93Ô\x18I\x88L²&U&\x95'VéÄÙ´O©\x11ª3©¾*dÏ\x82Ò\x8c\x9eq¨\x83¥RÔ\x93¹L0z¨0")
+ERROR 2025-09-20 21:03:16,083 basehttp 42024 42924 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,086 basehttp 42024 4564 code 400, message Bad request version ('µÇ\x07¡\x1a\x16y0ñ')
+ERROR 2025-09-20 21:03:16,086 basehttp 42024 4564 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,260 basehttp 42024 29396 code 400, message Bad request version ('**\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sjj\x00\x00\x00')
+INFO 2025-09-20 21:03:16,260 basehttp 42024 12800 code 400, message Bad request version ('9kâP©Ò\x9cÇ')
+ERROR 2025-09-20 21:03:16,260 basehttp 42024 29396 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,260 basehttp 42024 12800 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,262 basehttp 42024 31212 code 400, message Bad request syntax ('\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03\x1a=\x01j\x8eÁ\x98yÆ\x89ºt4')
+INFO 2025-09-20 21:03:16,263 basehttp 42024 13848 code 400, message Bad request version ('\x96c>Ò\x94uÅ@\x87O»^\x16YE©G]ú¢¥\x8f4e\x18â¼ë')
+ERROR 2025-09-20 21:03:16,263 basehttp 42024 31212 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,263 basehttp 42024 13848 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,268 basehttp 42024 39408 code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06S\x8a\x8a\x00\x00\x00\x1b\x00\x03\x02\x00\x02ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-20 21:03:16,269 basehttp 42024 39408 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,271 basehttp 42024 29096 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+ERROR 2025-09-20 21:03:16,272 basehttp 42024 29096 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,433 basehttp 42024 42812 code 400, message Bad request version ('\xad#')
+INFO 2025-09-20 21:03:16,434 basehttp 42024 12956 code 400, message Bad request version ('[}5à»&[o\x14To')
+ERROR 2025-09-20 21:03:16,434 basehttp 42024 42812 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,434 basehttp 42024 12956 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,436 basehttp 42024 42404 code 400, message Bad request version ('nf')
+INFO 2025-09-20 21:03:16,436 basehttp 42024 16416 code 400, message Bad request version ('6\x1a\x11\x17')
+ERROR 2025-09-20 21:03:16,436 basehttp 42024 42404 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,437 basehttp 42024 16416 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,443 basehttp 42024 43292 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-20 21:03:16,444 basehttp 42024 43292 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,446 basehttp 42024 31032 code 400, message Bad request version ('\x96\x19Á~G')
+ERROR 2025-09-20 21:03:16,447 basehttp 42024 31032 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,610 basehttp 42024 42600 code 400, message Bad request version ('±\x82\x87\x8a¾\x8e:\x96\x16\x99h©y"F')
+INFO 2025-09-20 21:03:16,610 basehttp 42024 6380 code 400, message Bad request version ('æ9XS\x11ãò\x10\x9cNûë,\x8cÖ]\x9a\x17"i\x9cÅÅÉ\x19\x0eò=O×\x985\x82\x05N\x05Ô¸Y\\\x163\x8e\x00ÕA6\x92ã¬£\x19\x999\x16²ùªÜ\x8a}')
+ERROR 2025-09-20 21:03:16,610 basehttp 42024 42600 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,611 basehttp 42024 6380 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,613 basehttp 42024 44932 code 400, message Bad request version ('U\x91"zzP@qyw\x96°Á¡D')
+INFO 2025-09-20 21:03:16,614 basehttp 42024 44964 code 400, message Bad request version ('\x8b\x84i')
+ERROR 2025-09-20 21:03:16,614 basehttp 42024 44932 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,614 basehttp 42024 44964 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,779 basehttp 42024 40512 code 400, message Bad request version ('=VØâ\x0fÒ\x96zeâóàj\x00\x05\x00\x05\x01\x00\x00\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00+\x00\x07\x06ÊÊ\x03\x04\x03\x03\x00\x1b\x00\x03\x02\x00\x02\x00#\x00\x00\x00-\x00\x02\x01\x01\x00\x12\x00\x00\x003\x04ï\x04í\x1a\x1a\x00\x01\x00\x11ì\x04ÀCõn\x9fªËßÙ¡|r²Áø¸Å¦\x11Û{£\x00\x87\x97´û_Úr\xad}±_ÌÊ\x88>gp')
+INFO 2025-09-20 21:03:16,779 basehttp 42024 38568 code 400, message Bad request version ('Ú]')
+ERROR 2025-09-20 21:03:16,779 basehttp 42024 40512 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,780 basehttp 42024 38568 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,783 basehttp 42024 6340 code 400, message Bad request version ('zz\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SJJ\x00\x00\x00#\x00\x00ÿ\x01\x00\x01\x00\x00\x12\x00\x00\x00+\x00\x07\x06ºº\x03\x04\x03\x03\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+ERROR 2025-09-20 21:03:16,783 basehttp 42024 6340 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,784 basehttp 42024 34572 code 400, message Bad request version ('ê')
+ERROR 2025-09-20 21:03:16,784 basehttp 42024 34572 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,956 basehttp 42024 16860 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sZZ\x00\x00\x00')
+ERROR 2025-09-20 21:03:16,956 basehttp 42024 16860 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,956 basehttp 42024 29396 code 400, message Bad request version ('Þ\xadÀfæ©%ÿ¡>\x93¼!_\x98p#\x01ß)b\x8eôv¿»+¢À¢\xad?ÌjÄ®Y#\x003\x04ï\x04í')
+ERROR 2025-09-20 21:03:16,957 basehttp 42024 29396 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,959 basehttp 42024 12800 code 400, message Bad request version ('#ñ"_|Õ\x14\x06GË,\x16¬A<>?8\x9dÞçÍ\x836\x16£\x86n\x07!aÖ\x10')
+INFO 2025-09-20 21:03:16,959 basehttp 42024 13848 code 400, message Bad request version ('ôc°¦\x10\x00')
+ERROR 2025-09-20 21:03:16,959 basehttp 42024 12800 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:16,959 basehttp 42024 13848 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,964 basehttp 42024 29096 code 400, message Bad request version ('\x15')
+ERROR 2025-09-20 21:03:16,964 basehttp 42024 29096 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:16,967 basehttp 42024 44628 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x17\x00\x00ÿ\x01\x00\x01\x00\x00')
+ERROR 2025-09-20 21:03:16,967 basehttp 42024 44628 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:17,164 basehttp 42024 42512 code 400, message Bad request version ('î¬¬9')
+INFO 2025-09-20 21:03:17,164 basehttp 42024 42996 code 400, message Bad request version ('ê\x8câ¨ë´rç\x159û')
+ERROR 2025-09-20 21:03:17,165 basehttp 42024 42512 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:17,165 basehttp 42024 42996 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:17,167 basehttp 42024 23128 code 400, message Bad request version ('UGò\x89#ýÛ\x19\x95ÇÎñ@:í9\x06Ð\x978W\x8cu©òÈY')
+INFO 2025-09-20 21:03:17,168 basehttp 42024 32252 code 400, message Bad request version ('\x96={\x96^')
+ERROR 2025-09-20 21:03:17,168 basehttp 42024 23128 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:03:17,168 basehttp 42024 32252 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:17,176 basehttp 42024 12956 code 400, message Bad request version ('\x99\x80')
+ERROR 2025-09-20 21:03:17,176 basehttp 42024 12956 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:03:17,178 basehttp 42024 42404 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-09-20 21:03:17,179 basehttp 42024 42404 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:11,398 autoreload 42024 42976 C:\coding\bnb internal1\paisabuddy\paisabuddy\settings.py changed, reloading.
+INFO 2025-09-20 21:04:12,304 autoreload 37920 42504 Watching for file changes with StatReloader
+INFO 2025-09-20 21:04:29,284 autoreload 37920 42504 C:\coding\bnb internal1\paisabuddy\paisabuddy\settings.py changed, reloading.
+INFO 2025-09-20 21:04:30,165 autoreload 29840 44216 Watching for file changes with StatReloader
+INFO 2025-09-20 21:04:45,024 autoreload 29840 44216 C:\coding\bnb internal1\paisabuddy\main\apps.py changed, reloading.
+INFO 2025-09-20 21:04:45,816 autoreload 42296 41620 Watching for file changes with StatReloader
+INFO 2025-09-20 21:04:47,188 basehttp 42296 10668 code 400, message Bad request version ('R&\x15<G\x08')
+ERROR 2025-09-20 21:04:47,189 basehttp 42296 10668 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:47,189 basehttp 42296 13428 code 400, message Bad request version ('\x9bõxr\x04@\x88{é')
+ERROR 2025-09-20 21:04:47,189 basehttp 42296 13428 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:47,192 basehttp 42296 43224 code 400, message Bad request version ('+¥¯¤â~5E;\x9eÿR\x07\x7f½\x01\x00\x908\x87ï6úú\x82£Q\x13|=\x9cGU\x89\x8cQô2¢`±t\x8f`o\x00<\x89T-È>*\x17\x14Ìôv')
+INFO 2025-09-20 21:04:47,192 basehttp 42296 42680 code 400, message Bad request version ('zz\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sZZ\x00\x00\x00')
+ERROR 2025-09-20 21:04:47,193 basehttp 42296 43224 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:47,193 basehttp 42296 42680 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:47,821 basehttp 42296 35136 code 400, message Bad request version ('69·ýåÂ*\x03g²5\x07Á\x04CZ¸8ûÜ8\x9aE;<°Gê\x96&õLL')
+INFO 2025-09-20 21:04:47,821 basehttp 42296 20144 code 400, message Bad request version ('¶d\x0f\x072±¦£Ú\x83¼¬»Lºô\x90}A¶dPÂg;\x17\x8cò\x9a\x03ÄÂU\x91')
+ERROR 2025-09-20 21:04:47,822 basehttp 42296 35136 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:47,822 basehttp 42296 20144 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:47,823 basehttp 42296 43824 code 400, message Bad request version ('\x00\x02\x01\x00\x00\x17\x00\x00\x00')
+INFO 2025-09-20 21:04:47,825 basehttp 42296 41988 code 400, message Bad request version ('\x06BÛ\x83vU¶6¤')
+ERROR 2025-09-20 21:04:47,825 basehttp 42296 43824 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:47,825 basehttp 42296 41988 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,175 basehttp 42296 43296 code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s')
+ERROR 2025-09-20 21:04:48,177 basehttp 42296 43296 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,177 basehttp 42296 40424 code 400, message Bad request version ('ä¼â³9´aE\x89yòz!\x8aÃº')
+ERROR 2025-09-20 21:04:48,178 basehttp 42296 40424 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,179 basehttp 42296 5128 code 400, message Bad request version ('fq²Î\x17m}Ëª¾\x15«ñt\x7fãø')
+INFO 2025-09-20 21:04:48,180 basehttp 42296 17400 code 400, message Bad request version ('\x98>×Ñ!¢å\x077¦%5\x94YÍ°+4k%_G]\x0fËC\x94Q\x89bG*\x16L¾R¤W§')
+ERROR 2025-09-20 21:04:48,180 basehttp 42296 5128 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:48,180 basehttp 42296 17400 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,186 basehttp 42296 22308 code 400, message Bad request version ('¾')
+ERROR 2025-09-20 21:04:48,187 basehttp 42296 22308 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,190 basehttp 42296 42692 code 400, message Bad request version ('^?A')
+ERROR 2025-09-20 21:04:48,190 basehttp 42296 42692 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,610 basehttp 42296 42124 code 400, message Bad request version ('W\x1b\x07^_¹p\x00\x90÷<')
+ERROR 2025-09-20 21:04:48,611 basehttp 42296 42124 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,611 basehttp 42296 1988 code 400, message Bad request version ('»ò]úH\x90¤¢Cæ\x18\x86\x95[J?ø±R·\x15æ¬\x88²Üª(ù\x19Ïé3¹õÂª3-')
+ERROR 2025-09-20 21:04:48,611 basehttp 42296 1988 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,613 basehttp 42296 32536 code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x07\x06::\x03\x04\x03\x03\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+INFO 2025-09-20 21:04:48,613 basehttp 42296 14004 code 400, message Bad request version ('úN,»\x19')
+ERROR 2025-09-20 21:04:48,613 basehttp 42296 32536 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:48,613 basehttp 42296 14004 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,783 basehttp 42296 41764 code 400, message Bad request version ('ÿ\x01\x00\x01\x00\x00-\x00\x02\x01\x01\x00\x17\x00\x00\x00')
+ERROR 2025-09-20 21:04:48,783 basehttp 42296 41764 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,783 basehttp 42296 32712 code 400, message Bad request version ('>Qÿ\x92[Î\x8d¾')
+ERROR 2025-09-20 21:04:48,784 basehttp 42296 32712 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,786 basehttp 42296 28312 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+INFO 2025-09-20 21:04:48,786 basehttp 42296 41860 code 400, message Bad request version ('Ö¬\x1a\x02\x17\x98&ñ/^ÖPÜ\xadr\x8ao\x90E~\x950\x00')
+ERROR 2025-09-20 21:04:48,786 basehttp 42296 28312 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:48,786 basehttp 42296 41860 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,791 basehttp 42296 17304 code 400, message Bad request version ('³ÿGØpÈk\x9e\x899Õ\x01ldoÜ\\0\x86Û\x04óîèÛ-_\x81×\x8c')
+ERROR 2025-09-20 21:04:48,791 basehttp 42296 17304 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,793 basehttp 42296 44216 code 400, message Bad request version ('\x18¶4H\x04l/5Wx\x87\x8e\x99ÜaÇÚM\x8bA\\\x17v\x9dpÈtÄaj\x08XD\x96¬\x93\x8cÙFhV\x99\x87DD¥²\x9bÛ\x92"\x9dÌÀ|¶\x84\x07d\x11Hð')
+ERROR 2025-09-20 21:04:48,794 basehttp 42296 44216 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,942 basehttp 42296 23568 code 400, message Bad request version ('9\x14\x8aöÀ\x15®l_´æo\x18Ã\x87X\x99Y\x12Ö\x906K>9IÎz\x9bg')
+INFO 2025-09-20 21:04:48,942 basehttp 42296 20788 code 400, message Bad request version ('\x1a\x1a\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s**\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-09-20 21:04:48,942 basehttp 42296 23568 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:48,943 basehttp 42296 20788 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:48,946 basehttp 42296 31940 code 400, message Bad request version ('÷M¦Sa¾ª²ë·')
+INFO 2025-09-20 21:04:48,946 basehttp 42296 38084 code 400, message Bad request version ('\x02h2\x08http/1.1ÿ\x01\x00\x01\x00\x00\x12\x00\x00\x00')
+ERROR 2025-09-20 21:04:48,946 basehttp 42296 31940 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:48,946 basehttp 42296 38084 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,096 basehttp 42296 41904 code 400, message Bad request version ('À=\x9cvÆ>V&\x91\x8fH\x010ûðC¼Ë')
+INFO 2025-09-20 21:04:49,096 basehttp 42296 44376 code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-20 21:04:49,097 basehttp 42296 41904 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:49,097 basehttp 42296 44376 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,099 basehttp 42296 32252 code 400, message Bad request version ('\x10yÄ¡\x11¼©\x18')
+INFO 2025-09-20 21:04:49,099 basehttp 42296 44480 code 400, message Bad request version ('úú\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93\x1a\x1a\x00\x00ÿ\x01\x00\x01\x00\x00+\x00\x07\x06\x8a\x8a\x03\x04\x03\x03\x00')
+ERROR 2025-09-20 21:04:49,100 basehttp 42296 32252 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:49,100 basehttp 42296 44480 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,106 basehttp 42296 44160 code 400, message Bad request version ('h>÷9à{ÑZ\x98£µNYÄ\x9b=¿,Þ')
+ERROR 2025-09-20 21:04:49,106 basehttp 42296 44160 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,109 basehttp 42296 5204 code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x07\x06ªª\x03\x04\x03\x03\x00')
+ERROR 2025-09-20 21:04:49,109 basehttp 42296 5204 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,262 basehttp 42296 25796 code 400, message Bad request version ('°Û×9\x039%\x8böø9\x8b\x12(£Ð)òk\x08\x16\x98ùvÿÇ')
+INFO 2025-09-20 21:04:49,263 basehttp 42296 24476 code 400, message Bad request version ('jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93\x1a\x1a\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00')
+ERROR 2025-09-20 21:04:49,263 basehttp 42296 25796 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:49,263 basehttp 42296 24476 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,265 basehttp 42296 43740 code 400, message Bad request version ('q')
+INFO 2025-09-20 21:04:49,266 basehttp 42296 35136 code 400, message Bad request version ('ZZ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063ÊÊ\x00\x00\x00\x12\x00\x00\x00')
+ERROR 2025-09-20 21:04:49,266 basehttp 42296 43740 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:49,266 basehttp 42296 35136 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,422 basehttp 42296 42292 code 400, message Bad request version ('*«\x83iüx\x04\x8bM\x93h"áhS\x15Dnáç¾f©\x91\x84\x18Î')
+INFO 2025-09-20 21:04:49,422 basehttp 42296 3388 code 400, message Bad request version ('\x00\x02\x01\x00\x00')
+ERROR 2025-09-20 21:04:49,423 basehttp 42296 42292 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:49,423 basehttp 42296 3388 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,425 basehttp 42296 12760 code 400, message Bad request version ("3d!rWú'FFø¶¹\x95A\x12\x9fn=\x93g(ëÍµ\x07¸°²»\x96\x84è\x9f\x15l\x88Ñã,üx\x10õÑ¿E\x997¦?×ÊwÐÁÜ¹ÅÑâá")
+INFO 2025-09-20 21:04:49,426 basehttp 42296 4368 code 400, message Bad request version ('\x9e)°\x9b\\\x95\x15·ý\x1aì\x12k\x00\x1b\x00\x03\x02\x00\x02\x003\x04ï\x04í')
+ERROR 2025-09-20 21:04:49,426 basehttp 42296 12760 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2025-09-20 21:04:49,426 basehttp 42296 4368 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,431 basehttp 42296 43296 code 400, message Bad request version ('êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-20 21:04:49,431 basehttp 42296 43296 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:49,433 basehttp 42296 40424 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03')
+ERROR 2025-09-20 21:04:49,433 basehttp 42296 40424 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:56,010 autoreload 44216 44344 Watching for file changes with StatReloader
+INFO 2025-09-20 21:04:58,801 basehttp 44216 37016 code 400, message Bad request version ('®ª,}ï)\x1b[w¦Gy®Ý|c\x8f8\x88?C?¿\x08¾:\x9cMÒwlQ\x13W2\x07¢5Wi-9\x03\x10Æ\'}¶FI\x15Ë\x81ä\x9dZ\x96z\x8a\x04O¥Ô`UR\x03øä²ý\x90¦,2J<\x94\x81\x84ÚGÐrÉ\x04ÈK3\x18"ÐÄªãGÈÝL^ÅçÅÅ\x90w\x152ºH\x95\x01AÛS\x9b%ÃÚ')
+ERROR 2025-09-20 21:04:58,802 basehttp 44216 37016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:04:58,804 basehttp 44216 42972 code 400, message Bad request version ('ªª\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-09-20 21:04:58,805 basehttp 44216 42972 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:05:28,862 basehttp 44216 35944 code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s')
+ERROR 2025-09-20 21:05:28,862 basehttp 44216 35944 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:05:28,865 basehttp 44216 23224 code 400, message Bad request version ('\x94K}c\x8a¤2p\x11Ä\x84¼\x83\\#ð\x89ÝåW7æ«¸¦hÍk\x9e\x9ed¾\x06\x9b\x15]YfÍ&-I(j\x16QÃ7')
+ERROR 2025-09-20 21:05:28,865 basehttp 44216 23224 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-09-20 21:05:41,677 basehttp 44216 47708 "GET / HTTP/1.1" 200 35014
+WARNING 2025-09-20 21:05:42,218 log 44216 47888 Not Found: /favicon.ico
+WARNING 2025-09-20 21:05:42,219 basehttp 44216 47888 "GET /favicon.ico HTTP/1.1" 404 6242
+INFO 2025-09-20 21:05:49,884 basehttp 44216 47888 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 21:06:12,194 basehttp 44216 47888 "GET /register/ HTTP/1.1" 200 41069
+INFO 2025-09-20 21:07:38,114 basehttp 44216 47888 "POST /register/ HTTP/1.1" 200 41219
+INFO 2025-09-20 21:07:42,125 basehttp 44216 47888 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 21:07:51,895 basehttp 44216 47888 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 21:08:04,240 basehttp 44216 47888 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 21:08:36,352 basehttp 44216 47888 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 21:09:01,100 basehttp 44216 47888 "GET /register/ HTTP/1.1" 200 41069
+INFO 2025-09-20 21:12:55,461 autoreload 44216 44344 C:\coding\bnb internal1\paisabuddy\main\forms.py changed, reloading.
+INFO 2025-09-20 21:12:56,418 autoreload 30736 45060 Watching for file changes with StatReloader
+INFO 2025-09-20 21:12:58,919 basehttp 30736 45896 "GET /register/ HTTP/1.1" 200 41069
+INFO 2025-09-20 21:13:54,376 basehttp 30736 45896 "POST /register/ HTTP/1.1" 200 41219
+INFO 2025-09-20 21:14:20,261 autoreload 30736 45060 C:\coding\bnb internal1\paisabuddy\main\forms.py changed, reloading.
+INFO 2025-09-20 21:14:21,156 autoreload 23884 21784 Watching for file changes with StatReloader
+INFO 2025-09-20 21:14:34,380 basehttp 23884 36332 "POST /register/ HTTP/1.1" 200 41219
+INFO 2025-09-20 21:15:31,453 basehttp 23884 36332 "POST /register/ HTTP/1.1" 200 41219
+INFO 2025-09-20 21:15:52,189 basehttp 23884 36332 "POST /register/ HTTP/1.1" 200 41219
+INFO 2025-09-20 21:16:06,668 basehttp 23884 36332 "POST /register/ HTTP/1.1" 200 41219
+INFO 2025-09-20 21:16:10,189 basehttp 23884 36332 "GET /login/ HTTP/1.1" 200 26834
+INFO 2025-09-20 21:16:20,843 basehttp 23884 36332 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 21:17:22,350 autoreload 12788 32020 Watching for file changes with StatReloader
+INFO 2025-09-20 21:17:26,414 basehttp 12788 30820 "POST /login/ HTTP/1.1" 200 27234
+INFO 2025-09-20 21:17:30,417 basehttp 12788 30820 "GET /register/ HTTP/1.1" 200 41069
+INFO 2025-09-20 21:18:03,409 basehttp 12788 30820 "POST /register/ HTTP/1.1" 200 41220
+INFO 2025-09-20 21:28:56,110 autoreload 42680 45316 Watching for file changes with StatReloader
+INFO 2025-09-20 21:29:42,192 autoreload 42680 45316 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 21:29:42,911 autoreload 10668 30696 Watching for file changes with StatReloader
+INFO 2025-09-20 21:29:47,134 basehttp 10668 42500 "POST /register/ HTTP/1.1" 200 41976
+INFO 2025-09-20 21:30:14,957 basehttp 10668 42500 "POST /register/ HTTP/1.1" 200 41651
+ERROR 2025-09-20 21:30:53,762 log 10668 42500 Internal Server Error: /register/
+Traceback (most recent call last):
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 51, in register
+    with transaction.atomic():  # Ensure atomic transaction
+NameError: name 'transaction' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 82, in register
+    except IntegrityError as e:
+NameError: name 'IntegrityError' is not defined
+ERROR 2025-09-20 21:30:53,766 basehttp 10668 42500 "POST /register/ HTTP/1.1" 500 80527
+INFO 2025-09-20 21:33:00,045 autoreload 10668 30696 C:\coding\bnb internal1\paisabuddy\main\views.py changed, reloading.
+INFO 2025-09-20 21:33:00,957 autoreload 41532 43388 Watching for file changes with StatReloader
+INFO 2025-09-20 21:33:03,688 basehttp 41532 33484 "POST /register/ HTTP/1.1" 302 0
+INFO 2025-09-20 21:33:03,703 basehttp 41532 33484 "GET /login/ HTTP/1.1" 200 27254
+INFO 2025-09-20 21:33:19,882 basehttp 41532 33484 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-09-20 21:33:19,905 basehttp 41532 33484 "GET /dashboard/ HTTP/1.1" 200 0
+INFO 2025-09-20 21:39:29,094 basehttp 41532 19832 "GET /login/ HTTP/1.1" 200 29704
+INFO 2025-09-20 21:39:32,825 basehttp 41532 19832 "GET /dashboard/ HTTP/1.1" 200 24099
+INFO 2025-09-20 21:41:29,938 basehttp 41532 19832 "GET /dashboard/ HTTP/1.1" 200 40702
+ERROR 2025-09-20 21:41:35,324 log 41532 19832 Internal Server Error: /portfolio/stocks/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 321, in stock_list
+    return render(request, 'stocks.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: stocks.html
+ERROR 2025-09-20 21:41:35,327 basehttp 41532 19832 "GET /portfolio/stocks/ HTTP/1.1" 500 94981
+ERROR 2025-09-20 21:41:40,815 log 41532 19832 Internal Server Error: /budget/goals/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 508, in financial_goals
+    return render(request, 'goals.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: goals.html
+ERROR 2025-09-20 21:41:40,817 basehttp 41532 19832 "GET /budget/goals/ HTTP/1.1" 500 94683
+INFO 2025-09-20 21:41:44,600 basehttp 41532 19832 "GET /dashboard/ HTTP/1.1" 200 40702
+ERROR 2025-09-20 21:41:45,442 log 41532 19832 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 21:41:45,443 basehttp 41532 19832 "GET /learn/ HTTP/1.1" 500 94591
+ERROR 2025-09-20 21:41:49,184 log 41532 19832 Internal Server Error: /profile/settings/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 596, in profile_settings
+    return render(request, 'settings.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: settings.html
+ERROR 2025-09-20 21:41:49,187 basehttp 41532 19832 "GET /profile/settings/ HTTP/1.1" 500 95062
+ERROR 2025-09-20 21:41:52,271 log 41532 19832 Internal Server Error: /fraud/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 524, in fraud_scenarios
+    return render(request, 'scenarios.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: scenarios.html
+ERROR 2025-09-20 21:41:52,273 basehttp 41532 19832 "GET /fraud/ HTTP/1.1" 500 94548
+WARNING 2025-09-20 21:42:00,357 log 41532 19832 Not Found: /home
+WARNING 2025-09-20 21:42:00,358 basehttp 41532 19832 "GET /home HTTP/1.1" 404 6221
+ERROR 2025-09-20 21:42:45,204 log 41532 19832 Internal Server Error: /learn/
+Traceback (most recent call last):
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\coding\bnb internal1\paisabuddy\main\views.py", line 184, in learning_modules
+    return render(request, 'modules.html', context)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\ASUS\AppData\Roaming\Python\Python310\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: modules.html
+ERROR 2025-09-20 21:42:45,207 basehttp 41532 19832 "GET /learn/ HTTP/1.1" 500 94591
+INFO 2025-09-20 21:55:34,125 autoreload 22132 10920 Watching for file changes with StatReloader
+INFO 2025-09-20 21:55:36,587 basehttp 22132 3584 "GET / HTTP/1.1" 302 0
+WARNING 2025-09-20 21:55:36,684 log 22132 3584 Not Found: /dashboard/
+WARNING 2025-09-20 21:55:36,685 basehttp 22132 3584 "GET /dashboard/ HTTP/1.1" 404 3208
+WARNING 2025-09-20 21:55:37,095 log 22132 13808 Not Found: /favicon.ico
+WARNING 2025-09-20 21:55:37,096 basehttp 22132 13808 "GET /favicon.ico HTTP/1.1" 404 6242
+INFO 2025-09-20 21:56:01,157 basehttp 22132 32792 "GET / HTTP/1.1" 302 0
+INFO 2025-09-20 21:56:01,308 basehttp 22132 32792 "GET /dashboard/ HTTP/1.1" 200 36456
+WARNING 2025-09-20 21:56:01,757 log 22132 32792 Not Found: /favicon.ico
+WARNING 2025-09-20 21:56:01,757 basehttp 22132 32792 "GET /favicon.ico HTTP/1.1" 404 6242

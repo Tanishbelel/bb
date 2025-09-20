@@ -1,0 +1,534 @@
+{% extends 'base.html' %}
+
+{% block title %}PaisaBuddy - Financial Literacy for Young India{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary-color), #3a9b6b);
+        color: white;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><path d="M0,0v46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1047.29,3.65,1000,0Z"></path></svg>') repeat-x;
+        background-size: 1000px 100px;
+        animation: wave 15s linear infinite;
+    }
+    
+    @keyframes wave {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-1000px); }
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .feature-card {
+        transition: all 0.3s ease;
+        height: 100%;
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .feature-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        margin: 0 auto 20px;
+    }
+    
+    .stats-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 0;
+        position: relative;
+    }
+    
+    .stat-item {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        display: block;
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+    }
+    
+    .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        position: relative;
+    }
+    
+    .testimonial-card::before {
+        content: '"';
+        font-size: 4rem;
+        color: var(--primary-color);
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        font-family: serif;
+    }
+    
+    .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    
+    .floating-icon {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    .quick-action-card {
+        background: linear-gradient(135deg, var(--primary-color), #3a9b6b);
+        color: white;
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .quick-action-card:hover {
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 15px 35px rgba(46, 139, 87, 0.3);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="floating-elements">
+        <i class="fas fa-coins floating-icon" style="top: 10%; left: 10%; font-size: 3rem; animation-delay: 0s;"></i>
+        <i class="fas fa-chart-line floating-icon" style="top: 20%; right: 15%; font-size: 2.5rem; animation-delay: 2s;"></i>
+        <i class="fas fa-piggy-bank floating-icon" style="bottom: 20%; left: 20%; font-size: 3.5rem; animation-delay: 4s;"></i>
+        <i class="fas fa-trophy floating-icon" style="bottom: 30%; right: 10%; font-size: 2rem; animation-delay: 1s;"></i>
+    </div>
+    
+    <div class="container hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4 fade-in">Master Your Money, Secure Your Future</h1>
+                <p class="lead mb-4 slide-up">Learn financial literacy through interactive games, track your spending, build investment portfolios, and protect yourself from fraud - all designed for young Indians.</p>
+                
+                {% if not user.is_authenticated %}
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="{% url 'register' %}" class="btn btn-warning btn-lg px-4">
+                            <i class="fas fa-rocket me-2"></i>Start Your Journey
+                        </a>
+                        <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="{% url 'dashboard' %}" class="btn btn-warning btn-lg px-4">
+                            <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                        </a>
+                        <a href="{% url 'learning_modules' %}" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-graduation-cap me-2"></i>Continue Learning
+                        </a>
+                    </div>
+                {% endif %}
+                
+                <div class="row mt-4">
+                    <div class="col-4 text-center">
+                        <h3 class="fw-bold">10K+</h3>
+                        <small>Active Learners</small>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h3 class="fw-bold">50+</h3>
+                        <small>Learning Modules</small>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h3 class="fw-bold">₹1Cr+</h3>
+                        <small>Money Saved</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-image mt-5 mt-lg-0">
+                    <i class="fas fa-chart-pie" style="font-size: 15rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-dark mb-3">Why Choose PaisaBuddy?</h2>
+            <p class="lead text-muted">Comprehensive financial education tailored for young Indians</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h4 class="card-title">Gamified Learning</h4>
+                        <p class="card-text">Learn through interactive games, quizzes, and challenges. Earn points, unlock levels, and compete with friends while mastering financial concepts.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-success">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="card-title">Fraud Protection</h4>
+                        <p class="card-text">Stay safe from financial scams with real-world scenarios, fraud detection tips, and interactive simulations based on actual fraud cases in India.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-info">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="card-title">Portfolio Simulator</h4>
+                        <p class="card-text">Practice investing with virtual money in real market conditions. Learn about stocks, mutual funds, and SIPs without any financial risk.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-warning">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h4 class="card-title">Smart Budgeting</h4>
+                        <p class="card-text">Track expenses, set budgets, and achieve financial goals with our intelligent budgeting tools designed for students and young professionals.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-danger">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="card-title">Community Learning</h4>
+                        <p class="card-text">Join a community of like-minded learners, compete on leaderboards, share experiences, and learn from others' financial journeys.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="card-title">Expert Content</h4>
+                        <p class="card-text">Learn from financial experts, certified advisors, and real success stories. Our content is regularly updated with latest financial trends and regulations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Actions for Authenticated Users -->
+{% if user.is_authenticated %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold">Quick Actions</h2>
+            <p class="lead text-muted">Jump back into your financial learning journey</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'learning_modules' %}" class="quick-action-card">
+                    <i class="fas fa-book-open fa-3x mb-3"></i>
+                    <h5>Continue Learning</h5>
+                    <p class="mb-0">Resume your modules</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'portfolio_view' %}" class="quick-action-card" style="background: linear-gradient(135deg, #17a2b8, #20c997);">
+                    <i class="fas fa-chart-pie fa-3x mb-3"></i>
+                    <h5>Check Portfolio</h5>
+                    <p class="mb-0">View your investments</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'budget_management' %}" class="quick-action-card" style="background: linear-gradient(135deg, #ffc107, #fd7e14);">
+                    <i class="fas fa-calculator fa-3x mb-3"></i>
+                    <h5>Track Budget</h5>
+                    <p class="mb-0">Manage your expenses</p>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'leaderboard' %}" class="quick-action-card" style="background: linear-gradient(135deg, #dc3545, #e83e8c);">
+                    <i class="fas fa-trophy fa-3x mb-3"></i>
+                    <h5>Leaderboard</h5>
+                    <p class="mb-0">See your ranking</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Our Impact</h2>
+            <p class="lead">Empowering young Indians with financial knowledge</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="12500">0</span>
+                    <p>Students Educated</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="850">0</span>
+                    <p>Fraud Cases Prevented</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2.5">0</span>
+                    <p>Crore Saved (₹)</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="95">0</span>
+                    <p>Success Rate (%)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">What Students Say</h2>
+            <p class="lead text-muted">Real experiences from our community</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <p>"PaisaBuddy saved me from a UPI fraud! The scenarios they taught helped me identify the scam immediately. Now I'm also earning through their investment simulator."</p>
+                    <div class="d-flex align-items-center mt-3">
+                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>P</strong>
+                        </div>
+                        <div class="ms-3">
+                            <strong>Priya S.</strong>
+                            <div class="text-muted">Engineering Student, Mumbai</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <p>"The gamification makes learning fun! I've completed 15 modules and my financial knowledge has improved dramatically. The leaderboard keeps me motivated."</p>
+                    <div class="d-flex align-items-center mt-3">
+                        <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>R</strong>
+                        </div>
+                        <div class="ms-3">
+                            <strong>Rahul K.</strong>
+                            <div class="text-muted">CA Student, Delhi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <p>"Started with zero knowledge about investments. Now I'm confidently planning my SIPs and have already started my emergency fund. Thank you PaisaBuddy!"</p>
+                    <div class="d-flex align-items-center mt-3">
+                        <div class="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <strong>A</strong>
+                        </div>
+                        <div class="ms-3">
+                            <strong>Anita M.</strong>
+                            <div class="text-muted">Working Professional, Bangalore</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+{% if not user.is_authenticated %}
+<section class="cta-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="display-4 fw-bold mb-4">Ready to Transform Your Financial Future?</h2>
+                <p class="lead mb-4">Join thousands of young Indians who are already on their path to financial freedom. Start your journey today - it's completely free!</p>
+                
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="{% url 'register' %}" class="btn btn-light btn-lg px-5">
+                        <i class="fas fa-user-plus me-2"></i>Create Free Account
+                    </a>
+                    <a href="{% url 'learning_modules' %}" class="btn btn-outline-light btn-lg px-5">
+                        <i class="fas fa-eye me-2"></i>Preview Modules
+                    </a>
+                </div>
+                
+                <div class="mt-4">
+                    <small><i class="fas fa-lock me-1"></i> Your data is secure • <i class="fas fa-mobile-alt me-1"></i> Works on all devices • <i class="fas fa-heart me-1"></i> Made for India</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Counter animation for stats
+    function animateCounter(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000;
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            
+            if (element.textContent.includes('.')) {
+                element.textContent = current.toFixed(1);
+            } else {
+                element.textContent = Math.floor(current).toLocaleString();
+            }
+        }, 16);
+    }
+    
+    // Intersection Observer for counter animation
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    if (!counter.classList.contains('animated')) {
+                        counter.classList.add('animated');
+                        animateCounter(counter);
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+    
+    // Observe stats section
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+    
+    // Add scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add animation classes to elements as they come into view
+        const animateOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all cards and sections
+        document.querySelectorAll('.feature-card, .testimonial-card, .quick-action-card').forEach(el => {
+            animateOnScroll.observe(el);
+        });
+    });
+    
+    // Smooth hover effects for quick action cards
+    document.querySelectorAll('.quick-action-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) translateY(0)';
+        });
+    });
+</script>
+{% endblock %}
