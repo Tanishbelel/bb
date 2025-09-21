@@ -1,0 +1,617 @@
+{% extends 'base.html' %}
+
+{% block title %}Token History - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 50px 0;
+        margin-bottom: 40px;
+    }
+    
+    .stats-overview {
+        margin-bottom: 40px;
+    }
+    
+    .stat-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+        margin-bottom: 20px;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .stat-card.earned {
+        border-left: 5px solid var(--success-color);
+    }
+    
+    .stat-card.spent {
+        border-left: 5px solid var(--danger-color);
+    }
+    
+    .stat-card.balance {
+        border-left: 5px solid var(--primary-color);
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+    
+    .stat-number.earned {
+        color: var(--success-color);
+    }
+    
+    .stat-number.spent {
+        color: var(--danger-color);
+    }
+    
+    .stat-number.balance {
+        color: var(--primary-color);
+    }
+    
+    .stat-label {
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    .transaction-card {
+        background: white;
+        border-radius: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    
+    .transaction-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .transaction-item {
+        padding: 20px 25px;
+        border-bottom: 1px solid #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .transaction-item:last-child {
+        border-bottom: none;
+    }
+    
+    .transaction-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-right: 20px;
+        flex-shrink: 0;
+    }
+    
+    .transaction-icon.earned {
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        color: var(--success-color);
+    }
+    
+    .transaction-icon.spent {
+        background: linear-gradient(135deg, #f8d7da, #f1b0b7);
+        color: var(--danger-color);
+    }
+    
+    .transaction-icon.purchased {
+        background: linear-gradient(135deg, #cce5ff, #b3d9ff);
+        color: var(--info-color);
+    }
+    
+    .transaction-details {
+        flex-grow: 1;
+        min-width: 0;
+    }
+    
+    .transaction-type {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        color: #2c3e50;
+    }
+    
+    .transaction-description {
+        color: #6c757d;
+        font-size: 0.95rem;
+        margin-bottom: 3px;
+    }
+    
+    .transaction-timestamp {
+        color: #adb5bd;
+        font-size: 0.85rem;
+    }
+    
+    .transaction-amount {
+        text-align: right;
+        flex-shrink: 0;
+    }
+    
+    .amount-value {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    
+    .amount-positive {
+        color: var(--success-color);
+    }
+    
+    .amount-negative {
+        color: var(--danger-color);
+    }
+    
+    .balance-after {
+        font-size: 0.8rem;
+        color: #6c757d;
+        padding: 4px 8px;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+    
+    .filter-section {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .filter-chip {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 2px solid #e9ecef;
+        border-radius: 20px;
+        margin: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #666;
+        font-size: 0.9rem;
+    }
+    
+    .filter-chip.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+    
+    .filter-chip:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: #6c757d;
+    }
+    
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: #dee2e6;
+    }
+    
+    .pagination {
+        justify-content: center;
+        margin-top: 40px;
+    }
+    
+    .page-link {
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+        color: var(--primary-color);
+        padding: 10px 15px;
+        margin: 0 3px;
+    }
+    
+    .page-link:hover {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+    }
+    
+    .page-item.active .page-link {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    
+    @media (max-width: 768px) {
+        .transaction-item {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 15px 20px;
+        }
+        
+        .transaction-icon {
+            margin-right: 0;
+            margin-bottom: 15px;
+            align-self: center;
+        }
+        
+        .transaction-amount {
+            text-align: center;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .stat-card {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1><i class="fas fa-history me-3"></i>Token History</h1>
+                <p class="lead mb-0">Track your token earnings and spending activity</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a href="{% url 'token_dashboard' %}" class="btn btn-warning btn-lg">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Statistics Overview -->
+    <div class="stats-overview">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stat-card earned">
+                    <div class="stat-number earned">{{ total_earned }}</div>
+                    <div class="stat-label">Total Earned</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card spent">
+                    <div class="stat-number spent">{{ total_spent }}</div>
+                    <div class="stat-label">Total Spent</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card balance">
+                    <div class="stat-number balance">{{ total_earned|add:"-"|add:total_spent }}</div>
+                    <div class="stat-label">Net Tokens</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <h6 class="mb-3"><i class="fas fa-filter me-2"></i>Filter by Transaction Type:</h6>
+        <div class="filter-chips">
+            <a href="?type=all" class="filter-chip active">All Transactions</a>
+            <a href="?type=earned" class="filter-chip">Earned</a>
+            <a href="?type=spent" class="filter-chip">Spent</a>
+            <a href="?type=purchased" class="filter-chip">Purchased</a>
+        </div>
+    </div>
+    
+    <!-- Transaction History -->
+    {% if page_obj.object_list %}
+    <div class="transaction-history">
+        {% for transaction in page_obj.object_list %}
+        <div class="transaction-card">
+            <div class="transaction-item">
+                <div class="transaction-icon {% if transaction.amount > 0 %}earned{% elif 'purchased' in transaction.transaction_type %}purchased{% else %}spent{% endif %}">
+                    {% if transaction.amount > 0 %}
+                        <i class="fas fa-plus-circle"></i>
+                    {% elif 'purchased' in transaction.transaction_type %}
+                        <i class="fas fa-shopping-cart"></i>
+                    {% else %}
+                        <i class="fas fa-minus-circle"></i>
+                    {% endif %}
+                </div>
+                
+                <div class="transaction-details">
+                    <div class="transaction-type">
+                        {{ transaction.get_transaction_type_display }}
+                    </div>
+                    <div class="transaction-description">
+                        {{ transaction.description }}
+                    </div>
+                    <div class="transaction-timestamp">
+                        <i class="fas fa-clock me-1"></i>
+                        {{ transaction.timestamp|timesince }} ago
+                        <span class="ms-2">•</span>
+                        <span class="ms-2">{{ transaction.timestamp|date:"M d, Y H:i" }}</span>
+                    </div>
+                </div>
+                
+                <div class="transaction-amount">
+                    <div class="amount-value {% if transaction.amount > 0 %}amount-positive{% else %}amount-negative{% endif %}">
+                        {% if transaction.amount > 0 %}+{% endif %}{{ transaction.amount }}
+                        <i class="fas fa-coins ms-1"></i>
+                    </div>
+                    <div class="balance-after">
+                        Balance: {{ transaction.balance_after }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Transaction history pagination">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">
+                    <i class="fas fa-angle-double-left"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+            {% endif %}
+            
+            {% for page_num in page_obj.paginator.page_range %}
+                {% if page_num == page_obj.number %}
+                <li class="page-item active">
+                    <span class="page-link">{{ page_num }}</span>
+                </li>
+                {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                    <i class="fas fa-angle-double-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="empty-state">
+        <i class="fas fa-history"></i>
+        <h4>No Transaction History</h4>
+        <p>You haven't made any token transactions yet.</p>
+        <div class="mt-4">
+            <a href="{% url 'learning_modules' %}" class="btn btn-success me-3">
+                <i class="fas fa-graduation-cap me-2"></i>Start Earning Tokens
+            </a>
+            <a href="{% url 'purchase_tokens' %}" class="btn btn-primary">
+                <i class="fas fa-shopping-cart me-2"></i>Purchase Tokens
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Transaction Summary -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Earning Sources</h5>
+                </div>
+                <div class="card-body">
+                    <div class="earning-source mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-graduation-cap me-2 text-primary"></i>Learning Modules</span>
+                            <span class="badge bg-success">Most Active</span>
+                        </div>
+                    </div>
+                    <div class="earning-source mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-bullseye me-2 text-warning"></i>Quiz Completions</span>
+                            <span class="text-muted">Regular</span>
+                        </div>
+                    </div>
+                    <div class="earning-source mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-fire me-2 text-danger"></i>Streak Bonuses</span>
+                            <span class="text-muted">Occasional</span>
+                        </div>
+                    </div>
+                    <div class="earning-source">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-chart-bar me-2 text-info"></i>Investment Profits</span>
+                            <span class="text-muted">Rare</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-shopping-bag me-2"></i>Spending Categories</h5>
+                </div>
+                <div class="card-body">
+                    <div class="spending-category mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-ticket-alt me-2 text-primary"></i>Coupon Purchases</span>
+                            <span class="badge bg-info">Primary</span>
+                        </div>
+                    </div>
+                    <div class="spending-category mb-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-unlock me-2 text-success"></i>Premium Features</span>
+                            <span class="text-muted">Limited</span>
+                        </div>
+                    </div>
+                    <div class="spending-category">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-gift me-2 text-warning"></i>Rewards & Gifts</span>
+                            <span class="text-muted">Occasional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tips Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Token Tips</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-calendar-check fa-2x text-primary mb-2"></i>
+                            <h6>Daily Activities</h6>
+                            <p class="small text-muted">Complete learning modules daily for consistent token earnings</p>
+                        </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-fire fa-2x text-warning mb-2"></i>
+                            <h6>Maintain Streaks</h6>
+                            <p class="small text-muted">Weekly login streaks give bonus tokens</p>
+                        </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-bullseye fa-2x text-success mb-2"></i>
+                            <h6>Ace Your Quizzes</h6>
+                            <p class="small text-muted">Score 90%+ on quizzes for maximum token rewards</p>
+                        </div>
+                        <div class="col-md-3 text-center mb-3">
+                            <i class="fas fa-coins fa-2x text-info mb-2"></i>
+                            <h6>Save Wisely</h6>
+                            <p class="small text-muted">Check coupon store regularly for the best deals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Filter functionality
+document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', function(e) {
+        // Remove active class from all chips
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked chip
+        this.classList.add('active');
+    });
+});
+
+// Auto-refresh functionality (optional)
+let autoRefreshEnabled = false;
+
+function toggleAutoRefresh() {
+    autoRefreshEnabled = !autoRefreshEnabled;
+    
+    if (autoRefreshEnabled) {
+        // Refresh every 30 seconds
+        setInterval(() => {
+            if (autoRefreshEnabled) {
+                location.reload();
+            }
+        }, 30000);
+    }
+}
+
+// Smooth scroll for pagination
+document.querySelectorAll('.pagination a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Add loading state
+        document.body.style.cursor = 'wait';
+        
+        setTimeout(() => {
+            document.body.style.cursor = 'default';
+        }, 1000);
+    });
+});
+
+// Transaction details expansion (optional feature)
+document.querySelectorAll('.transaction-card').forEach(card => {
+    card.addEventListener('click', function() {
+        // You could implement expandable transaction details here
+        const details = this.querySelector('.transaction-details');
+        
+        // Example: Show more transaction information
+        if (details.classList.contains('expanded')) {
+            details.classList.remove('expanded');
+        } else {
+            // Close other expanded items
+            document.querySelectorAll('.transaction-details.expanded').forEach(d => {
+                d.classList.remove('expanded');
+            });
+            details.classList.add('expanded');
+        }
+    });
+});
+
+// Export functionality (future feature)
+function exportHistory() {
+    alert('Export functionality will allow you to download your token history as CSV or PDF');
+    // Implementation would go here
+}
+</script>
+
+<style>
+.transaction-details.expanded {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.transaction-details.expanded::after {
+    content: "Click to view less details";
+    display: block;
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 5px;
+}
+</style>
+{% endblock %}

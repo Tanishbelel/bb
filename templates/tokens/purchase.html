@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block title %}Purchase Tokens - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* ... (Your CSS remains the same, it's well-written) ... */
+    .package-card {
+        position: relative;
+        border: 2px solid #e9ecef; /* Default border */
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    
+    .package-card.selected { /* IMPROVEMENT: A single class for selection styling */
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
+        border-color: var(--success-color, #28a745);
+    }
+    
+    .package-card:hover:not(.selected) {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        border-color: var(--primary-color, #0d6efd);
+    }
+    
+    .package-card.popular {
+        border-color: var(--secondary-color, #ffc107);
+        background: linear-gradient(135deg, #fff 0%, #fefcbf 100%);
+    }
+
+    .payment-method.selected { /* IMPROVEMENT: A single class for selection styling */
+        border-color: var(--success-color, #28a745);
+        background: rgba(40, 167, 69, 0.05);
+    }
+    /* (rest of your CSS) */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1><i class="fas fa-coins me-3"></i>Purchase Tokens</h1>
+        <p class="lead text-muted">Boost your learning journey with additional tokens</p>
+    </div>
+    
+    <form method="POST" id="purchaseForm">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            {% for package in packages %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card package-card h-100 {% if package.is_popular %}popular{% endif %}" 
+                     data-package-id="{{ package.id }}"
+                     data-package-name="{{ package.name }}"
+                     data-package-price="{{ package.price }}"
+                     data-package-price-display="₹{{ package.price }}"
+                     data-package-tokens="{{ package.total_tokens }}"
+                     onclick="selectPackage(this)">
+                    
+                    {% if package.is_popular %}
+                    <div class="popular-badge"><i class="fas fa-star me-1"></i>POPULAR</div>
+                    {% endif %}
+                    
+                    <div class="card-body text-center p-4">
+                        <h5 class="card-title fw-bold mb-3">{{ package.name }}</h5>
+                        <div class="token-amount mb-2">{{ package.token_amount }}</div>
+                        <div class="text-muted mb-3">Base Tokens</div>
+                        
+                        {% if package.bonus_tokens > 0 %}
+                        <div class="bonus-tokens mb-3">
+                            <i class="fas fa-plus-circle me-1"></i>
+                            {{ package.bonus_tokens }} Bonus Tokens
+                        </div>
+                        {% endif %}
+                        
+                        <div class="price mb-3">₹{{ package.price }}</div>
+                        <div class="value-indicator mb-3">
+                            {{ package.value_per_rupee|floatformat:1 }} tokens/₹
+                        </div>
+                        <div class="total-tokens">
+                            <strong>Total: {{ package.total_tokens }} tokens</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer text-center">
+                        <button type="button" class="btn btn-primary w-100">Select Package</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div id="selectedPackageInfo" class="row justify-content-center mt-5" style="display: none;"> ... </div>
+        <div id="paymentSection" class="row justify-content-center mt-4" style="display: none;">
+            <div class="col-md-8">
+                <div class="payment-methods">
+                    <h5 class="mb-4"><i class="fas fa-credit-card me-2"></i>Select Payment Method</h5>
+                     <div class="payment-method" onclick="selectPayment(this, 'razorpay')"> ... </div>
+                    <div class="payment-method" onclick="selectPayment(this, 'upi')"> ... </div>
+                    <div class="payment-method" onclick="selectPayment(this, 'netbanking')"> ... </div>
+                    <div class="payment-method" onclick="selectPayment(this, 'wallet')"> ... </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg px-5" id="proceedPayment" disabled>
+                            <i class="fas fa-lock me-2"></i>Proceed to Payment
+                        </button>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <input type="hidden" name="package_id" id="selectedPackageId">
+    </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let selectedPackageData = null;
+
+// FIX: Function now accepts the clicked element directly
+// IMPROVEMENT: Reads data from data-* attributes for reliability
+function selectPackage(selectedCard) {
+    // Remove selection from all other cards
+    document.querySelectorAll('.package-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    
+    // Add selection style to the clicked card
+    selectedCard.classList.add('selected');
+    
+    // Read data directly from the element's data attributes
+    selectedPackageData = {
+        id: selectedCard.dataset.packageId,
+        name: selectedCard.dataset.packageName,
+        price: selectedCard.dataset.packagePrice, // The raw price for calculation
+        priceDisplay: selectedCard.dataset.packagePriceDisplay, // The formatted price for display
+        tokens: selectedCard.dataset.packageTokens
+    };
+    
+    // Update hidden input for form submission
+    document.getElementById('selectedPackageId').value = selectedPackageData.id;
+    
+    // Update the purchase summary display
+    document.getElementById('selectedPackageName').textContent = selectedPackageData.name;
+    document.getElementById('selectedPackageDetails').textContent = ${selectedPackageData.tokens} tokens;
+    document.getElementById('selectedPackagePrice').textContent = selectedPackageData.priceDisplay;
+    
+    // Show the summary and payment sections
+    document.getElementById('selectedPackageInfo').style.display = 'flex';
+    document.getElementById('paymentSection').style.display = 'flex';
+    
+    // Scroll to the summary section
+    document.getElementById('selectedPackageInfo').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// FIX: Function now accepts the clicked element directly
+function selectPayment(selectedMethodElement, methodValue) {
+    // Programmatically check the radio button
+    document.getElementById(methodValue).checked = true;
+    
+    // Enable the payment button
+    document.getElementById('proceedPayment').disabled = false;
+    
+    // Remove selection style from all other payment methods
+    document.querySelectorAll('.payment-method').forEach(el => {
+        el.classList.remove('selected');
+    });
+    
+    // Add selection style to the clicked method
+    selectedMethodElement.classList.add('selected');
+}
+
+document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // FIX 1: Store the form element in a variable form
+    const form = this; 
+    
+    if (!selectedPackageData) {
+        alert('Please select a token package');
+        return;
+    }
+    
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked');
+    if (!paymentMethod) {
+        alert('Please select a payment method');
+        return;
+    }
+    
+    const confirmed = confirm(Confirm purchase of ${selectedPackageData.name} for ${selectedPackageData.priceDisplay}?);
+    
+    if (confirmed) {
+        const submitBtn = document.getElementById('proceedPayment');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing Payment...';
+        submitBtn.disabled = true;
+        
+        // Simulate a delay for payment processing
+        setTimeout(() => {
+            // Now, use the saved form variable to submit
+            form.submit();
+        }, 2000);
+    }
+});
+</script>
+{% endblock %}

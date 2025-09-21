@@ -18,6 +18,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
 from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.http import JsonResponse
+from django.db import transaction
+from django.utils import timezone
+from django.db.models import Sum, Count
+from django.core.paginator import Paginator
+from datetime import datetime, timedelta
+import json
 
 
 from main.models import (
@@ -32,8 +42,7 @@ from main.forms import (
 
 def home(request):
     """Home page view"""
-    if request.user.is_authenticated:
-        return redirect('dashboard')
+    
     
     context = {
         'total_users': User.objects.count(),
@@ -177,19 +186,6 @@ def dashboard(request):
     }
     
     return render(request, 'dashboard.html', context)
-
-@login_required
-def learning_modules(request):
-    """Learning modules list view"""
-    modules = LearningModule.objects.filter(is_active=True)
-    user_progress = UserProgress.objects.filter(user=request.user).values_list('module_id', 'is_completed')
-    progress_dict = {module_id: completed for module_id, completed in user_progress}
-    
-    context = {
-        'modules': modules,
-        'progress_dict': progress_dict,
-    }
-    return render(request, 'modules.html', context)
 
 @login_required
 def module_detail(request, module_id):
@@ -1020,7 +1016,10 @@ def budget_analysis(request):
         'total_budget': total_budget,
     }
     
-    return render(request, 'budget_analysis.html', context)
+    return render(request, 'budget.html', context)
+def budget_planning(request):
+    return render(request, "budget_planning.html")
+
 @login_required
 def budget_planner(request):
     """Interactive budget planner tool"""
@@ -1183,3 +1182,691 @@ def expense_predictor(request):
         })
     
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
+@login_required
+def trade(request):
+    return render(request , "demat.html")
+
+@login_required
+def learning_modules(request):
+    """Enhanced learning modules list view with filtering"""
+    # Get filter parameter
+    difficulty_filter = request.GET.get('difficulty', 'all')
+    
+    # Filter modules based on difficulty
+    modules = LearningModule.objects.filter(is_active=True)
+    if difficulty_filter != 'all':
+        modules = modules.filter(difficulty_level=difficulty_filter)
+    
+    modules = modules.order_by('order', 'title')
+    
+    # Get user progress for all modules
+    user_progress = UserProgress.objects.filter(user=request.user).values_list('module_id', 'is_completed', 'quiz_score')
+    progress_dict = {}
+    
+    for module_id, completed, quiz_score in user_progress:
+        progress_dict[module_id] = {
+            'completed': completed,
+            'quiz_score': quiz_score,
+            'quiz_available': completed or quiz_score is not None
+        }
+    
+    # Calculate user stats
+    total_modules = LearningModule.objects.filter(is_active=True).count()
+    completed_modules = UserProgress.objects.filter(user=request.user, is_completed=True).count()
+    total_points = request.user.profile.total_points if hasattr(request.user, 'profile') else 0
+    streak_days = request.user.profile.streak_days if hasattr(request.user, 'profile') else 0
+    progress_percentage = (completed_modules / total_modules * 100) if total_modules > 0 else 0
+    
+    context = {
+        'modules': modules,
+        'progress_dict': progress_dict,
+        'difficulty_filter': difficulty_filter,
+        'user_stats': {
+            'completed_modules': completed_modules,
+            'total_points': total_points,
+            'streak_days': streak_days,
+            'progress_percentage': round(progress_percentage)
+        }
+    }
+    return render(request, 'modules.html', context)
+
+@login_required
+def watch_video(request, module_id):
+    """Watch module video"""
+    module = get_object_or_404(LearningModule, id=module_id, is_active=True)
+    
+    # Get or create progress
+    progress, created = UserProgress.objects.get_or_create(
+        user=request.user,
+        module=module
+    )
+    
+    if request.method == 'POST':
+        # Mark video as watched
+        progress.time_spent = int(request.POST.get('time_spent', 0))
+        progress.save()
+        
+        return JsonResponse({'success': True})
+    
+    context = {
+        'module': module,
+        'progress': progress
+    }
+    return render(request, 'watch_video.html', context)
+
+@login_required
+def enhanced_quiz(request, module_id):
+    """Enhanced quiz with better UI"""
+    module = get_object_or_404(LearningModule, id=module_id, is_active=True)
+    
+    try:
+        quiz = module.quiz
+    except Quiz.DoesNotExist:
+        messages.error(request, 'Quiz not available for this module.')
+        return redirect('learning_modules')
+    
+    questions = quiz.questions.all()
+    
+    if request.method == 'POST':
+        score = 0
+        total_questions = questions.count()
+        user_answers = {}
+        
+        for question in questions:
+            user_answer = request.POST.get(f'question_{question.id}')
+            user_answers[question.id] = user_answer
+            if user_answer == question.correct_answer:
+                score += 1
+        
+        percentage_score = (score / total_questions * 100) if total_questions > 0 else 0
+        
+        # Update progress
+        progress, created = UserProgress.objects.get_or_create(
+            user=request.user,
+            module=module
+        )
+        progress.quiz_score = percentage_score
+        progress.save()
+        
+        # Award points if passed and not already completed
+        if percentage_score >= quiz.passing_score and not progress.is_completed:
+            progress.is_completed = True
+            progress.completion_date = timezone.now()
+            progress.save()
+            
+            # Update user profile points
+            if hasattr(request.user, 'profile'):
+                profile = request.user.profile
+                profile.total_points += module.points_reward
+                profile.save()
+        
+        return JsonResponse({
+            'success': True,
+            'score': score,
+            'total': total_questions,
+            'percentage': round(percentage_score, 1),
+            'passed': percentage_score >= quiz.passing_score,
+            'points_earned': module.points_reward if percentage_score >= quiz.passing_score else 0
+        })
+    
+    context = {
+        'module': module,
+        'quiz': quiz,
+        'questions': questions,
+    }
+    
+    return render(request, 'enhanced_quiz.html', context)
+
+@login_required
+def module_detail(request, module_id):
+    """Individual module detail view"""
+    module = get_object_or_404(LearningModule, id=module_id, is_active=True)
+    
+    # Get or create user progress
+    progress, created = UserProgress.objects.get_or_create(
+        user=request.user,
+        module=module
+    )
+    
+    context = {
+        'module': module,
+        'progress': progress,
+    }
+    
+    return render(request, 'module_detail.html', context)
+
+@login_required
+def complete_module(request, module_id):
+    """Mark module as completed"""
+    if request.method == 'POST':
+        module = get_object_or_404(LearningModule, id=module_id)
+        progress, created = UserProgress.objects.get_or_create(
+            user=request.user,
+            module=module
+        )
+        
+        if not progress.is_completed:
+            progress.is_completed = True
+            progress.completion_date = timezone.now()
+            progress.save()
+            
+            # Update user profile points
+            profile = request.user.profile
+            profile.total_points += module.points_reward
+            profile.save()
+            
+            messages.success(request, f'Module completed! You earned {module.points_reward} points.')
+        
+        return redirect('module_detail', module_id=module_id)
+    
+    return redirect('learning_modules')
+
+@login_required
+def take_quiz(request, module_id):
+    """Quiz taking view"""
+    module = get_object_or_404(LearningModule, id=module_id)
+    quiz = get_object_or_404(Quiz, module=module)
+    questions = quiz.questions.all()
+    
+    if request.method == 'POST':
+        score = 0
+        total_questions = questions.count()
+        
+        for question in questions:
+            user_answer = request.POST.get(f'question_{question.id}')
+            if user_answer == question.correct_answer:
+                score += 1
+        
+        percentage_score = (score / total_questions * 100) if total_questions > 0 else 0
+        
+        # Update progress
+        progress, created = UserProgress.objects.get_or_create(
+            user=request.user,
+            module=module
+        )
+        progress.quiz_score = percentage_score
+        progress.save()
+        
+        if percentage_score >= quiz.passing_score:
+            messages.success(request, f'Congratulations! You passed with {percentage_score:.1f}%')
+            return redirect('complete_module', module_id=module_id)
+        else:
+            messages.error(request, f'You scored {percentage_score:.1f}%. You need {quiz.passing_score}% to pass.')
+    
+    context = {
+        'module': module,
+        'quiz': quiz,
+        'questions': questions,
+    }
+    
+    return render(request, 'quiz.html', context)
+
+# Import the new models (add these to your imports)
+from main.models import (
+    Token, TokenTransaction, TokenPackage, Coupon, UserCoupon, TokenEarningRule
+)
+
+@login_required
+def token_dashboard(request):
+    """Main token dashboard"""
+    # Get or create user token account
+    user_tokens, created = Token.objects.get_or_create(
+        user=request.user,
+        defaults={'balance': 0, 'total_earned': 0, 'total_spent': 0}
+    )
+    
+    # Get recent token transactions
+    recent_transactions = TokenTransaction.objects.filter(
+        user=request.user
+    ).order_by('-timestamp')[:10]
+    
+    # Get available coupons
+    featured_coupons = Coupon.objects.filter(
+        status='active',
+        is_featured=True,
+        valid_until__gt=timezone.now()
+    ).order_by('token_cost')[:6]
+    
+    # Get user's purchased coupons
+    user_coupons = UserCoupon.objects.filter(
+        user=request.user,
+        status='purchased'
+    ).order_by('-purchase_date')[:3]
+    
+    # Token earning opportunities
+    earning_opportunities = [
+        {'activity': 'Complete Learning Module', 'tokens': 50, 'icon': '📚'},
+        {'activity': 'Pass Quiz (90%+)', 'tokens': 30, 'icon': '🎯'},
+        {'activity': 'Complete Fraud Scenario', 'tokens': 25, 'icon': '🛡'},
+        {'activity': 'Weekly Login Streak', 'tokens': 100, 'icon': '🔥'},
+        {'activity': 'Portfolio Profit (Monthly)', 'tokens': 75, 'icon': '📈'},
+        {'activity': 'Achieve Financial Goal', 'tokens': 200, 'icon': '🎖'},
+    ]
+    
+    # Monthly token statistics
+    current_month = timezone.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    monthly_earned = TokenTransaction.objects.filter(
+        user=request.user,
+        timestamp__gte=current_month,
+        amount__gt=0
+    ).aggregate(total=Sum('amount'))['total'] or 0
+    
+    monthly_spent = TokenTransaction.objects.filter(
+        user=request.user,
+        timestamp__gte=current_month,
+        amount__lt=0
+    ).aggregate(total=Sum('amount'))['total'] or 0
+    monthly_spent = abs(monthly_spent) if monthly_spent else 0
+    
+    context = {
+        'user_tokens': user_tokens,
+        'recent_transactions': recent_transactions,
+        'featured_coupons': featured_coupons,
+        'user_coupons': user_coupons,
+        'earning_opportunities': earning_opportunities,
+        'monthly_earned': monthly_earned,
+        'monthly_spent': monthly_spent,
+    }
+    
+    return render(request, 'tokens/dashboard.html', context)
+
+@login_required
+def purchase_tokens(request):
+    """Token purchase page"""
+    packages = TokenPackage.objects.filter(is_active=True).order_by('order', 'price')
+    
+    if request.method == 'POST':
+        package_id = request.POST.get('package_id')
+        try:
+            package = TokenPackage.objects.get(id=package_id, is_active=True)
+            
+            # In a real app, you would integrate with payment gateway here
+            # For demo purposes, we'll simulate a successful purchase
+            
+            with transaction.atomic():
+                # Get or create user token account
+                user_tokens, created = Token.objects.get_or_create(
+                    user=request.user,
+                    defaults={'balance': 0, 'total_earned': 0, 'total_spent': 0}
+                )
+                
+                # Add tokens to user account
+                user_tokens.balance += package.total_tokens
+                user_tokens.total_earned += package.total_tokens
+                user_tokens.save()
+                
+                # Create transaction record
+                TokenTransaction.objects.create(
+                    user=request.user,
+                    transaction_type='purchased',
+                    amount=package.total_tokens,
+                    balance_after=user_tokens.balance,
+                    description=f"Purchased {package.name}",
+                    related_object_id=str(package.id)
+                )
+                
+                messages.success(request, f'Successfully purchased {package.total_tokens} tokens!')
+                return redirect('token_dashboard')
+                
+        except TokenPackage.DoesNotExist:
+            messages.error(request, 'Invalid package selected.')
+        except Exception as e:
+            messages.error(request, f'Purchase failed: {str(e)}')
+    
+    context = {
+        'packages': packages,
+    }
+    
+    return render(request, 'tokens/purchase.html', context)
+
+@login_required
+def coupon_store(request):
+    """Coupon store page"""
+    # Get filter parameters
+    category = request.GET.get('category', 'all')
+    sort_by = request.GET.get('sort', 'featured')
+    search_query = request.GET.get('search', '')
+    
+    # Base queryset
+    coupons = Coupon.objects.filter(
+        status='active',
+        valid_until__gt=timezone.now(),
+        stock_quantity__gt=models.F('used_quantity')
+    )
+    
+    # Apply filters
+    if category != 'all':
+        coupons = coupons.filter(category=category)
+    
+    if search_query:
+        coupons = coupons.filter(
+            models.Q(title__icontains=search_query) |
+            models.Q(brand_name__icontains=search_query) |
+            models.Q(description__icontains=search_query)
+        )
+    
+    # Apply sorting
+    if sort_by == 'price_low':
+        coupons = coupons.order_by('token_cost')
+    elif sort_by == 'price_high':
+        coupons = coupons.order_by('-token_cost')
+    elif sort_by == 'newest':
+        coupons = coupons.order_by('-created_at')
+    else:  # featured
+        coupons = coupons.order_by('-is_featured', 'token_cost')
+    
+    # Pagination
+    paginator = Paginator(coupons, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    # Get user token balance
+    user_tokens = Token.objects.filter(user=request.user).first()
+    token_balance = user_tokens.balance if user_tokens else 0
+    
+    # Get available categories
+    categories = Coupon.objects.filter(
+        status='active',
+        valid_until__gt=timezone.now()
+    ).values_list('category', flat=True).distinct()
+    
+    context = {
+        'page_obj': page_obj,
+        'categories': categories,
+        'selected_category': category,
+        'selected_sort': sort_by,
+        'search_query': search_query,
+        'token_balance': token_balance,
+    }
+    
+    return render(request, 'tokens/coupon_store.html', context)
+
+@login_required
+def purchase_coupon(request, coupon_id):
+    """Purchase a coupon with tokens"""
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                coupon = get_object_or_404(Coupon, id=coupon_id)
+                
+                # Check if coupon is available
+                if not coupon.is_available:
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Coupon is not available'
+                    })
+                
+                # Get user token balance
+                user_tokens, created = Token.objects.get_or_create(
+                    user=request.user,
+                    defaults={'balance': 0}
+                )
+                
+                # Check if user has enough tokens
+                if user_tokens.balance < coupon.token_cost:
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Insufficient tokens'
+                    })
+                
+                # Check if user already owns this coupon (limit to prevent abuse)
+                existing_coupon = UserCoupon.objects.filter(
+                    user=request.user,
+                    coupon=coupon,
+                    status='purchased'
+                ).exists()
+                
+                if existing_coupon:
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'You already own this coupon'
+                    })
+                
+                # Deduct tokens from user account
+                user_tokens.balance -= coupon.token_cost
+                user_tokens.total_spent += coupon.token_cost
+                user_tokens.save()
+                
+                # Create user coupon
+                user_coupon = UserCoupon.objects.create(
+                    user=request.user,
+                    coupon=coupon,
+                    tokens_spent=coupon.token_cost,
+                    expiry_date=coupon.valid_until
+                )
+                
+                # Update coupon usage
+                coupon.used_quantity += 1
+                coupon.save()
+                
+                # Create transaction record
+                TokenTransaction.objects.create(
+                    user=request.user,
+                    transaction_type='spent_coupon',
+                    amount=-coupon.token_cost,
+                    balance_after=user_tokens.balance,
+                    description=f"Purchased coupon: {coupon.title}",
+                    related_object_id=str(coupon.id)
+                )
+                
+                return JsonResponse({
+                    'success': True,
+                    'coupon_code': user_coupon.coupon_code,
+                    'new_balance': user_tokens.balance
+                })
+                
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+    
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})
+
+@login_required
+def my_coupons(request):
+    """User's purchased coupons"""
+    coupons = UserCoupon.objects.filter(
+        user=request.user
+    ).order_by('-purchase_date')
+    
+    # Separate active and expired coupons
+    active_coupons = []
+    expired_coupons = []
+    
+    for coupon in coupons:
+        if coupon.is_expired or coupon.status in ['expired', 'redeemed']:
+            expired_coupons.append(coupon)
+        else:
+            active_coupons.append(coupon)
+    
+    context = {
+        'active_coupons': active_coupons,
+        'expired_coupons': expired_coupons,
+    }
+    
+    return render(request, 'tokens/my_coupons.html', context)
+
+@login_required
+def token_history(request):
+    """Token transaction history"""
+    transactions = TokenTransaction.objects.filter(
+        user=request.user
+    ).order_by('-timestamp')
+    
+    # Pagination
+    paginator = Paginator(transactions, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    # Statistics
+    total_earned = TokenTransaction.objects.filter(
+        user=request.user,
+        amount__gt=0
+    ).aggregate(total=Sum('amount'))['total'] or 0
+    
+    total_spent = TokenTransaction.objects.filter(
+        user=request.user,
+        amount__lt=0
+    ).aggregate(total=Sum('amount'))['total'] or 0
+    total_spent = abs(total_spent) if total_spent else 0
+    
+    context = {
+        'page_obj': page_obj,
+        'total_earned': total_earned,
+        'total_spent': total_spent,
+    }
+    
+    return render(request, 'tokens/history.html', context)
+
+def award_tokens(user, activity_type, amount, description, related_object_id=None):
+    """
+    Helper function to award tokens to users
+    This should be called from other views when users complete activities
+    """
+    try:
+        with transaction.atomic():
+            # Get or create user token account
+            user_tokens, created = Token.objects.get_or_create(
+                user=user,
+                defaults={'balance': 0, 'total_earned': 0, 'total_spent': 0}
+            )
+            
+            # Add tokens
+            user_tokens.balance += amount
+            user_tokens.total_earned += amount
+            user_tokens.save()
+            
+            # Create transaction record
+            TokenTransaction.objects.create(
+                user=user,
+                transaction_type=activity_type,
+                amount=amount,
+                balance_after=user_tokens.balance,
+                description=description,
+                related_object_id=related_object_id or ''
+            )
+            
+            return True
+    except Exception as e:
+        print(f"Error awarding tokens: {e}")
+        return False
+
+# Add these token-earning integrations to your existing views:
+
+@login_required
+def complete_module_with_tokens(request, module_id):
+    """Enhanced module completion that awards tokens"""
+    if request.method == 'POST':
+        module = get_object_or_404(LearningModule, id=module_id)
+        progress, created = UserProgress.objects.get_or_create(
+            user=request.user,
+            module=module
+        )
+        
+        if not progress.is_completed:
+            progress.is_completed = True
+            progress.completion_date = timezone.now()
+            progress.save()
+            
+            # Update user profile points (existing logic)
+            profile = request.user.profile
+            profile.total_points += module.points_reward
+            profile.save()
+            
+            # Award tokens (new logic)
+            tokens_awarded = 50  # Base tokens for module completion
+            award_tokens(
+                user=request.user,
+                activity_type='earned_module',
+                amount=tokens_awarded,
+                description=f"Completed module: {module.title}",
+                related_object_id=str(module.id)
+            )
+            
+            messages.success(
+                request, 
+                f'Module completed! You earned {module.points_reward} points and {tokens_awarded} tokens.'
+            )
+        
+        return redirect('module_detail', module_id=module_id)
+    
+    return redirect('learning_modules')
+
+@login_required
+def enhanced_quiz_with_tokens(request, module_id):
+    """Enhanced quiz with token rewards"""
+    module = get_object_or_404(LearningModule, id=module_id, is_active=True)
+    
+    try:
+        quiz = module.quiz
+    except Quiz.DoesNotExist:
+        messages.error(request, 'Quiz not available for this module.')
+        return redirect('learning_modules')
+    
+    questions = quiz.questions.all()
+    
+    if request.method == 'POST':
+        score = 0
+        total_questions = questions.count()
+        user_answers = {}
+        
+        for question in questions:
+            user_answer = request.POST.get(f'question_{question.id}')
+            user_answers[question.id] = user_answer
+            if user_answer == question.correct_answer:
+                score += 1
+        
+        percentage_score = (score / total_questions * 100) if total_questions > 0 else 0
+        
+        # Update progress
+        progress, created = UserProgress.objects.get_or_create(
+            user=request.user,
+            module=module
+        )
+        progress.quiz_score = percentage_score
+        progress.save()
+        
+        # Award points and tokens if passed
+        if percentage_score >= quiz.passing_score and not progress.is_completed:
+            progress.is_completed = True
+            progress.completion_date = timezone.now()
+            progress.save()
+            
+            # Update user profile points
+            if hasattr(request.user, 'profile'):
+                profile = request.user.profile
+                profile.total_points += module.points_reward
+                profile.save()
+            
+            # Award tokens based on performance
+            if percentage_score >= 90:
+                tokens_awarded = 30  # Bonus for excellent performance
+            else:
+                tokens_awarded = 20  # Standard tokens for passing
+            
+            award_tokens(
+                user=request.user,
+                activity_type='earned_quiz',
+                amount=tokens_awarded,
+                description=f"Passed quiz: {module.title} ({percentage_score:.1f}%)",
+                related_object_id=str(module.id)
+            )
+        
+        return JsonResponse({
+            'success': True,
+            'score': score,
+            'total': total_questions,
+            'percentage': round(percentage_score, 1),
+            'passed': percentage_score >= quiz.passing_score,
+            'points_earned': module.points_reward if percentage_score >= quiz.passing_score else 0,
+            'tokens_earned': 30 if percentage_score >= 90 else (20 if percentage_score >= quiz.passing_score else 0)
+        })
+    
+    context = {
+        'module': module,
+        'quiz': quiz,
+        'questions': questions,
+    }
+    
+    return render(request, 'enhanced_quiz.html', context)

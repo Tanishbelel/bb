@@ -1,0 +1,520 @@
+{% extends 'base.html' %}
+
+{% block title %}Coupon Store - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #4f46e5;
+        --secondary-color: #ffd700;
+        --success-color: #10b981;
+        --info-color: #3b82f6;
+        --accent-color: #f59e0b;
+    }
+
+    .store-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 40px;
+    }
+
+    .token-balance-display {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        padding: 15px 25px;
+        backdrop-filter: blur(10px);
+    }
+
+    .filter-section {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+        position: sticky;
+        top: 20px;
+        z-index: 100;
+    }
+
+    .coupon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .coupon-card {
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .coupon-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .coupon-header {
+        background: linear-gradient(135deg, var(--primary-color), #3a9b6b);
+        color: white;
+        padding: 20px;
+        position: relative;
+    }
+
+    .coupon-header::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 10px solid var(--primary-color);
+    }
+
+    .brand-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .discount-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--secondary-color);
+        color: #333;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .token-cost {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: inline-block;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .stock-info {
+        background: #f8f9fa;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .featured-badge {
+        position: absolute;
+        top: -5px;
+        left: 20px;
+        background: linear-gradient(135deg, var(--accent-color), #ff8a65);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .category-badge {
+        background: var(--info-color);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        margin-right: 8px;
+    }
+
+    .purchase-btn {
+        background: linear-gradient(135deg, var(--success-color), #34ce57);
+        border: none;
+        border-radius: 25px;
+        padding: 12px 25px;
+        font-weight: 600;
+        color: white;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .purchase-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .purchase-btn:disabled {
+        background: #6c757d;
+        cursor: not-allowed;
+    }
+
+    .filter-chip {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 2px solid #e9ecef;
+        border-radius: 20px;
+        margin: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #666;
+    }
+
+    .filter-chip.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    .filter-chip:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .sort-dropdown {
+        border-radius: 10px;
+        border: 2px solid #e9ecef;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .empty-state i {
+        font-size: 4rem;
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+
+<!-- Store Header -->
+<div class="store-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1><i class="fas fa-store me-3"></i>Coupon Store</h1>
+                <p class="lead mb-0">Exchange your tokens for amazing discounts and offers</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <div class="token-balance-display">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-coins me-2"></i>
+                        <div>
+                            <div id="tokenBalance" style="font-size: 1.5rem; font-weight: 700;">
+                                {{ token_balance|default:"0" }}
+                            </div>
+                            <small>Available Tokens</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <!-- Filters and Search -->
+    <div class="filter-section">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <form method="GET" class="d-flex gap-3">
+                    <input type="text" name="search" class="form-control" 
+                           placeholder="Search coupons..." value="{{ search_query|default:'' }}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-end gap-3">
+                    <select class="form-select sort-dropdown" onchange="applySorting(this.value)">
+                        <option value="featured" {% if selected_sort == 'featured' %}selected{% endif %}>Featured</option>
+                        <option value="price_low" {% if selected_sort == 'price_low' %}selected{% endif %}>Price: Low to High</option>
+                        <option value="price_high" {% if selected_sort == 'price_high' %}selected{% endif %}>Price: High to Low</option>
+                        <option value="newest" {% if selected_sort == 'newest' %}selected{% endif %}>Newest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Category Filters -->
+        {% if categories %}
+        <div class="mt-3">
+            <h6 class="mb-3">Categories:</h6>
+            <a href="?category=all&sort={{ selected_sort|default:'featured' }}&search={{ search_query|default:'' }}" 
+               class="filter-chip {% if selected_category == 'all' or not selected_category %}active{% endif %}">All</a>
+            {% for category in categories %}
+            <a href="?category={{ category }}&sort={{ selected_sort|default:'featured' }}&search={{ search_query|default:'' }}" 
+               class="filter-chip {% if selected_category == category %}active{% endif %}">{{ category }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Coupons Grid -->
+    {% if page_obj.object_list %}
+    <div class="coupon-grid mb-5">
+        {% for coupon in page_obj.object_list %}
+        <div class="coupon-card">
+            {% if coupon.is_featured %}
+            <div class="featured-badge">
+                <i class="fas fa-star me-1"></i>Featured
+            </div>
+            {% endif %}
+            
+            <div class="coupon-header">
+                {% if coupon.brand_logo %}
+                <div class="brand-logo">
+                    <img src="{{ coupon.brand_logo.url }}" alt="{{ coupon.brand_name }}" style="width: 30px; height: 30px; object-fit: contain;">
+                </div>
+                {% else %}
+                <div class="brand-logo">
+                    <i class="fas fa-store text-primary"></i>
+                </div>
+                {% endif %}
+                
+                {% if coupon.discount_percentage %}
+                <div class="discount-badge">{{ coupon.discount_percentage }}% OFF</div>
+                {% endif %}
+                
+                <h6 class="mb-1">{{ coupon.brand_name|default:"Brand" }}</h6>
+                <h5 class="mb-0">{{ coupon.title|truncatechars:40 }}</h5>
+            </div>
+            
+            <div class="card-body p-4">
+                <div class="token-cost mb-3">
+                    <i class="fas fa-coins me-1"></i>{{ coupon.token_cost }} tokens
+                </div>
+                
+                <p class="text-muted small mb-3">{{ coupon.description|truncatewords:15|default:"No description available" }}</p>
+                
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="category-badge">{{ coupon.category|default:"General" }}</span>
+                    <div class="stock-info">
+                        <i class="fas fa-box me-1"></i>{{ coupon.stock_remaining|default:"0" }} left
+                    </div>
+                </div>
+                
+                {% if coupon.valid_until %}
+                <div class="mb-3">
+                    <small class="text-muted">
+                        <i class="fas fa-calendar me-1"></i>Valid until {{ coupon.valid_until|date:"M d, Y" }}
+                    </small>
+                </div>
+                {% endif %}
+                
+                <button class="purchase-btn" 
+                    data-coupon-id="{{ coupon.id }}"
+                    data-title="{{ coupon.title|escapejs }}"
+                    data-cost="{{ coupon.token_cost }}"
+                    onclick="purchaseCoupon(this.dataset.couponId, this.dataset.title, this.dataset.cost)">
+            Purchase Now
+        </button>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Coupon pagination">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}&category={{ selected_category|default:'all' }}&sort={{ selected_sort|default:'featured' }}&search={{ search_query|default:'' }}">Previous</a>
+            </li>
+            {% endif %}
+            
+            {% for page_num in page_obj.paginator.page_range %}
+                {% if page_num == page_obj.number %}
+                <li class="page-item active">
+                    <span class="page-link">{{ page_num }}</span>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_num }}&category={{ selected_category|default:'all' }}&sort={{ selected_sort|default:'featured' }}&search={{ search_query|default:'' }}">{{ page_num }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}&category={{ selected_category|default:'all' }}&sort={{ selected_sort|default:'featured' }}&search={{ search_query|default:'' }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+    
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-search"></i>
+        <h4>No coupons found</h4>
+        <p class="text-muted">Try adjusting your search criteria or check back later for new offers.</p>
+        <a href="{% url 'coupon_store' %}" class="btn btn-primary">Browse All Coupons</a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Purchase Confirmation Modal -->
+<div class="modal fade" id="purchaseModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title"><i class="fas fa-shopping-cart me-2"></i>Confirm Purchase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="mb-4">
+                    <i class="fas fa-ticket-alt fa-3x text-primary mb-3"></i>
+                    <h5 id="modalCouponTitle"></h5>
+                    <p class="text-muted">Are you sure you want to purchase this coupon?</p>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded">
+                    <span>Token Cost:</span>
+                    <span class="fw-bold text-primary">
+                        <i class="fas fa-coins me-1"></i><span id="modalTokenCost"></span> tokens
+                    </span>
+                </div>
+                
+                <div class="mt-3">
+                    <small class="text-muted">
+                        Remaining balance: <span class="fw-bold">{{ token_balance|default:"0" }} tokens</span>
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmPurchaseBtn">
+                    <i class="fas fa-check me-1"></i>Confirm Purchase
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-5">
+                <i class="fas fa-check-circle fa-4x text-success mb-4"></i>
+                <h4 class="mb-3">Purchase Successful!</h4>
+                <p class="mb-4">Your coupon has been purchased successfully.</p>
+                <div class="bg-light p-3 rounded mb-4">
+                    <h6>Your Coupon Code:</h6>
+                    <div class="fs-4 fw-bold text-primary" id="couponCode"></div>
+                </div>
+                <div class="d-flex gap-2 justify-content-center">
+                    <a href="{% url 'my_coupons' %}" class="btn btn-primary">
+                        View My Coupons
+                    </a>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let selectedCouponId = null;
+
+function applySorting(sortValue) {
+    const url = new URL(window.location);
+    url.searchParams.set('sort', sortValue);
+    window.location = url;
+}
+
+function purchaseCoupon(couponId, title, cost) {
+    selectedCouponId = couponId;
+    document.getElementById('modalCouponTitle').textContent = title;
+    document.getElementById('modalTokenCost').textContent = cost;
+
+    const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+    modal.show();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmBtn = document.getElementById('confirmPurchaseBtn');
+    if (!confirmBtn) return;
+
+    confirmBtn.addEventListener('click', function() {
+        if (!selectedCouponId) return;
+
+        const originalContent = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Processing...';
+        this.disabled = true;
+
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        fetch(/tokens/purchase-coupon/${selectedCouponId}/, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin'
+        })
+        .then(res => res.json())
+        .then(data => {
+            this.innerHTML = originalContent;
+            this.disabled = false;
+
+            const purchaseModal = bootstrap.Modal.getInstance(document.getElementById('purchaseModal'));
+            if (purchaseModal) purchaseModal.hide();
+
+            if (data.success) {
+                document.getElementById('couponCode').textContent = data.coupon_code || 'N/A';
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+
+                const balanceDisplay = document.getElementById('tokenBalance');
+                if (balanceDisplay && data.new_balance !== undefined) {
+                    balanceDisplay.textContent = data.new_balance;
+                }
+
+                const purchaseBtn = document.querySelector(button[data-coupon-id='${selectedCouponId}']);
+                if (purchaseBtn) {
+                    purchaseBtn.disabled = true;
+                    purchaseBtn.innerHTML = '<i class="fas fa-check me-1"></i>Purchased';
+                }
+            } else {
+                alert('Error: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('An error occurred. Please try again.');
+            this.innerHTML = originalContent;
+            this.disabled = false;
+        });
+    });
+});
+</script>
+{% endblock %}

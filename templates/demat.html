@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Virtual Trading Dashboard</h2>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <h3>Your Portfolio</h3>
+        <table id="portfolioTable">
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Quantity</th>
+                    <th>Buy Price</th>
+                    <th>Current Price</th>
+                    <th>P/L</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example static rows -->
+                <tr>
+                    <td>INFY</td>
+                    <td>10</td>
+                    <td>1500</td>
+                    <td>1525</td>
+                    <td style="color: green;">+250</td>
+                </tr>
+                <tr>
+                    <td>TCS</td>
+                    <td>5</td>
+                    <td>3500</td>
+                    <td>3450</td>
+                    <td style="color: red;">-250</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Trade Section -->
+    <section class="trade">
+        <h3>Make a Trade</h3>
+        <form id="tradeForm">
+            <label for="stock">Stock:</label>
+            <input type="text" id="stock" placeholder="Enter Stock Symbol" required>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" required>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" min="1" required>
+            
+            <button type="submit">Buy</button>
+        </form>
+    </section>
+</div>
+
+<script>
+    // Frontend-only demo logic
+    document.getElementById("tradeForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const stock = document.getElementById("stock").value.toUpperCase();
+        const qty = parseInt(document.getElementById("quantity").value);
+        const price = parseFloat(document.getElementById("price").value);
+
+        const table = document.getElementById("portfolioTable").getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
+
+        newRow.insertCell(0).textContent = stock;
+        newRow.insertCell(1).textContent = qty;
+        newRow.insertCell(2).textContent = price;
+        newRow.insertCell(3).textContent = price; // current price = buy price (static demo)
+        newRow.insertCell(4).textContent = "0";   // P/L = 0 (demo only)
+
+        document.getElementById("tradeForm").reset();
+    });
+</script>
+{% endblock %}

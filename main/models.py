@@ -297,3 +297,176 @@ class FinancialGoal(models.Model):
         if self.target_amount <= 0:
             return 0
         return min((self.saved_amount / self.target_amount) * 100, 100)
+    
+class Token(models.Model):
+    """Token system for rewards and purchases"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='tokens')
+    balance = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    total_earned = models.IntegerField(default=0)
+    total_spent = models.IntegerField(default=0)
+    last_updated = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def _str_(self):
+        return f"{self.user.username} - {self.balance} tokens"
+
+class TokenTransaction(models.Model):
+    """Track all token transactions"""
+    TRANSACTION_TYPES = [
+        ('earned_quiz', 'Quiz Completion'),
+        ('earned_module', 'Module Completion'),
+        ('earned_scenario', 'Fraud Scenario'),
+        ('earned_goal', 'Goal Achievement'),
+        ('earned_streak', 'Streak Bonus'),
+        ('earned_investment', 'Investment Profit'),
+        ('purchased', 'Token Purchase'),
+        ('spent_coupon', 'Coupon Purchase'),
+        ('bonus', 'Bonus Reward'),
+        ('refund', 'Refund')
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='token_transactions')
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
+    amount = models.IntegerField()  # Positive for earned, negative for spent
+    balance_after = models.IntegerField()
+    description = models.CharField(max_length=200)
+    related_object_id = models.CharField(max_length=50, blank=True)  # For linking to specific modules, quizzes, etc.
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-timestamp']
+    
+    def _str_(self):
+        return f"{self.user.username} - {self.amount} tokens ({self.transaction_type})"
+
+class TokenPackage(models.Model):
+    """Token purchase packages"""
+    name = models.CharField(max_length=100)
+    token_amount = models.IntegerField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    bonus_tokens = models.IntegerField(default=0)
+    is_popular = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order', 'price']
+    
+    @property
+    def total_tokens(self):
+        return self.token_amount + self.bonus_tokens
+    
+    @property
+    def value_per_rupee(self):
+        return self.total_tokens / float(self.price)
+    
+    def _str_(self):
+        return f"{self.name} - {self.total_tokens} tokens for ₹{self.price}"
+
+class Coupon(models.Model):
+    """Coupons that can be purchased with tokens"""
+    COUPON_TYPES = [
+        ('discount', 'Discount Coupon'),
+        ('cashback', 'Cashback Offer'),
+        ('freebie', 'Free Product/Service'),
+        ('experience', 'Experience Voucher')
+    ]
+    
+    STATUS_CHOICES = [
+        ('active', 'Active'),
+        ('expired', 'Expired'),
+        ('out_of_stock', 'Out of Stock'),
+        ('inactive', 'Inactive')
+    ]
+    
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    coupon_type = models.CharField(max_length=20, choices=COUPON_TYPES)
+    brand_name = models.CharField(max_length=100)
+    brand_logo = models.URLField(blank=True)
+    token_cost = models.IntegerField(validators=[MinValueValidator(1)])
+    original_value = models.DecimalField(max_digits=10, decimal_places=2)
+    discount_percentage = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    stock_quantity = models.IntegerField(default=0)
+    used_quantity = models.IntegerField(default=0)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
+    valid_from = models.DateTimeField()
+    valid_until = models.DateTimeField()
+    terms_conditions = models.TextField()
+    coupon_code_prefix = models.CharField(max_length=10, default='PB')
+    is_featured = models.BooleanField(default=False)
+    category = models.CharField(max_length=50, default='General')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    @property
+    def is_available(self):
+        return (self.status == 'active' and 
+                self.stock_quantity > self.used_quantity and 
+                timezone.now() < self.valid_until)
+    
+    @property
+    def stock_remaining(self):
+        return max(0, self.stock_quantity - self.used_quantity)
+    
+    def _str_(self):
+        return f"{self.title} - {self.token_cost} tokens"
+
+class UserCoupon(models.Model):
+    """User's purchased coupons"""
+    REDEMPTION_STATUS = [
+        ('purchased', 'Purchased'),
+        ('redeemed', 'Redeemed'),
+        ('expired', 'Expired'),
+        ('refunded', 'Refunded')
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_coupons')
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
+    coupon_code = models.CharField(max_length=50, unique=True)
+    tokens_spent = models.IntegerField()
+    purchase_date = models.DateTimeField(auto_now_add=True)
+    redemption_date = models.DateTimeField(null=True, blank=True)
+    expiry_date = models.DateTimeField()
+    status = models.CharField(max_length=20, choices=REDEMPTION_STATUS, default='purchased')
+    
+    def save(self, *args, **kwargs):
+        if not self.coupon_code:
+            # Generate unique coupon code
+            import random
+            import string
+            while True:
+                code = f"{self.coupon.coupon_code_prefix}{random.randint(1000, 9999)}"
+                if not UserCoupon.objects.filter(coupon_code=code).exists():
+                    self.coupon_code = code
+                    break
+        
+        if not self.expiry_date:
+            self.expiry_date = self.coupon.valid_until
+            
+        super().save(*args, **kwargs)
+    
+    @property
+    def is_expired(self):
+        return timezone.now() > self.expiry_date
+    
+    @property
+    def days_until_expiry(self):
+        if self.is_expired:
+            return 0
+        return (self.expiry_date - timezone.now()).days
+    
+    def _str_(self):
+        return f"{self.user.username} - {self.coupon.title} ({self.coupon_code})"
+
+class TokenEarningRule(models.Model):
+    """Rules for earning tokens from various activities"""
+    activity_type = models.CharField(max_length=30, unique=True)
+    tokens_per_action = models.IntegerField()
+    max_daily_tokens = models.IntegerField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    description = models.CharField(max_length=200)
+    
+    def _str_(self):
+        return f"{self.activity_type} - {self.tokens_per_action} tokens"

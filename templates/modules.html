@@ -1,0 +1,1091 @@
+{%extends 'base.html'%}
+{%block content%}
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+
+        .container-fluid {
+            background: transparent;
+        }
+
+        .stats-row {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stats-row:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-row h4 {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .stats-row small {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .stats-row .fas {
+            color: #ff6b35;
+        }
+
+        .nav-pills {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-pills .nav-link {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 4px;
+        }
+
+        .nav-pills .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            height: 100%;
+        }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 200px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .video-placeholder h5 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .video-placeholder .fas {
+            position: relative;
+            z-index: 2;
+            color: #ff6b35;
+            filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.3));
+        }
+
+        .difficulty-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 3;
+        }
+
+        .difficulty-beginner { 
+            background: rgba(34, 197, 94, 0.9); 
+            color: white; 
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .difficulty-intermediate { 
+            background: rgba(245, 158, 11, 0.9); 
+            color: white; 
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .difficulty-advanced { 
+            background: rgba(239, 68, 68, 0.9); 
+            color: white; 
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .progress-indicator {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .progress-indicator .text-success {
+            color: #22c55e !important;
+        }
+
+        .progress-indicator .text-primary {
+            color: #ff6b35 !important;
+        }
+
+        .progress-indicator .text-warning {
+            color: #f59e0b !important;
+        }
+
+        .progress-indicator .text-muted {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .card-body {
+            background: transparent;
+            color: white;
+            padding: 24px;
+        }
+
+        .card-title {
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .card-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        .text-success {
+            color: #22c55e !important;
+        }
+
+        .text-warning {
+            color: #f59e0b !important;
+        }
+
+        .text-primary {
+            color: #ff6b35 !important;
+        }
+
+        .text-info {
+            color: #06b6d4 !important;
+        }
+
+        .text-danger {
+            color: #ef4444 !important;
+        }
+
+        .progress {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .progress-bar:not(.bg-secondary) {
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+        }
+
+        .progress-bar.bg-secondary {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .progress-bar.bg-warning {
+            background: linear-gradient(90deg, #f59e0b, #f97316);
+        }
+
+        .btn {
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            border: none;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            color: white;
+        }
+
+        .btn-outline-primary {
+            border: 2px solid #ff6b35;
+            color: #ff6b35;
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            border: none;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706, #ea580c);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+            color: white;
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            background: transparent;
+        }
+
+        .btn-outline-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-content {
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            color: white;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-title {
+            color: white;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 20px 20px;
+        }
+
+        .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .btn-close:hover {
+            opacity: 1;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b35;
+            backdrop-filter: blur(10px);
+        }
+
+        .question-card h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .option-button {
+            width: 100%;
+            text-align: left;
+            margin: 8px 0;
+            padding: 15px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .option-button:hover {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .option-button.selected {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.2);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .badge.bg-primary {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+        }
+
+        #videoPlaceholder {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #videoPlaceholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        #videoPlaceholder > div {
+            position: relative;
+            z-index: 2;
+        }
+
+        .spinner-border-sm {
+            color: #ff6b35 !important;
+        }
+
+        @media (max-width: 768px) {
+            .stats-row {
+                padding: 20px;
+            }
+
+            .stats-row .col-md-3 {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .module-card {
+                margin-bottom: 20px;
+            }
+
+            .video-placeholder {
+                height: 160px;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .nav-pills {
+                flex-wrap: wrap;
+            }
+
+            .nav-pills .nav-link {
+                margin-bottom: 8px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container-fluid {
+                padding: 15px;
+            }
+
+            .stats-row {
+                padding: 15px;
+            }
+
+            .quiz-container {
+                padding: 20px;
+                margin: 15px 0;
+            }
+
+            .question-card {
+                padding: 20px;
+            }
+
+            .option-button {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+    <div class="container-fluid py-4">
+        <!-- Learning Stats -->
+        <div class="stats-row">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-graduation-cap me-3" style="font-size: 2rem;"></i>
+                        <div>
+                            <h4 class="mb-0">12</h4>
+                            <small>Modules Completed</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-trophy me-3" style="font-size: 2rem;"></i>
+                        <div>
+                            <h4 class="mb-0">850</h4>
+                            <small>Points Earned</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-fire me-3" style="font-size: 2rem;"></i>
+                        <div>
+                            <h4 class="mb-0">1</h4>
+                            <small>Day Streak</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fas fa-chart-line me-3" style="font-size: 2rem;"></i>
+                        <div>
+                            <h4 class="mb-0">25%</h4>
+                            <small>Progress</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <ul class="nav nav-pills mb-4" id="learningTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="all-tab" data-bs-toggle="pill" data-bs-target="#all" type="button">
+                    <i class="fas fa-th-large me-2"></i>All Modules
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="beginner-tab" data-bs-toggle="pill" data-bs-target="#beginner" type="button">
+                    <i class="fas fa-seedling me-2"></i>Beginner
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="intermediate-tab" data-bs-toggle="pill" data-bs-target="#intermediate" type="button">
+                    <i class="fas fa-tree me-2"></i>Intermediate
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="advanced-tab" data-bs-toggle="pill" data-bs-target="#advanced" type="button">
+                    <i class="fas fa-mountain me-2"></i>Advanced
+                </button>
+            </li>
+        </ul>
+
+        <!-- Learning Modules -->
+        <div class="tab-content" id="learningTabsContent">
+            <div class="tab-pane fade show active" id="all" role="tabpanel">
+                <div class="row">
+                    <!-- Module 1: Banking Basics -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card module-card">
+                            <div class="position-relative">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle mb-2" style="font-size: 3rem;"></i>
+                                    <h5>Banking Fundamentals</h5>
+                                </div>
+                                <div class="progress-indicator">
+                                    <i class="fas fa-check text-success"></i>
+                                </div>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Banking Basics for Beginners</h5>
+                                <p class="card-text">Learn about different types of bank accounts, how interest works, and digital banking safety.</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>15 mins</small>
+                                    <small class="text-success"><i class="fas fa-coins me-1"></i>50 points</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                </div>
+                                <small class="text-success">✓ Completed</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-primary btn-sm me-2" onclick="playVideo(1)">
+                                        <i class="fas fa-play me-1"></i>Watch Again
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="retakeQuiz(1)">
+                                        <i class="fas fa-redo me-1"></i>Retake Quiz
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 2: Investment Fundamentals -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card module-card">
+                            <div class="position-relative">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle mb-2" style="font-size: 3rem;"></i>
+                                    <h5>Investment Basics</h5>
+                                </div>
+                                <div class="progress-indicator">
+                                    <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                                </div>
+                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Introduction to Investments</h5>
+                                <p class="card-text">Understand stocks, mutual funds, SIPs, and how to start your investment journey safely.</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>20 mins</small>
+                                    <small class="text-warning"><i class="fas fa-coins me-1"></i>75 points</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar" style="width: 65%"></div>
+                                </div>
+                                <small class="text-primary">In Progress (Quiz Available)</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-primary btn-sm me-2" onclick="playVideo(2)">
+                                        <i class="fas fa-play me-1"></i>Continue
+                                    </button>
+                                    <button class="btn btn-warning btn-sm" onclick="startQuiz(2)">
+                                        <i class="fas fa-question-circle me-1"></i>Take Quiz
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 3: Budgeting & Saving -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card module-card">
+                            <div class="position-relative">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-lock mb-2" style="font-size: 3rem;"></i>
+                                    <h5>Budgeting Mastery</h5>
+                                </div>
+                                <div class="progress-indicator">
+                                    <i class="fas fa-lock text-muted"></i>
+                                </div>
+                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Smart Budgeting & Saving</h5>
+                                <p class="card-text">Master the art of budgeting, expense tracking, and building an emergency fund.</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>18 mins</small>
+                                    <small class="text-muted"><i class="fas fa-coins me-1"></i>60 points</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted">Complete previous module to unlock</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-secondary btn-sm" disabled>
+                                        <i class="fas fa-lock me-1"></i>Locked
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 4: Credit & Loans -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card module-card">
+                            <div class="position-relative">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle mb-2" style="font-size: 3rem;"></i>
+                                    <h5>Credit Cards & Loans</h5>
+                                </div>
+                                <div class="progress-indicator">
+                                    <i class="fas fa-clock text-warning"></i>
+                                </div>
+                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Understanding Credit</h5>
+                                <p class="card-text">Learn about credit scores, credit cards, EMIs, and responsible borrowing practices.</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>25 mins</small>
+                                    <small class="text-info"><i class="fas fa-coins me-1"></i>80 points</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar bg-warning" style="width: 30%"></div>
+                                </div>
+                                <small class="text-warning">Started - Continue watching</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-warning btn-sm me-2" onclick="playVideo(4)">
+                                        <i class="fas fa-play me-1"></i>Continue
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 5: Insurance Basics -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card module-card">
+                            <div class="position-relative">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle mb-2" style="font-size: 3rem;"></i>
+                                    <h5>Insurance Protection</h5>
+                                </div>
+                                <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Insurance Essentials</h5>
+                                <p class="card-text">Protect your financial future with life, health, and general insurance knowledge.</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>22 mins</small>
+                                    <small class="text-danger"><i class="fas fa-coins me-1"></i>100 points</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted">Not Started</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-outline-primary btn-sm" onclick="playVideo(5)">
+                                        <i class="fas fa-play me-1"></i>Start Learning
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module 6: Tax Planning -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card module-card">
+                            <div class="position-relative">
+                                <div class="video-placeholder">
+                                    <i class="fas fa-play-circle mb-2" style="font-size: 3rem;"></i>
+                                    <h5>Tax Planning</h5>
+                                </div>
+                                <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Smart Tax Planning</h5>
+                                <p class="card-text">Learn about income tax, deductions, and how to file your returns efficiently.</p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted"><i class="fas fa-clock me-1"></i>30 mins</small>
+                                    <small class="text-danger"><i class="fas fa-coins me-1"></i>120 points</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 6px;">
+                                    <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                                </div>
+                                <small class="text-muted">Not Started</small>
+                                <div class="mt-3">
+                                    <button class="btn btn-outline-primary btn-sm" onclick="playVideo(6)">
+                                        <i class="fas fa-play me-1"></i>Start Learning
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div class="modal fade" id="quizModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-question-circle me-2"></i>
+                            Module Quiz: <span id="quizModuleTitle">Investment Basics</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="quiz-container">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h6>Question <span id="currentQuestion">1</span> of <span id="totalQuestions">5</span></h6>
+                                <div class="badge bg-primary">75 Points Available</div>
+                            </div>
+                            
+                            <div class="question-card">
+                                <h5 id="questionText">What is the primary benefit of starting to invest early?</h5>
+                                <div class="mt-4">
+                                    <button class="btn option-button" onclick="selectOption(this, 'A')">
+                                        <strong>A.</strong> Higher immediate returns
+                                    </button>
+                                    <button class="btn option-button" onclick="selectOption(this, 'B')">
+                                        <strong>B.</strong> Compound interest over time
+                                    </button>
+                                    <button class="btn option-button" onclick="selectOption(this, 'C')">
+                                        <strong>C.</strong> Lower risk investments
+                                    </button>
+                                    <button class="btn option-button" onclick="selectOption(this, 'D')">
+                                        <strong>D.</strong> Guaranteed profits
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <button class="btn btn-outline-secondary" onclick="previousQuestion()" disabled>
+                                    <i class="fas fa-chevron-left me-2"></i>Previous
+                                </button>
+                                <button class="btn btn-primary" onclick="nextQuestion()">
+                                    Next<i class="fas fa-chevron-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Player Modal -->
+        <div class="modal fade" id="videoModal" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-play-circle me-2"></i>
+                            <span id="videoModuleTitle">Learning Video</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="ratio ratio-16x9">
+                            <div id="videoPlaceholder" class="d-flex align-items-center justify-content-center">
+                                <div class="text-center">
+                                    <i class="fas fa-play-circle mb-3" style="font-size: 5rem;"></i>
+                                    <h4>Educational Video</h4>
+                                    <p class="mb-0">Video content would be displayed here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="progress flex-grow-1 me-3" style="height: 6px;">
+                            <div class="progress-bar" id="videoProgress" style="width: 0%"></div>
+                        </div>
+                        <button class="btn btn-success" onclick="markVideoComplete()">
+                            <i class="fas fa-check me-2"></i>Mark Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentQuestionIndex = 0;
+        let selectedAnswers = {};
+        let currentModule = null;
+
+        // Sample quiz data
+        const quizData = {
+            2: {
+                title: "Investment Basics",
+                questions: [
+                    {
+                        question: "What is the primary benefit of starting to invest early?",
+                        options: {
+                            A: "Higher immediate returns",
+                            B: "Compound interest over time", 
+                            C: "Lower risk investments",
+                            D: "Guaranteed profits"
+                        },
+                        correct: "B"
+                    },
+                    {
+                        question: "What does SIP stand for in mutual funds?",
+                        options: {
+                            A: "Stock Investment Plan",
+                            B: "Systematic Investment Plan",
+                            C: "Simple Interest Program",
+                            D: "Secure Investment Portfolio"
+                        },
+                        correct: "B"
+                    },
+                    {
+                        question: "Which is generally considered the riskiest investment?",
+                        options: {
+                            A: "Fixed Deposit",
+                            B: "Government Bonds",
+                            C: "Individual Stocks",
+                            D: "Mutual Funds"
+                        },
+                        correct: "C"
+                    }
+                ]
+            }
+        };
+
+        function playVideo(moduleId) {
+            currentModule = moduleId;
+            const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+            
+            const titles = {
+                1: "Banking Basics for Beginners",
+                2: "Introduction to Investments", 
+                4: "Understanding Credit",
+                5: "Insurance Essentials",
+                6: "Smart Tax Planning"
+            };
+            
+            document.getElementById('videoModuleTitle').textContent = titles[moduleId];
+            
+            // Simulate video progress
+            setTimeout(() => {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 2;
+                    document.getElementById('videoProgress').style.width = progress + '%';
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                    }
+                }, 100);
+            }, 1000);
+            
+            modal.show();
+        }
+
+        function startQuiz(moduleId) {
+            if (!quizData[moduleId]) {
+                alert('Quiz not available for this module yet!');
+                return;
+            }
+            
+            currentModule = moduleId;
+            currentQuestionIndex = 0;
+            selectedAnswers = {};
+            
+            const modal = new bootstrap.Modal(document.getElementById('quizModal'));
+            loadQuestion();
+            modal.show();
+        }
+
+        function retakeQuiz(moduleId) {
+            startQuiz(moduleId);
+        }
+
+        function loadQuestion() {
+            const quiz = quizData[currentModule];
+            const question = quiz.questions[currentQuestionIndex];
+            
+            document.getElementById('quizModuleTitle').textContent = quiz.title;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('totalQuestions').textContent = quiz.questions.length;
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Load options
+            const buttons = document.querySelectorAll('.option-button');
+            buttons.forEach((btn, index) => {
+                const optionKey = String.fromCharCode(65 + index); // A, B, C, D
+                btn.innerHTML = '<strong>' + optionKey + '.</strong> ' + question.options[optionKey];
+                btn.classList.remove('selected');
+                
+                if (selectedAnswers[currentQuestionIndex] === optionKey) {
+                    btn.classList.add('selected');
+                }
+            });
+        }
+
+        function selectOption(button, option) {
+            // Remove selection from all buttons
+            document.querySelectorAll('.option-button').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked button
+            button.classList.add('selected');
+            selectedAnswers[currentQuestionIndex] = option;
+        }
+
+        function nextQuestion() {
+            const quiz = quizData[currentModule];
+            
+            if (currentQuestionIndex < quiz.questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                // Show results
+                showQuizResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function showQuizResults() {
+            const quiz = quizData[currentModule];
+            let correctAnswers = 0;
+            
+            quiz.questions.forEach((question, index) => {
+                if (selectedAnswers[index] === question.correct) {
+                    correctAnswers++;
+                }
+            });
+            
+            const percentage = (correctAnswers / quiz.questions.length) * 100;
+            const passed = percentage >= 70;
+            
+            alert('Quiz Complete!\nScore: ' + correctAnswers + '/' + quiz.questions.length + ' (' + percentage.toFixed(1) + '%)\n' + (passed ? 'Congratulations! You passed!' : 'Try again to pass (70% required)'));
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('quizModal'));
+            modal.hide();
+        }
+
+        function markVideoComplete() {
+            alert('Video marked as complete! Quiz is now available.');
+            const modal = bootstrap.Modal.getInstance(document.getElementById('videoModal'));
+            modal.hide();
+        }
+
+        // Initialize tooltips and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-bar').forEach(bar => {
+                    bar.style.transition = 'width 1s ease-in-out';
+                });
+            }, 500);
+        });
+    </script>
+{% endblock %}

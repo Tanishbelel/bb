@@ -1,0 +1,514 @@
+{% extends 'base.html' %}
+
+{% block title %}My Coupons - PaisaBuddy{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 50px 0;
+        margin-bottom: 40px;
+    }
+    
+    .coupon-card {
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        margin-bottom: 25px;
+        transition: transform 0.3s ease;
+    }
+    
+    .coupon-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .coupon-card.active {
+        border: 2px solid var(--success-color);
+    }
+    
+    .coupon-card.expired {
+        opacity: 0.6;
+        border: 2px solid #dee2e6;
+    }
+    
+    .coupon-header {
+        background: linear-gradient(135deg, var(--primary-color), #3a9b6b);
+        color: white;
+        padding: 25px;
+        position: relative;
+    }
+    
+    .coupon-header.expired {
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+    }
+    
+    .coupon-header.redeemed {
+        background: linear-gradient(135deg, #28a745, #20c997);
+    }
+    
+    .status-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+    
+    .status-active {
+        background: var(--success-color);
+        color: white;
+    }
+    
+    .status-expired {
+        background: var(--danger-color);
+        color: white;
+    }
+    
+    .status-redeemed {
+        background: var(--info-color);
+        color: white;
+    }
+    
+    .coupon-code {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.2rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+        margin: 15px 0;
+        border: 2px dashed rgba(255, 255, 255, 0.3);
+    }
+    
+    .copy-button {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+    }
+    
+    .copy-button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+    
+    .expiry-info {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+    
+    .expiry-warning {
+        background: rgba(255, 193, 7, 0.2);
+        color: #ffc107;
+    }
+    
+    .expiry-danger {
+        background: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+    }
+    
+    .coupon-details {
+        padding: 25px;
+    }
+    
+    .brand-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .brand-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+    
+    .token-spent {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: inline-block;
+    }
+    
+    .terms-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        border-left: 4px solid var(--primary-color);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        color: #6c757d;
+    }
+    
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+    }
+    
+    .section-tabs {
+        background: white;
+        border-radius: 15px;
+        padding: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .tab-button {
+        background: none;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-weight: 600;
+        color: #6c757d;
+        transition: all 0.3s ease;
+        margin: 0 5px;
+    }
+    
+    .tab-button.active {
+        background: var(--primary-color);
+        color: white;
+    }
+    
+    .coupon-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    @media (max-width: 768px) {
+        .coupon-card {
+            margin-bottom: 20px;
+        }
+        
+        .coupon-header {
+            padding: 20px 15px;
+        }
+        
+        .coupon-details {
+            padding: 20px 15px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1><i class="fas fa-ticket-alt me-3"></i>My Coupons</h1>
+                <p class="lead mb-0">Manage your purchased coupons and redeem rewards</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <a href="{% url 'coupon_store' %}" class="btn btn-warning btn-lg">
+                    <i class="fas fa-store me-2"></i>Browse More Coupons
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Section Tabs -->
+    <div class="section-tabs text-center">
+        <button class="tab-button active" onclick="showSection('active')">
+            <i class="fas fa-check-circle me-2"></i>Active Coupons
+            <span class="badge bg-success ms-2">{{ active_coupons|length }}</span>
+        </button>
+        <button class="tab-button" onclick="showSection('expired')">
+            <i class="fas fa-history me-2"></i>Expired/Used
+            <span class="badge bg-secondary ms-2">{{ expired_coupons|length }}</span>
+        </button>
+    </div>
+    
+    <!-- Active Coupons Section -->
+    <div id="active-section">
+        {% if active_coupons %}
+        <div class="row">
+            {% for user_coupon in active_coupons %}
+            <div class="col-lg-6 col-xl-4">
+                <div class="coupon-card active">
+                    <div class="coupon-header">
+                        <div class="status-badge status-active">
+                            <i class="fas fa-check-circle me-1"></i>Active
+                        </div>
+                        
+                        <div class="brand-info">
+                            <div class="brand-logo">
+                                {% if user_coupon.coupon.brand_logo %}
+                                <img src="{{ user_coupon.coupon.brand_logo }}" alt="{{ user_coupon.coupon.brand_name }}" style="width: 30px; height: 30px; border-radius: 50%;">
+                                {% else %}
+                                <i class="fas fa-store text-primary"></i>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <h6 class="mb-1">{{ user_coupon.coupon.brand_name }}</h6>
+                                <h5 class="mb-0">{{ user_coupon.coupon.title }}</h5>
+                            </div>
+                        </div>
+                        
+                        <div class="coupon-code">
+                            {{ user_coupon.coupon_code }}
+                            <button class="copy-button ms-2" onclick="copyToClipboard('{{ user_coupon.coupon_code }}')">
+                                <i class="fas fa-copy me-1"></i>Copy
+                            </button>
+                        </div>
+                        
+                        <div class="expiry-info {% if user_coupon.days_until_expiry <= 7 %}expiry-danger{% elif user_coupon.days_until_expiry <= 30 %}expiry-warning{% endif %}">
+                            <i class="fas fa-clock me-2"></i>
+                            {% if user_coupon.days_until_expiry <= 0 %}
+                                Expired
+                            {% elif user_coupon.days_until_expiry == 1 %}
+                                Expires tomorrow
+                            {% elif user_coupon.days_until_expiry <= 7 %}
+                                Expires in {{ user_coupon.days_until_expiry }} days
+                            {% else %}
+                                Valid until {{ user_coupon.expiry_date|date:"M d, Y" }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="coupon-details">
+                        <p class="text-muted mb-3">{{ user_coupon.coupon.description }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="token-spent">
+                                <i class="fas fa-coins me-1"></i>{{ user_coupon.tokens_spent }} tokens spent
+                            </span>
+                            <span class="badge bg-info">{{ user_coupon.coupon.category }}</span>
+                        </div>
+                        
+                        <div class="coupon-actions">
+                            <button class="btn btn-primary btn-sm" onclick="showCouponDetails('{{ user_coupon.id }}')">
+                                <i class="fas fa-eye me-1"></i>View Details
+                            </button>
+                            <button class="btn btn-success btn-sm" onclick="markAsUsed('{{ user_coupon.id }}')">
+                                <i class="fas fa-check me-1"></i>Mark as Used
+                            </button>
+                        </div>
+                        
+                        <div class="terms-section">
+                            <h6><i class="fas fa-info-circle me-2"></i>Terms & Conditions</h6>
+                            <p class="small mb-0">{{ user_coupon.coupon.terms_conditions|truncatewords:20 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-ticket-alt"></i>
+            <h4>No Active Coupons</h4>
+            <p>You don't have any active coupons yet.</p>
+            <a href="{% url 'coupon_store' %}" class="btn btn-primary">
+                <i class="fas fa-store me-2"></i>Browse Coupon Store
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Expired Coupons Section -->
+    <div id="expired-section" style="display: none;">
+        {% if expired_coupons %}
+        <div class="row">
+            {% for user_coupon in expired_coupons %}
+            <div class="col-lg-6 col-xl-4">
+                <div class="coupon-card expired">
+                    <div class="coupon-header expired">
+                        <div class="status-badge {% if user_coupon.status == 'redeemed' %}status-redeemed{% else %}status-expired{% endif %}">
+                            {% if user_coupon.status == 'redeemed' %}
+                                <i class="fas fa-check-double me-1"></i>Used
+                            {% else %}
+                                <i class="fas fa-clock me-1"></i>Expired
+                            {% endif %}
+                        </div>
+                        
+                        <div class="brand-info">
+                            <div class="brand-logo">
+                                {% if user_coupon.coupon.brand_logo %}
+                                <img src="{{ user_coupon.coupon.brand_logo }}" alt="{{ user_coupon.coupon.brand_name }}" style="width: 30px; height: 30px; border-radius: 50%;">
+                                {% else %}
+                                <i class="fas fa-store text-muted"></i>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <h6 class="mb-1 opacity-75">{{ user_coupon.coupon.brand_name }}</h6>
+                                <h5 class="mb-0 opacity-75">{{ user_coupon.coupon.title }}</h5>
+                            </div>
+                        </div>
+                        
+                        <div class="coupon-code opacity-50">
+                            {{ user_coupon.coupon_code }}
+                        </div>
+                        
+                        <div class="expiry-info">
+                            <i class="fas fa-calendar-times me-2"></i>
+                            {% if user_coupon.status == 'redeemed' and user_coupon.redemption_date %}
+                                Used on {{ user_coupon.redemption_date|date:"M d, Y" }}
+                            {% else %}
+                                Expired on {{ user_coupon.expiry_date|date:"M d, Y" }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="coupon-details">
+                        <p class="text-muted mb-3">{{ user_coupon.coupon.description|truncatewords:15 }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="token-spent">
+                                <i class="fas fa-coins me-1"></i>{{ user_coupon.tokens_spent }} tokens
+                            </span>
+                            <small class="text-muted">
+                                Purchased: {{ user_coupon.purchase_date|date:"M d, Y" }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <i class="fas fa-history"></i>
+            <h4>No Expired Coupons</h4>
+            <p>You don't have any expired or used coupons yet.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Coupon Details Modal -->
+<div class="modal fade" id="couponDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Coupon Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="couponDetailsContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function showSection(sectionName) {
+    // Hide all sections
+    document.getElementById('active-section').style.display = 'none';
+    document.getElementById('expired-section').style.display = 'none';
+    
+    // Show selected section
+    document.getElementById(sectionName + '-section').style.display = 'block';
+    
+    // Update tab buttons
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    event.target.classList.add('active');
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        // Show success message
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+        button.classList.add('btn-success');
+        
+        setTimeout(function() {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-success');
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Could not copy text: ', err);
+        alert('Could not copy coupon code. Please copy manually: ' + text);
+    });
+}
+
+function showCouponDetails(couponId) {
+    // In a real implementation, you would fetch coupon details via AJAX
+    const modal = new bootstrap.Modal(document.getElementById('couponDetailsModal'));
+    
+    // Sample content - replace with actual AJAX call
+    document.getElementById('couponDetailsContent').innerHTML = `
+        <div class="text-center">
+            <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+            <p>Loading coupon details...</p>
+        </div>
+    `;
+    
+    modal.show();
+    
+    // Simulate loading
+    setTimeout(() => {
+        document.getElementById('couponDetailsContent').innerHTML = `
+            <div class="text-center mb-4">
+                <h4>Coupon Details</h4>
+                <p class="text-muted">Complete terms and conditions for this coupon</p>
+            </div>
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                This feature will show detailed terms and conditions, usage instructions, and redemption steps.
+            </div>
+        `;
+    }, 1500);
+}
+
+function markAsUsed(couponId) {
+    const confirmed = confirm('Are you sure you want to mark this coupon as used? This action cannot be undone.');
+    
+    if (confirmed) {
+        // In a real implementation, you would make an AJAX call to update the coupon status
+        alert('This feature will mark the coupon as used and move it to the expired section.');
+        
+        // You could implement the actual functionality like this:
+        /*
+        fetch(/tokens/mark-coupon-used/${couponId}/, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error: ' + data.error);
+            }
+        });
+        */
+    }
+}
